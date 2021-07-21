@@ -45,8 +45,6 @@ export type SelectContainerProps<OptionKey extends string> = {
   errorText?: string
   /** Controls if this Select is disabled */
   isDisabled?: boolean
-  /** Controls is this Select is readonly */
-  isReadOnly?: boolean
   /** A string describing what this Select represents */
   label: string
   /** Name of the value held by this Select when placed inside a form */
@@ -73,7 +71,6 @@ function SelectContainer<OptionKey extends string>({
   errorText: _errorText,
   hint,
   isDisabled = false,
-  isReadOnly = false,
   label,
   name,
   placeholder = "Select an option",
@@ -95,8 +92,7 @@ function SelectContainer<OptionKey extends string>({
     children: body,
     defaultOpen,
     defaultSelectedKey,
-    isDisabled,
-    isReadOnly,
+    isDisabled: isDisabled,
     label,
     selectedKey,
     onSelectionChange: chain(
@@ -116,7 +112,6 @@ function SelectContainer<OptionKey extends string>({
       defaultOpen,
       defaultSelectedKey,
       isDisabled,
-      isReadOnly,
       label,
       placeholder,
       selectedKey,

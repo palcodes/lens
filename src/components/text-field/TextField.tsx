@@ -24,8 +24,6 @@ export type TextFieldProps = {
   inputMode?: "text" | "email" | "tel" | "url" | "numeric" | "decimal"
   /** Controls if this TextField is disabled */
   isDisabled?: boolean
-  /** Controls if this TextField is readonly */
-  isReadOnly?: boolean
   /** A label that identifies this TextField's purpose */
   label?: string
   /** Name of the value held by this TextField when placed inside a form */
@@ -53,7 +51,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       hint,
       inputMode,
       isDisabled = false,
-      isReadOnly = false,
       label,
       name,
       onChange,
@@ -87,7 +84,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         autoFocus,
         inputMode,
         isDisabled,
-        isReadOnly,
+        isReadOnly: isDisabled,
         label,
         name,
         onChange: chain(onChange, (v: string) =>

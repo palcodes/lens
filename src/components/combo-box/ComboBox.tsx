@@ -40,8 +40,6 @@ export type ComboBoxContainerProps<OptionKey extends string> = {
   defaultSelectedKey?: OptionKey
   /** Controls if this ComboBox is disabled */
   isDisabled?: boolean
-  /** Controls is this ComboBox is readonly */
-  isReadOnly?: boolean
   /** A string describing what this ComboBox represents */
   label: string
   /** A (dynamic) list of options to render within this ComboBox.
@@ -70,7 +68,6 @@ function ComboBoxContainer<OptionKey extends string>({
   defaultInputValue,
   defaultSelectedKey,
   isDisabled = false,
-  isReadOnly = false,
   options: propOptions,
   label,
   name,
@@ -95,7 +92,7 @@ function ComboBoxContainer<OptionKey extends string>({
     defaultInputValue,
     defaultSelectedKey,
     isDisabled,
-    isReadOnly,
+    isReadOnly: isDisabled,
     defaultItems: options, // `defaultFilter` only works when `items` is undefined
     defaultFilter: contains,
     placeholder,
@@ -124,7 +121,7 @@ function ComboBoxContainer<OptionKey extends string>({
       defaultInputValue,
       defaultSelectedKey,
       isDisabled,
-      isReadOnly,
+      isReadOnly: isDisabled,
       defaultItems: options,
       placeholder,
       shouldFlip: true,

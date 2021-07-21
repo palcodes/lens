@@ -96,7 +96,6 @@ function ComboBoxContainer<OptionKey extends string>({
     defaultItems: options, // `defaultFilter` only works when `items` is undefined
     defaultFilter: contains,
     placeholder,
-    shouldFlip: true,
     selectedKey,
     onSelectionChange: onSelectionChange as (k: React.Key) => void,
   })

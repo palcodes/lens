@@ -106,3 +106,15 @@ export const WithIcon = () => (
     </Button>
   </div>
 )
+
+export const WithIconOnly = () => (
+  <div className="flex space-x-4">
+    <Button
+      variant="primary"
+      icon="copy"
+      iconSize="sm"
+      onPress={action("onPress")}
+    />
+    <Button variant="primary" icon="copy" iconSize="sm" isDisabled />
+  </div>
+)

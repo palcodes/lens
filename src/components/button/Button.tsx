@@ -104,7 +104,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             }
           )}
         >
-          {icon && <Icon name={icon} size={iconSize} className="mr-1" />}
+          {icon && (
+            <Icon
+              name={icon}
+              size={iconSize}
+              className={cn({ "mr-1": children })}
+            />
+          )}
           {children}
         </button>
       </FocusRing>

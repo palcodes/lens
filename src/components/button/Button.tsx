@@ -20,7 +20,7 @@ export type ButtonProps = React.PropsWithChildren<{
   /** Controls if the button will grow to fill its parent */
   fillParent?: boolean
   /** Icon element will be placed before the children. */
-  icon?: "database"
+  icon?: string
   /** Icon element size. */
   iconSize?: "xs" | "sm" | "md" | "lg" | "xl"
   /** Callback invoked when this button is pressed */

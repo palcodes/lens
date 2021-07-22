@@ -41,9 +41,10 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           href={href}
           rel="noopener noreferrer"
           className={cn("mx-1", "underline", {
-            "text-gray-500 dark:text-gray-200": !isHovered && !isDisabled,
-            "text-gray-600 dark:text-gray-500": isHovered,
+            "text-gray-600 dark:text-gray-400": !isHovered && !isDisabled,
+            "text-gray-500 dark:text-gray-300": isHovered,
             "text-gray-400 dark:text-gray-700": isDisabled,
+            "cursor-not-allowed": isDisabled,
           })}
           target={openInNewTab ? "_blank" : undefined}
         >

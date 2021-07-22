@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions"
-import { chain } from "../../lib"
+import { chain } from "@react-aria/utils"
 import { Dialog } from "./Dialog"
 import { Button } from "../button/Button"
 import { Avatar } from "../avatar/Avatar"

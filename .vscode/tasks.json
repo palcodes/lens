@@ -5,6 +5,7 @@
       "label": "dev",
       "type": "shell",
       "command": "npm run dev",
+      "detail": "Start development server",
       "presentation": {
         "focus": false,
         "panel": "shared",

@@ -5,6 +5,7 @@ import { useHover } from "@react-aria/interactions"
 import { mergeProps } from "@react-aria/utils"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Icon } from "../icon/Icon"
+import { Loader } from "../loader/Loader"
 
 export type ButtonProps = React.PropsWithChildren<{
   /** A React ref to attach to the rendered Button */
@@ -21,6 +22,8 @@ export type ButtonProps = React.PropsWithChildren<{
   fillParent?: boolean
   /** Icon element will be placed before the children. */
   icon?: string
+  /** Controls if the button shows Loader */
+  isLoading?: boolean
   /** Icon element size. */
   iconSize?: "xs" | "sm" | "md" | "lg" | "xl"
   /** Callback invoked when this button is pressed */
@@ -33,8 +36,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       id,
       autoFocus = false,
       variant = "primary",
-      isDisabled = false,
+      isDisabled: _isDisabled = false,
       fillParent = false,
+      isLoading = false,
       icon,
       iconSize = "sm",
       children,
@@ -44,6 +48,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const _ref = useRef<HTMLButtonElement>(null)
     const ref = forwardedRef || _ref
+
+    const isDisabled = _isDisabled || isLoading
     const { buttonProps, isPressed } = useButton(
       { id, isDisabled, children, autoFocus, onPress, type: "submit" },
       ref as React.RefObject<HTMLButtonElement>
@@ -104,13 +110,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             }
           )}
         >
-          {icon && (
+          {icon && !isLoading && (
             <Icon
               name={icon}
               size={iconSize}
-              className={cn({ "mr-1": children })}
+              className={cn({
+                "mr-1": !!children, // only add a margin if there are children
+              })}
             />
           )}
+          {isLoading && (
+            <Loader
+              size={iconSize}
+              className={cn({
+                "mr-1": !!children, // only add a margin if there are children
+              })}
+            />
+          )}
+
           {children}
         </button>
       </FocusRing>

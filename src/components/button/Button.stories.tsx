@@ -107,6 +107,22 @@ export const WithIcon = () => (
   </div>
 )
 
+export const WithLoader = () => (
+  <div className="flex flex-col space-y-4">
+    <Button variant="primary" isLoading>
+      Creating database
+    </Button>
+
+    <Button variant="secondary" isLoading>
+      Creating database
+    </Button>
+
+    <Button variant="quiet" isLoading>
+      Creating database
+    </Button>
+  </div>
+)
+
 export const WithIconOnly = () => (
   <div className="flex space-x-4">
     <Button
@@ -115,6 +131,7 @@ export const WithIconOnly = () => (
       iconSize="sm"
       onPress={action("onPress")}
     />
+
     <Button variant="primary" icon="copy" iconSize="sm" isDisabled />
   </div>
 )

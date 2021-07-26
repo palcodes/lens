@@ -3,9 +3,13 @@ import cn from "classnames"
 
 import { Size, sizeToNumeric } from "../../utils/sizeToNumeric"
 
-export type LoaderProps = { size?: Size }
+export type LoaderProps = {
+  size?: Size
+  /** Additional classes that will be spread over the Loader. Avoid changing the Loader visually. */
+  className?: string
+}
 
-export function Loader({ size = "lg" }: LoaderProps) {
+export function Loader({ size = "lg", className }: LoaderProps) {
   const width = sizeToNumeric(size)
 
   return (
@@ -13,7 +17,11 @@ export function Loader({ size = "lg" }: LoaderProps) {
       width={width}
       height={width}
       viewBox="0 0 24 24"
-      className={cn("animate-spin", "text-gray-500 dark:text-gray-500")}
+      className={cn(
+        "animate-spin",
+        "text-gray-500 dark:text-gray-500",
+        className
+      )}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

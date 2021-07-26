@@ -92,7 +92,7 @@ function SelectContainer<OptionKey extends string>({
     children: body,
     defaultOpen,
     defaultSelectedKey,
-    isDisabled: isDisabled,
+    isDisabled,
     label,
     selectedKey,
     onSelectionChange: chain(

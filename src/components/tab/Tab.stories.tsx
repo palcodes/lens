@@ -1,8 +1,12 @@
+import { action } from "@storybook/addon-actions"
 import { Tab } from "./Tab"
 
 export const Default = (props) => (
-  <Tab.Container aria-label="Continue locally guide">
-    <Tab.Tab key="remote" dataKey="remote" title="Remote Database">
+  <Tab.Container
+    label="Continue locally guide"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <Tab.Tab key="remote" title="Remote Database">
       <>
         <p>
           1. Open your terminal and use the following command to clone the
@@ -12,7 +16,7 @@ export const Default = (props) => (
       </>
     </Tab.Tab>
 
-    <Tab.Tab key="local" dataKey="local" title="Local Database">
+    <Tab.Tab key="local" title="Local Database">
       <>
         <p>
           1. Open your terminal and use the following command to clone the
@@ -35,8 +39,11 @@ export default {
 }
 
 export const WithDisabled = () => (
-  <Tab.Container aria-label="Continue locally guide">
-    <Tab.Tab key="remote" dataKey="remote" title="Remote Database">
+  <Tab.Container
+    label="Continue locally guide"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <Tab.Tab key="remote" title="Remote Database">
       <>
         <p>
           1. Open your terminal and use the following command to clone the
@@ -46,7 +53,7 @@ export const WithDisabled = () => (
       </>
     </Tab.Tab>
 
-    <Tab.Tab key="local" dataKey="local" title="Local Database">
+    <Tab.Tab key="local" title="Local Database">
       <>
         <p>
           1. Open your terminal and use the following command to clone the
@@ -56,12 +63,7 @@ export const WithDisabled = () => (
       </>
     </Tab.Tab>
 
-    <Tab.Tab
-      key="distributed"
-      dataKey="distributed"
-      title="Distributed Database"
-      isDisabled
-    >
+    <Tab.Tab key="distributed" title="Distributed Database" isDisabled>
       <p>Coming soon</p>
     </Tab.Tab>
   </Tab.Container>

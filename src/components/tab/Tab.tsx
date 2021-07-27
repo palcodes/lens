@@ -1,15 +1,15 @@
-import React, { useRef } from "react"
+import React, { ReactElement, useMemo, useRef } from "react"
 import cn from "classnames"
 
 import { useTabList, useTab, useTabPanel } from "@react-aria/tabs"
 import { useTabListState, TabListState } from "@react-stately/tabs"
 import { Item as ReactAriaItem } from "@react-stately/collections"
 import { CollectionChildren, Node } from "@react-types/shared"
+import { FocusRing } from "../focus-ring/FocusRing"
 
 type Tab<Key extends string> = {
   key: Key
   title: string
-  dataKey: string
   isDisabled?: boolean
   children: React.ReactElement
 }
@@ -17,26 +17,46 @@ type Tab<Key extends string> = {
 type TabContainerProps<TabKey extends string> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
+  /** A string describing what this TabContainer represents. Required for accesibility. */
+  label: string
   /** A list of Tabs (with their content) to render inside this Tab.Container */
   children: CollectionChildren<Tab<TabKey>>
+  /** Key of the Tab that is active when this TabContainer is first rendered */
+  defaultSelectedKey?: TabKey
+  /** Key of the currently active Tab */
+  selectedKey?: TabKey
+  /** Callback invoked when the active Tab changes */
+  onSelectionChange?: (key: TabKey) => void
 }
 function TabContainer<TabKey extends string>({
   id,
+  label,
   children,
+  defaultSelectedKey,
+  selectedKey,
+  onSelectionChange,
 }: TabContainerProps<TabKey>) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const disabledKeys = React.Children.toArray(children)
-    .filter((child) => {
-      return child.props.isDisabled
-    })
-    .map((child) => {
-      return child.props.dataKey
-    })
+  // Building the `tabs` array using `React.Children.forEach` instead of `React.Children.toArray` makes it so React doesn't change keys
+  const tabs: React.ReactElement<Tab<TabKey>>[] = []
+  React.Children.forEach(children, (c) => tabs.push(c as React.ReactElement))
 
-  const state = useTabListState({ children, disabledKeys: disabledKeys })
+  const disabledKeys = tabs.filter((t) => t.props.isDisabled).map((t) => t.key!) // `!` is fine because it is required in `Tab` type
+
+  const state = useTabListState({
+    children,
+    disabledKeys,
+    defaultSelectedKey,
+    selectedKey,
+    onSelectionChange: onSelectionChange as (k: React.Key) => void,
+  })
   const { tabListProps } = useTabList(
-    { children, disabledKeys: [] },
+    {
+      "aria-label": label,
+      children,
+      orientation: "horizontal",
+    },
     state,
     ref
   )
@@ -61,6 +81,7 @@ function TabContainer<TabKey extends string>({
           <TabItem key={tab.key} tab={tab} state={state} />
         ))}
       </div>
+
       <TabContent key={state.selectedItem?.key} state={state} />
     </div>
   )
@@ -77,37 +98,39 @@ function TabItem<TabKey extends string>({ tab, state }: TabItemProps<TabKey>) {
   const isDisabled = tab.props.isDisabled
 
   return (
-    <div
-      {...tabProps}
-      ref={ref}
-      lens-role="tab"
-      className={cn("relative py-2 mr-4 text-sm", {
-        "opacity-50 cursor-not-allowed": isDisabled,
-        "cursor-pointer": !isDisabled,
-        "text-gray-800 dark:text-gray-600": isSelected,
-        "text-gray-600 dark:text-gray-800": !isSelected,
-      })}
-    >
-      {tab.rendered}
+    <FocusRing>
+      <div
+        {...tabProps}
+        ref={ref}
+        lens-role="tab"
+        className={cn("relative py-2 mr-4 text-sm", {
+          "opacity-50 cursor-not-allowed": isDisabled,
+          "cursor-pointer": !isDisabled,
+          "text-gray-800 dark:text-gray-300": isSelected,
+          "text-gray-600 dark:text-gray-500": !isSelected,
+        })}
+      >
+        {tab.rendered}
 
-      {/* The bar under the selected tab */}
-      {!isDisabled && (
-        <span
-          className={cn(
-            "absolute flex left-0 w-full",
-            "bg-gray-700 dark:bg-gray-400",
-            {
-              "opacity-100": isSelected,
-              "opacity-0": !isSelected,
-            }
-          )}
-          style={{
-            height: "1px",
-            bottom: "-1px",
-          }}
-        />
-      )}
-    </div>
+        {/* The bar under the selected tab */}
+        {!isDisabled && (
+          <span
+            className={cn(
+              "absolute flex left-0 w-full",
+              "bg-gray-700 dark:bg-gray-400",
+              {
+                "opacity-100": isSelected,
+                "opacity-0": !isSelected,
+              }
+            )}
+            style={{
+              height: "1px",
+              bottom: "-1px",
+            }}
+          />
+        )}
+      </div>
+    </FocusRing>
   )
 }
 
@@ -122,7 +145,7 @@ function TabContent<TabKey extends string>({ state }: TabContentProps<TabKey>) {
     <div
       {...tabPanelProps}
       ref={ref}
-      className="text-sm text-gray-900 dark:text-gray-600"
+      className="text-sm text-gray-900 dark:text-gray-300"
     >
       {state.selectedItem?.props.children}
     </div>

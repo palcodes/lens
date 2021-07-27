@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions"
 import { Select } from "./Select"
 import { Link } from "../link/Link"
-import { Icon } from "../icon/Icon"
 
 export const Default = (props) => (
   <Select.Container {...props}>

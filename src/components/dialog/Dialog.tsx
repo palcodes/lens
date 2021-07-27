@@ -16,18 +16,33 @@ import {
   useOverlayTriggerState,
 } from "@react-stately/overlays"
 import { TitleGroup } from "../../typography/title-group/TitleGroup"
+import { Button } from "../button/Button"
 
-type DialogContext = {
-  close: OverlayTriggerState["close"]
+interface DialogState {
   title: string
   subtitle: string
   icon: string
-  shouldCloseOnBlur: boolean
+  isEmbedded?: boolean
+  dimensions?: DOMRect
+  shouldCloseOnBlur?: boolean
+  close: OverlayTriggerState["close"]
 }
-// @ts-expect-error: Because we cannot supply a valid value at initialization
-const DialogContext = createContext<DialogContext>(null)
 
-export type DialogContainerProps = {
+const defaultFn = (): void | Promise<void> => {
+  console.warn(`Context not ready!`)
+}
+
+const initialDialogState: DialogState = {
+  title: "",
+  subtitle: "",
+  icon: "user",
+  close: defaultFn,
+}
+
+const DialogContext = createContext(initialDialogState)
+
+/* The Dialog's Container */
+interface BaseDialogContainerProps {
   /** The dialog's trigger and its body, in order */
   children: [React.ReactElement, (close: () => void) => React.ReactElement]
   /** Title of the dialog */
@@ -42,6 +57,13 @@ export type DialogContainerProps = {
   shouldCloseOnBlur?: boolean
 }
 
+type EmbeddedDialogContainerProps =
+  | { isEmbedded?: true; dimensions: DOMRect }
+  | { isEmbedded?: false; dimensions?: never }
+
+type DialogContainerProps = BaseDialogContainerProps &
+  EmbeddedDialogContainerProps
+
 function DialogContainer({
   children,
   title,
@@ -49,6 +71,8 @@ function DialogContainer({
   icon,
   defaultOpen,
   shouldCloseOnBlur = true,
+  isEmbedded = false,
+  dimensions,
 }: DialogContainerProps) {
   if (!Array.isArray(children)) {
     throw new Error("A Dialog.Container must receive an array of children")
@@ -60,31 +84,31 @@ function DialogContainer({
   }
 
   const [trigger, content] = children
-
   const state = useOverlayTriggerState({
     defaultOpen,
   })
 
+  const value = {
+    title,
+    subtitle,
+    icon,
+    shouldCloseOnBlur,
+    isEmbedded,
+    dimensions,
+    close: state.close,
+  }
+
   return (
-    <DialogContext.Provider
-      value={{
-        close: state.close,
-        title,
-        subtitle,
-        icon,
-        shouldCloseOnBlur,
-      }}
-    >
+    <DialogContext.Provider value={value}>
       <PressResponder isPressed={state.isOpen} onPress={state.toggle}>
         {trigger}
       </PressResponder>
-
       {state.isOpen && content(state.close)}
     </DialogContext.Provider>
   )
 }
 
-/** The Dialog's Body when opened */
+/** The Dialog's Body that will be visible when opened */
 export type DialogBodyProps = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
@@ -94,20 +118,27 @@ export type DialogBodyProps = {
 
 function DialogBody({ id, children }: DialogBodyProps) {
   const [body, footer] = Children.toArray(children)
-  const { close, title, subtitle, icon, shouldCloseOnBlur } =
-    useContext(DialogContext)
+  const {
+    title,
+    subtitle,
+    icon,
+    shouldCloseOnBlur,
+    isEmbedded,
+    dimensions,
+    close,
+  } = useContext(DialogContext)
 
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const { overlayProps } = useOverlay(
     {
       isDismissable: true,
       shouldCloseOnBlur: shouldCloseOnBlur,
       onClose: close,
     },
-    overlayRef
+    ref
   )
 
-  usePreventScroll()
+  !isEmbedded && usePreventScroll()
   const { modalProps } = useModal()
 
   const { dialogProps, titleProps } = useDialog(
@@ -115,59 +146,80 @@ function DialogBody({ id, children }: DialogBodyProps) {
       id,
       role: "dialog",
     },
-    overlayRef
+    ref
   )
 
   return (
     <OverlayContainer>
-      <FocusScope contain autoFocus restoreFocus>
-        <DismissButton onDismiss={close} />
-        <div
-          lens-role="dialog-body"
-          className={cn(
-            "flex justify-center items-center",
-            "fixed top-0 bottom-0 left-0 right-0 z-30",
-            "bg-black-fade-50"
-          )}
-        >
+      <div
+        lens-role="dialog-body"
+        className={cn(
+          "flex justify-center items-center",
+          "bg-black-fade-50",
+          { "fixed inset-0 z-30": !isEmbedded },
+          { absolute: isEmbedded }
+        )}
+        style={{
+          left: isEmbedded ? dimensions?.left : 0,
+          top: isEmbedded ? dimensions?.top : 0,
+          width: isEmbedded ? dimensions?.width : "100%",
+          height: isEmbedded ? dimensions?.height : "100%",
+        }}
+      >
+        <FocusScope contain autoFocus restoreFocus>
+          <DismissButton onDismiss={close} />
           <div
-            ref={overlayRef}
+            ref={ref}
             {...mergeProps(overlayProps, modalProps, dialogProps)}
             className={cn(
-              "left-0 right-0 w-full",
-              "rounded-md shadow-md overflow-hidden",
-              "bg-gray-100 dark:bg-gray-800",
-              "animate-dialog-enter"
+              "overflow-hidden",
+              { "h-full w-full": isEmbedded },
+              { "bg-white dark:bg-gray-900": isEmbedded },
+              { "bg-gray-100 dark:bg-gray-800": !isEmbedded },
+              { "rounded-md shadow-md": !isEmbedded },
+              { "animate-dialog-enter": !isEmbedded }
             )}
-            style={{ width: 580 }}
+            style={!isEmbedded ? { width: "580px" } : {}}
           >
-            <TitleGroup
-              title={title}
-              subtitle={subtitle}
-              icon={icon}
-              titleProps={titleProps}
-              className={cn(
-                "px-6 py-4",
-                "bg-white dark:bg-gray-900",
-                "border-b border-gray-300 dark:border-gray-600"
+            <div
+              className={cn({
+                "flex items-center justify-between px-6": isEmbedded,
+              })}
+            >
+              <TitleGroup
+                title={title}
+                subtitle={subtitle}
+                icon={icon}
+                titleProps={titleProps}
+                className={cn("py-4", "bg-white dark:bg-gray-900", {
+                  "px-6 border-b border-gray-300 dark:border-gray-600":
+                    !isEmbedded,
+                })}
+              />
+              {isEmbedded && (
+                <Button
+                  variant="quiet"
+                  icon="x"
+                  iconSize="md"
+                  onPress={close}
+                />
               )}
-            />
+            </div>
 
             <section
               lens-role="dialog-body"
-              className={cn(
-                "px-6 py-4",
-                "border-b border-gray-300 dark:border-gray-600"
-              )}
+              className={cn("px-6 py-4", {
+                "border-b border-gray-300 dark:border-gray-600": !isEmbedded,
+              })}
             >
               {body}
             </section>
 
             {footer}
           </div>
-        </div>
-        <DismissButton onDismiss={close} />
-      </FocusScope>
+          <DismissButton onDismiss={close} />
+        </FocusScope>
+      </div>
     </OverlayContainer>
   )
 }

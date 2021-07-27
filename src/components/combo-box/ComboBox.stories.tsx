@@ -380,3 +380,66 @@ export const WithAsyncError = () => (
     )}
   </ComboBox.Container>
 )
+
+export const WithHint = () => (
+  <ComboBox.Container label="Repository" hint="Pick a repository to continue">
+    <ComboBox.Option key="prisma">prisma/prisma</ComboBox.Option>
+    <ComboBox.Option key="studio">prisma/studio</ComboBox.Option>
+    <ComboBox.Option key="cloud">prisma/cloud</ComboBox.Option>
+    <ComboBox.Option key="engines">prisma/engines</ComboBox.Option>
+    <ComboBox.Option key="examples">prisma/examples</ComboBox.Option>
+    <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
+  </ComboBox.Container>
+)
+
+export const WithError = () => (
+  <ComboBox.Container
+    label="Repository"
+    errorText="You do not have access to this repository"
+  >
+    <ComboBox.Option key="prisma">prisma/prisma</ComboBox.Option>
+    <ComboBox.Option key="studio">prisma/studio</ComboBox.Option>
+    <ComboBox.Option key="cloud">prisma/cloud</ComboBox.Option>
+    <ComboBox.Option key="engines">prisma/engines</ComboBox.Option>
+    <ComboBox.Option key="examples">prisma/examples</ComboBox.Option>
+    <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
+  </ComboBox.Container>
+)
+
+export const WithHintAndError = () => (
+  <ComboBox.Container
+    label="Repository"
+    hint="Pick a repository to continue"
+    errorText="You do not have access to this repository"
+  >
+    <ComboBox.Option key="prisma">prisma/prisma</ComboBox.Option>
+    <ComboBox.Option key="studio">prisma/studio</ComboBox.Option>
+    <ComboBox.Option key="cloud">prisma/cloud</ComboBox.Option>
+    <ComboBox.Option key="engines">prisma/engines</ComboBox.Option>
+    <ComboBox.Option key="examples">prisma/examples</ComboBox.Option>
+    <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
+  </ComboBox.Container>
+)
+
+export const WithValidator = () => (
+  <div className="flex flex-col">
+    <div className="mb-4 text-gray-500 dark:text-gray-400">
+      All repositories except prisma/cloud are considered valid
+    </div>
+    <ComboBox.Container
+      label="Repository"
+      validator={(selectedKey) =>
+        selectedKey === "cloud"
+          ? "You don't have access to this repository"
+          : undefined
+      }
+    >
+      <ComboBox.Option key="prisma">prisma/prisma</ComboBox.Option>
+      <ComboBox.Option key="studio">prisma/studio</ComboBox.Option>
+      <ComboBox.Option key="cloud">prisma/cloud</ComboBox.Option>
+      <ComboBox.Option key="engines">prisma/engines</ComboBox.Option>
+      <ComboBox.Option key="examples">prisma/examples</ComboBox.Option>
+      <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
+    </ComboBox.Container>
+  </div>
+)

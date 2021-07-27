@@ -35,6 +35,12 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
     }
 
     // Exceptions to FeatherIcons
+    if (name === "space") {
+      return (
+        <svg {...commonProps} viewBox="0 0 32 32" fill="currentColor"></svg>
+      )
+    }
+
     if (name === "prisma") {
       return (
         <svg {...commonProps} viewBox="0 0 32 32" fill="currentColor">

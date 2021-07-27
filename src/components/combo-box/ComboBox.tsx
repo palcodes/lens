@@ -12,18 +12,16 @@ import { CollectionChildren, Node } from "@react-types/shared"
 
 import { useAsyncOptions } from "../../hooks/useAsyncOptions"
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
-import { ListBoxFooter, ListBoxOverlay } from "../internal/ListBox"
+import {
+  ListBoxOption,
+  ListBoxFooter,
+  ListBoxOverlay,
+} from "../internal/ListBox"
 import { Label } from "../label/Label"
 import { Icon } from "../icon/Icon"
 import { FocusRing } from "../focus-ring/FocusRing"
 
-/** Value for a single Option inside this ComboBox */
-export type ComboBoxOption<Key extends string> = {
-  /** A string that uniquely identifies this option */
-  key: Key
-  /** The main text to display within this option */
-  title: string
-}
+export type ComboBoxOption<Key extends string> = ListBoxOption<Key>
 
 export type ComboBoxContainerProps<OptionKey extends string> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
@@ -31,7 +29,7 @@ export type ComboBoxContainerProps<OptionKey extends string> = {
   /** Controls if this ComboBox should steal focus when first rendered */
   autoFocus?: boolean
   /** A list of Options to render inside this ComboBox */
-  children?: CollectionChildren<ComboBoxOption<OptionKey>>
+  children?: CollectionChildren<ListBoxOption<OptionKey>>
   /** Value to be pre-populated in the input when this ComboBox is first rendered */
   defaultInputValue?: string
   /** Controls if this ComboBox will be open by default */
@@ -45,7 +43,7 @@ export type ComboBoxContainerProps<OptionKey extends string> = {
   /** A (dynamic) list of options to render within this ComboBox.
    * This may be provided upfront instead of providing static children.
    */
-  options?: ComboBoxOption<OptionKey>[] | Promise<ComboBoxOption<OptionKey>[]>
+  options?: ListBoxOption<OptionKey>[] | Promise<ListBoxOption<OptionKey>[]>
   /** Name of the value held by this ComboBox when placed inside a form */
   name?: string
   /** A value to display in the TextField when it is empty */
@@ -80,7 +78,7 @@ function ComboBoxContainer<OptionKey extends string>({
     footerType: ListBoxFooter,
   })
   const { loading, error, options } =
-    useAsyncOptions<ComboBoxOption<OptionKey>>(propOptions)
+    useAsyncOptions<ListBoxOption<OptionKey>>(propOptions)
 
   const { contains } = useFilter({ sensitivity: "base" })
   const state = useComboBoxState({
@@ -205,6 +203,7 @@ export const ComboBox = {
     key: Key
     children: string
     icon?: string
+    description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,
 }

@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions"
-import { ComboBox, ComboBoxOption } from "./ComboBox"
+import { ComboBoxOption, ComboBox } from "./ComboBox"
 import { Link } from "../link/Link"
+import { Form } from "../form/Form"
 
 type RepositoryId =
   | "prisma"
@@ -111,6 +112,131 @@ export const WithDynamicData = () => (
       <ComboBox.Option key={option.key}>{option.title}</ComboBox.Option>
     )}
   </ComboBox.Container>
+)
+
+export const WithIcons = () => (
+  <ComboBox.Container
+    label="Repository"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <ComboBox.Option key="prisma" icon="lock">
+      prisma/prisma
+    </ComboBox.Option>
+    <ComboBox.Option key="studio" icon="lock">
+      prisma/studio
+    </ComboBox.Option>
+    <ComboBox.Option key="cloud" icon="lock">
+      prisma/cloud
+    </ComboBox.Option>
+    <ComboBox.Option key="engines" icon="lock">
+      prisma/engines
+    </ComboBox.Option>
+    <ComboBox.Option key="examples" icon="lock">
+      prisma/examples
+    </ComboBox.Option>
+    <ComboBox.Option key="docs" icon="lock">
+      prisma/docs
+    </ComboBox.Option>
+  </ComboBox.Container>
+)
+
+export const WithDescriptions = () => (
+  <div className="w-96">
+    <Form>
+      <ComboBox.Container
+        label="Repository"
+        onSelectionChange={action("onSelectionChange")}
+      >
+        <ComboBox.Option
+          key="prisma"
+          description="Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server & SQLite "
+        >
+          prisma/prisma
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="studio"
+          description="The easiest way to explore and manipulate your data in all of your Prisma projects."
+        >
+          prisma/studio
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="cloud"
+          description="Platform for modern database collaboration. "
+        >
+          prisma/cloud
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="engines"
+          description="Engine components of Prisma 2. "
+        >
+          prisma/engines
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="examples"
+          description="🚀 Ready-to-run Prisma example projects "
+        >
+          prisma/examples
+        </ComboBox.Option>
+        <ComboBox.Option key="docs" description="📚 Prisma Documentation ">
+          prisma/docs
+        </ComboBox.Option>
+      </ComboBox.Container>
+    </Form>
+  </div>
+)
+
+export const WithIconsAndDescriptions = () => (
+  <div className="w-96">
+    <Form>
+      <ComboBox.Container
+        label="Repository"
+        onSelectionChange={action("onSelectionChange")}
+      >
+        <ComboBox.Option
+          key="prisma"
+          icon="lock"
+          description="Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server & SQLite "
+        >
+          prisma/prisma
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="studio"
+          icon="lock"
+          description="The easiest way to explore and manipulate your data in all of your Prisma projects."
+        >
+          prisma/studio
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="cloud"
+          icon="lock"
+          description="Platform for modern database collaboration. "
+        >
+          prisma/cloud
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="engines"
+          icon="lock"
+          description="Engine components of Prisma 2. "
+        >
+          prisma/engines
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="examples"
+          icon="lock"
+          description="🚀 Ready-to-run Prisma example projects "
+        >
+          prisma/examples
+        </ComboBox.Option>
+        <ComboBox.Option
+          key="docs"
+          icon="lock"
+          description="📚 Prisma Documentation "
+        >
+          prisma/docs
+        </ComboBox.Option>
+      </ComboBox.Container>
+    </Form>
+  </div>
 )
 
 export const WithFooter = () => (

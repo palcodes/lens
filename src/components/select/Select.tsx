@@ -12,19 +12,17 @@ import { chain, useId, mergeProps } from "@react-aria/utils"
 import { useFocus } from "@react-aria/interactions"
 
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
-import { ListBoxFooter, ListBoxOverlay } from "../internal/ListBox"
+import {
+  ListBoxOption,
+  ListBoxFooter,
+  ListBoxOverlay,
+} from "../internal/ListBox"
 import { Label } from "../label/Label"
 import { Icon } from "../icon/Icon"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Hint } from "../internal/Hint"
 
-/** Value for a single Option inside this Select */
-export type SelectOption<Key extends string> = {
-  /** A string that uniquely identifies this option */
-  key: Key
-  /** The main text to display within this option */
-  title: string
-}
+export type SelectOption<Key extends string> = ListBoxOption<Key>
 
 export type SelectContainerProps<OptionKey extends string> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
@@ -33,8 +31,8 @@ export type SelectContainerProps<OptionKey extends string> = {
   autoFocus?: boolean
   /** A list of Options to render inside this Select */
   children:
-    | CollectionChildren<SelectOption<OptionKey>>
-    | [CollectionChildren<SelectOption<OptionKey>>, React.ReactElement]
+    | CollectionChildren<ListBoxOption<OptionKey>>
+    | [CollectionChildren<ListBoxOption<OptionKey>>, React.ReactElement]
   /** Controls if this Select will be open by default */
   defaultOpen?: boolean
   /** Key of the Option that is selected when this Select is first rendered */
@@ -207,6 +205,7 @@ export const Select = {
     key: Key
     children: string
     icon?: string
+    description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,
 }

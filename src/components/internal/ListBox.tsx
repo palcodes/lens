@@ -26,11 +26,15 @@ import { Separator } from "../separator/Separator"
  */
 
 /** Value for a single Option inside this Select */
-type ListBoxOption<Key extends string> = {
+export type ListBoxOption<Key extends string> = {
   /** A string that uniquely identifies this option */
   key: Key
   /** The main text to display within this option */
   title: string
+  /** An icon to show within this option */
+  icon?: string
+  /** The secondary text to display within this option */
+  description?: string
 }
 
 type ListBoxOverlayProps<OptionKey extends string> = {
@@ -240,7 +244,7 @@ export function ListBoxOption<Key extends string>({
     state,
     ref
   )
-  const optionProps: { icon: string } = option.props
+  const { icon, description } = option.props as ListBoxOption<Key>
 
   return (
     <li
@@ -248,17 +252,22 @@ export function ListBoxOption<Key extends string>({
       lens-role="listbox-option"
       {...domProps}
       className={cn(
-        "flex items-center space-x-2",
+        "flex flex-col",
         "rounded-md px-2 py-1",
-        "cursor-default whitespace-nowrap",
+        "cursor-pointer",
         {
           "bg-gray-100 dark:bg-gray-800": isFocused,
         },
         "hover:bg-gray-100"
       )}
     >
-      {optionProps.icon && <Icon name={optionProps.icon} size="sm" />}
-      <span>{option.rendered}</span>
+      <div className="flex items-center space-x-2">
+        {icon && <Icon name={icon} size="sm" />}
+        <div className="whitespace-nowrap">{option.rendered}</div>
+      </div>
+      {description && (
+        <div className={cn("mt-2", "text-gray-500")}>{description}</div>
+      )}
     </li>
   )
 }

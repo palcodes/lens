@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions"
 import { Select } from "./Select"
 import { Link } from "../link/Link"
+import { Form } from "../form/Form"
 
 export const Default = (props) => (
   <Select.Container {...props}>
@@ -46,6 +47,102 @@ export const WithSectionsAndStaticData = () => (
       <Select.Option key="aws">Amazon Web Services</Select.Option>
     </Select.Section>
   </Select.Container>
+)
+
+export const WithIcons = () => (
+  <Select.Container
+    label="Role"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <Select.Option key="admin" icon="user">
+      Admin
+    </Select.Option>
+    <Select.Option key="developer" icon="user-check">
+      Developer
+    </Select.Option>
+    <Select.Option key="collaborator" icon="users">
+      Collaborator
+    </Select.Option>
+    <Select.Option key="viewer" icon="user">
+      Viewer
+    </Select.Option>
+  </Select.Container>
+)
+
+export const WithDescriptions = () => (
+  <div className="w-96">
+    <Form>
+      <Select.Container
+        label="Role"
+        onSelectionChange={action("onSelectionChange")}
+      >
+        <Select.Option
+          key="admin"
+          description="Read and write access for the entire platform"
+        >
+          Admin
+        </Select.Option>
+        <Select.Option
+          key="developer"
+          description="Read and write access to the database and read-only access for project settings and schema"
+        >
+          Developer
+        </Select.Option>
+        <Select.Option
+          key="collaborator"
+          description="Read and write access to the database and read-only access for project settings"
+        >
+          Collaborator
+        </Select.Option>
+        <Select.Option
+          key="viewer"
+          description="Read-only access for the entire platform"
+        >
+          Viewer
+        </Select.Option>
+      </Select.Container>
+    </Form>
+  </div>
+)
+
+export const WithIconAndDescriptions = () => (
+  <div className="w-96">
+    <Form>
+      <Select.Container
+        label="Role"
+        onSelectionChange={action("onSelectionChange")}
+      >
+        <Select.Option
+          key="admin"
+          icon="user"
+          description="Read and write access for the entire platform"
+        >
+          Admin
+        </Select.Option>
+        <Select.Option
+          key="developer"
+          icon="user-check"
+          description="Read and write access to the database and read-only access for project settings and schema"
+        >
+          Developer
+        </Select.Option>
+        <Select.Option
+          key="collaborator"
+          icon="users"
+          description="Read and write access to the database and read-only access for project settings"
+        >
+          Collaborator
+        </Select.Option>
+        <Select.Option
+          key="viewer"
+          icon="user"
+          description="Read-only access for the entire platform"
+        >
+          Viewer
+        </Select.Option>
+      </Select.Container>
+    </Form>
+  </div>
 )
 
 export const WithFooter = () => (

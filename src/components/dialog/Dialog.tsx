@@ -16,14 +16,11 @@ import {
   useOverlayTriggerState,
 } from "@react-stately/overlays"
 import { TitleGroup } from "../../typography/title-group/TitleGroup"
-import { Button } from "../button/Button"
 
 interface DialogState {
   title: string
   subtitle: string
   icon: string
-  isEmbedded?: boolean
-  dimensions?: DOMRect
   shouldCloseOnBlur?: boolean
   close: OverlayTriggerState["close"]
 }
@@ -42,7 +39,7 @@ const initialDialogState: DialogState = {
 const DialogContext = createContext(initialDialogState)
 
 /* The Dialog's Container */
-interface BaseDialogContainerProps {
+type DialogContainerProps = {
   /** The dialog's trigger and its body, in order */
   children: [React.ReactElement, (close: () => void) => React.ReactElement]
   /** Title of the dialog */
@@ -57,13 +54,6 @@ interface BaseDialogContainerProps {
   shouldCloseOnBlur?: boolean
 }
 
-type EmbeddedDialogContainerProps =
-  | { isEmbedded?: true; dimensions: DOMRect }
-  | { isEmbedded?: false; dimensions?: never }
-
-type DialogContainerProps = BaseDialogContainerProps &
-  EmbeddedDialogContainerProps
-
 function DialogContainer({
   children,
   title,
@@ -71,8 +61,6 @@ function DialogContainer({
   icon,
   defaultOpen,
   shouldCloseOnBlur = true,
-  isEmbedded = false,
-  dimensions,
 }: DialogContainerProps) {
   if (!Array.isArray(children)) {
     throw new Error("A Dialog.Container must receive an array of children")
@@ -93,8 +81,6 @@ function DialogContainer({
     subtitle,
     icon,
     shouldCloseOnBlur,
-    isEmbedded,
-    dimensions,
     close: state.close,
   }
 
@@ -118,15 +104,8 @@ export type DialogBodyProps = {
 
 function DialogBody({ id, children }: DialogBodyProps) {
   const [body, footer] = Children.toArray(children)
-  const {
-    title,
-    subtitle,
-    icon,
-    shouldCloseOnBlur,
-    isEmbedded,
-    dimensions,
-    close,
-  } = useContext(DialogContext)
+  const { title, subtitle, icon, shouldCloseOnBlur, close } =
+    useContext(DialogContext)
 
   const ref = useRef<HTMLDivElement>(null)
   const { overlayProps } = useOverlay(
@@ -138,7 +117,8 @@ function DialogBody({ id, children }: DialogBodyProps) {
     ref
   )
 
-  !isEmbedded && usePreventScroll()
+  usePreventScroll()
+
   const { modalProps } = useModal()
 
   const { dialogProps, titleProps } = useDialog(
@@ -154,17 +134,10 @@ function DialogBody({ id, children }: DialogBodyProps) {
       <div
         lens-role="dialog-body"
         className={cn(
+          "fixed inset-0 z-30",
           "flex justify-center items-center",
-          "bg-black-fade-50",
-          { "fixed inset-0 z-30": !isEmbedded },
-          { absolute: isEmbedded }
+          "bg-black-fade-50"
         )}
-        style={{
-          left: isEmbedded ? dimensions?.left : 0,
-          top: isEmbedded ? dimensions?.top : 0,
-          width: isEmbedded ? dimensions?.width : "100%",
-          height: isEmbedded ? dimensions?.height : "100%",
-        }}
       >
         <FocusScope contain autoFocus restoreFocus>
           <DismissButton onDismiss={close} />
@@ -173,44 +146,29 @@ function DialogBody({ id, children }: DialogBodyProps) {
             {...mergeProps(overlayProps, modalProps, dialogProps)}
             className={cn(
               "overflow-hidden",
-              { "h-full w-full": isEmbedded },
-              { "bg-white dark:bg-gray-900": isEmbedded },
-              { "bg-gray-100 dark:bg-gray-800": !isEmbedded },
-              { "rounded-md shadow-md": !isEmbedded },
-              { "animate-dialog-enter": !isEmbedded }
+              "bg-gray-100 dark:bg-gray-800",
+              "rounded-md shadow-md",
+              "animate-dialog-enter"
             )}
-            style={!isEmbedded ? { width: "580px" } : {}}
+            style={{ width: 580 }}
           >
-            <div
-              className={cn({
-                "flex items-center justify-between px-6": isEmbedded,
-              })}
-            >
-              <TitleGroup
-                title={title}
-                subtitle={subtitle}
-                icon={icon}
-                titleProps={titleProps}
-                className={cn("py-4", "bg-white dark:bg-gray-900", {
-                  "px-6 border-b border-gray-300 dark:border-gray-600":
-                    !isEmbedded,
-                })}
-              />
-              {isEmbedded && (
-                <Button
-                  variant="quiet"
-                  icon="x"
-                  iconSize="md"
-                  onPress={close}
-                />
+            <TitleGroup
+              title={title}
+              subtitle={subtitle}
+              icon={icon}
+              titleProps={titleProps}
+              className={cn(
+                "py-4 px-6",
+                "bg-white dark:bg-gray-900",
+                "border-b border-gray-300 dark:border-gray-600"
               )}
-            </div>
-
+            />
             <section
               lens-role="dialog-body"
-              className={cn("px-6 py-4", {
-                "border-b border-gray-300 dark:border-gray-600": !isEmbedded,
-              })}
+              className={cn(
+                "px-6 py-4",
+                "border-b border-gray-300 dark:border-gray-600"
+              )}
             >
               {body}
             </section>

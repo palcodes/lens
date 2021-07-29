@@ -1,4 +1,5 @@
 import { Code, CodeProps } from "./Code"
+import { useRef, useEffect } from "react"
 
 export const Default = ({ isInline, prefix, children }: CodeProps) => {
   if (isInline) {
@@ -46,3 +47,17 @@ export const Inline = () => (
     Create a <Code isInline>.env</Code> file with the following
   </p>
 )
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    ref.current.focus()
+  }, [])
+
+  return (
+    <Code prefix="$" ref={ref}>
+      git clone
+    </Code>
+  )
+}

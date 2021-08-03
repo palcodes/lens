@@ -168,7 +168,11 @@ function SelectContainer<OptionKey extends string>({
                 {state.selectedItem ? state.selectedItem.rendered : placeholder}
               </span>
             </div>
-            <Icon name="chevron-down" size="xs" />
+            <Icon
+              name="chevron-down"
+              size="xs"
+              className="text-gray-400 dark:text-gray-300"
+            />
           </button>
         </FocusRing>
 

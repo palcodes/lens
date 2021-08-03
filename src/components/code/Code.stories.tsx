@@ -61,3 +61,17 @@ export const WithRef = () => {
     </Code>
   )
 }
+
+export const WithMaskedText = () => {
+  function getConnectionString(): string {
+    return `postgresql://host1:123,host2:456/somedb?target_session_attrs=any&application_name=myapp`
+  }
+
+  return (
+    <div style={{ width: "580px" }}>
+      <Code prefix="$" getSecret={getConnectionString}>
+        ************
+      </Code>
+    </div>
+  )
+}

@@ -50,7 +50,13 @@ export function Card({
           className="flex items-center justify-between space-x-4"
         >
           <div className="flex items-center">
-            {icon && <Icon name={icon} size="md" className="mr-6"></Icon>}
+            {icon && (
+              <Icon
+                name={icon}
+                size="md"
+                className="mr-6 text-gray-400 dark:text-gray-300"
+              ></Icon>
+            )}
             {title && <Title>{title}</Title>}
           </div>
           {action && (

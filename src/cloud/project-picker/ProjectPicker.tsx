@@ -103,7 +103,8 @@ export function ProjectPicker({
           className={cn(
             "flex items-center justify-center p-2",
             "rounded-full",
-            "bg-gray-700"
+            "bg-gray-700",
+            "text-gray-400 dark:text-gray-300"
           )}
         />
 
@@ -115,7 +116,11 @@ export function ProjectPicker({
             >
               {state.selectedItem.rendered}
             </span>
-            <Icon name="chevron-down" size="xs" className="ml-4" />
+            <Icon
+              name="chevron-down"
+              size="xs"
+              className="ml-4 text-gray-400 dark:text-gray-300"
+            />
           </button>
         )}
       </div>

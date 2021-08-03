@@ -6,7 +6,7 @@ import { Icon } from "../icon/Icon"
 export const Default = (props) => (
   <Menu.Container>
     <Button variant="quiet">
-      <Icon name="sliders" />
+      <Icon name="sliders" className="text-gray-400 dark:text-gray-300" />
     </Button>
 
     <Menu.Body

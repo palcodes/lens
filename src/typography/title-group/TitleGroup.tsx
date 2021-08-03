@@ -29,7 +29,11 @@ export function TitleGroup({
       lens-role="title-group"
       className={cn("flex items-center", className)}
     >
-      <Icon name={icon} size="lg" />
+      <Icon
+        name={icon}
+        size="lg"
+        className="text-gray-400 dark:text-gray-300"
+      />
       <div className="flex-column ml-6">
         <Title titleProps={titleProps}>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>

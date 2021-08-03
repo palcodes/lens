@@ -1,8 +1,20 @@
-import React, { forwardRef, ForwardedRef, useRef } from "react"
+import React, {
+  forwardRef,
+  ForwardedRef,
+  useRef,
+  useState,
+  useEffect,
+} from "react"
 import cn from "classnames"
 
 import { Button } from "../button/Button"
-import { useToasts } from "../toast/useToasts"
+
+const COPIED_STATUS_TIMEOUT = 3000
+
+enum CopiedStatus {
+  Success = "SUCCESS",
+  Failed = "FAILED",
+}
 
 interface BaseProps {
   /** Text to be styled as code like representation */
@@ -16,37 +28,57 @@ interface BaseProps {
  * isInline?: boolean (Optional flag to render inline Code styles)
  * prefix?: string (Optional string to render with a non inline Code block)
  * ref?: A React ref to attach to the rendered Code block's copy button
+ * getSecret?: A function that can be used to dynamcally fetch a value
  */
 type ConditionalProps =
-  | { isInline?: true; prefix?: never; ref?: never }
-  | { isInline?: false; prefix?: string; ref?: ForwardedRef<HTMLButtonElement> }
+  | { isInline?: true; prefix?: never; ref?: never; getSecret?: never }
+  | {
+      isInline?: false
+      prefix?: string
+      ref?: ForwardedRef<HTMLButtonElement>
+      getSecret?: () => string
+    }
 
 export type CodeProps = BaseProps & ConditionalProps
 
 export const Code = forwardRef<HTMLButtonElement, CodeProps>(
   (
-    { isInline = false, prefix, children, className }: CodeProps,
+    { isInline = false, prefix, getSecret, children, className }: CodeProps,
     forwardedRef
   ) => {
     const _ref = useRef<HTMLButtonElement>(null)
     const ref = forwardedRef || _ref
-
-    const toasts = useToasts()
+    const [copied, setCopied] = useState<CopiedStatus | null>(null)
+    const [secretValue, setSecretValue] = useState("")
+    const isSecretVisible = secretValue === ""
 
     const handleCodeCopy = async (): Promise<void> => {
+      const textToCopy = !getSecret
+        ? children
+        : isSecretVisible
+        ? children
+        : secretValue
       try {
-        await navigator.clipboard.writeText(children)
-        toasts.add({
-          title: `Copied!`,
-          variant: "positive",
-        })
+        await navigator.clipboard.writeText(textToCopy)
+        setCopied(CopiedStatus.Success)
       } catch (err) {
-        toasts.add({
-          title: `Command could not be copied`,
-          variant: "negative",
-        })
+        setCopied(CopiedStatus.Failed)
       }
     }
+
+    const toggleSecretVisibility = (): void => {
+      if (getSecret && secretValue === "") {
+        setSecretValue(getSecret())
+      } else setSecretValue("")
+    }
+
+    useEffect(() => {
+      if (copied) {
+        setTimeout(() => {
+          setCopied(null)
+        }, COPIED_STATUS_TIMEOUT)
+      }
+    }, [copied])
 
     // If no children are provided
     if (!children) {
@@ -56,29 +88,60 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
     return (
       <span
         className={cn(
+          "relative",
           "items-center rounded-lg",
           "font-mono text-sm",
           {
             "inline-flex p-1 mx-1": isInline,
             "bg-gray-200 text-gray-800": isInline,
-            "flex w-full justify-start py-3 px-4": !isInline,
+            "flex w-full justify-start px-4": !isInline,
             "bg-gray-900 text-gray-100": !isInline,
           },
           className
         )}
       >
         {prefix && <span className="mr-2 text-gray-500">{prefix}</span>}
-        {children}
+        {isInline ? (
+          children
+        ) : (
+          <span className="relative flex-grow overflow-hidden">
+            <span className="flex py-3 max-w-full overflow-x-scroll">
+              <span className="whitespace-nowrap">
+                {!getSecret
+                  ? children
+                  : isSecretVisible
+                  ? children
+                  : secretValue}
+              </span>
+            </span>
+            <span className="absolute w-8 h-full right-0 top-0 bg-gradient-to-r from-transparent via-transparent to-gray-900" />
+          </span>
+        )}
+
         {!isInline && (
-          <div className="relative flex-grow flex justify-end ml-2">
+          <div className="relative flex justify-end ml-2">
             <Button
               ref={ref}
               variant="secondary"
-              icon="copy"
+              icon={
+                copied && copied === CopiedStatus.Success
+                  ? "check"
+                  : copied && copied === CopiedStatus.Failed
+                  ? "x"
+                  : "copy"
+              }
               iconSize="sm"
               onPress={handleCodeCopy}
+              isDisabled={getSecret && isSecretVisible}
             />
           </div>
+        )}
+        {getSecret && (
+          <span className="absolute right-0 top-0 -translate-y-full text-gray-900">
+            <Button variant="quiet" onPress={toggleSecretVisibility}>
+              {isSecretVisible ? "show" : "hide"}
+            </Button>
+          </span>
         )}
       </span>
     )

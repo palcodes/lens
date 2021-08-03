@@ -13,7 +13,7 @@ export default {
 }
 
 export const Sizes = () => (
-  <div className="flex items-center space-x-4">
+  <div className="flex items-center space-x-4 text-gray-400 dark:text-gray-300">
     <Icon name="database" size="xs" />
     <Icon name="database" size="sm" />
     <Icon name="database" size="md" />

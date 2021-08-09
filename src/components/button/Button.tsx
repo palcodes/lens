@@ -72,37 +72,37 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "flex-grow": fillParent,
             },
             {
-              "font-semibold bg-gray-700 text-white":
+              "font-semibold": variant === "primary",
+              "bg-gray-700 text-white":
                 variant === "primary" &&
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
               "bg-gray-800": variant === "primary" && isHovered,
               "bg-gray-900": variant === "primary" && isPressed,
-              "font-semibold bg-gray-200 text-gray-500":
-                variant === "primary" && isDisabled,
+              "bg-gray-200 text-gray-500": variant === "primary" && isDisabled,
             },
             {
-              "font-semibold bg-red-600 text-white":
+              "font-semibold": variant === "negative",
+              "bg-red-600 text-white":
                 variant === "negative" &&
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
               "bg-red-700": variant === "negative" && isHovered,
               "bg-red-800": variant === "negative" && isPressed,
-              "font-semibold bg-red-300 text-white":
-                variant === "negative" && isDisabled,
+              "bg-red-300 text-white": variant === "negative" && isDisabled,
             },
             {
-              "font-semibold bg-gray-200 text-gray-800":
+              "font-semibold": variant === "secondary",
+              "bg-gray-200 text-gray-800":
                 variant === "secondary" &&
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
               "bg-gray-300": variant === "secondary" && isHovered,
               "bg-gray-400": variant === "secondary" && isPressed,
-              "font-semibold text-gray-500":
-                variant === "secondary" && isDisabled,
+              "text-gray-500": variant === "secondary" && isDisabled,
             },
             {
               "text-gray-800 dark:text-gray-100":
@@ -112,7 +112,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 variant === "quiet" && isDisabled,
             },
             {
-              "underline text-gray-600 dark:text-gray-400":
+              underline: variant === "link",
+              "text-gray-600 dark:text-gray-400":
                 variant === "link" && !isDisabled && !isHovered && !isPressed,
               "text-gray-700 dark:text-gray-500":
                 variant === "link" && isHovered,

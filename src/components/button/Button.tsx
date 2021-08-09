@@ -78,8 +78,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
-              "bg-gray-800": variant === "primary" && isHovered,
-              "bg-gray-900": variant === "primary" && isPressed,
+              "bg-gray-800 text-white": variant === "primary" && isHovered,
+              "bg-gray-900 text-white": variant === "primary" && isPressed,
               "bg-gray-200 text-gray-500": variant === "primary" && isDisabled,
             },
             {
@@ -89,9 +89,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
-              "bg-red-700": variant === "negative" && isHovered,
-              "bg-red-800": variant === "negative" && isPressed,
-              "bg-red-300 text-white": variant === "negative" && isDisabled,
+              "bg-red-700 text-white": variant === "negative" && isHovered,
+              "bg-red-800 text-white": variant === "negative" && isPressed,
+              "bg-red-300 text-red-100": variant === "negative" && isDisabled,
             },
             {
               "font-semibold": variant === "secondary",

@@ -57,7 +57,7 @@ type ListBoxOverlayProps<OptionKey extends string> = {
   loading?: boolean
   error?: Error
   /** Additional props that will be spread over the overlay component */
-  listBoxProps?: React.HTMLAttributes<HTMLElement>
+  listBoxProps?: React.HTMLAttributes<Element>
 }
 
 /** An overlay that renders individual ListBox Options */

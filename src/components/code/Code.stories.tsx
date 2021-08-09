@@ -48,16 +48,12 @@ export const Inline = () => (
   </p>
 )
 
-export const WithRef = () => {
-  const ref = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    ref.current.focus()
-  }, [])
-
+export const WithLongText = () => {
   return (
-    <Code prefix="$" ref={ref}>
-      git clone
+    <Code prefix="$">
+      git clone git@github.com:prisma/lens.git && yarn install && yarn run
+      build:package1 && yarn run build:package2 && yarn run build:package3 &&
+      yarn run build:package4
     </Code>
   )
 }

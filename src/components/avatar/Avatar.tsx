@@ -45,7 +45,7 @@ export const ImageOrIcon = forwardRef<HTMLImageElement, ImageOrIconProps>(
         className={cn(
           "rounded-full",
           "bg-gray-300 dark:bg-gray-800",
-          "text-gray-700 dark:text-gray-300",
+          "text-gray-500 dark:text-gray-300",
           "p-1"
         )}
         {...otherProps}

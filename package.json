@@ -105,5 +105,11 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "styled-components": ">=5.2.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": false
   }
 }

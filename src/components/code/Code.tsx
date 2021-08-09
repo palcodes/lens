@@ -90,7 +90,7 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
         className={cn(
           "relative",
           "items-center rounded-lg",
-          "font-mono text-sm",
+          "text-sm",
           {
             "inline-flex p-1 mx-1": isInline,
             "bg-gray-200 text-gray-800": isInline,
@@ -106,20 +106,20 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
         ) : (
           <span className="relative flex-grow overflow-hidden">
             <span className="flex py-3 max-w-full overflow-x-scroll">
-              <span className="whitespace-nowrap">
+              <pre className="font-mono whitespace-nowrap">
                 {!getSecret
                   ? children
                   : isSecretVisible
                   ? children
                   : secretValue}
-              </span>
+              </pre>
             </span>
             <span className="absolute w-8 h-full right-0 top-0 bg-gradient-to-r from-transparent via-transparent to-gray-900" />
           </span>
         )}
 
         {!isInline && (
-          <div className="relative flex justify-end ml-2">
+          <div className="relative justify-end ml-2">
             <Button
               ref={ref}
               variant="secondary"

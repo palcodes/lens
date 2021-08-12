@@ -52,6 +52,17 @@ export const Primary = () => (
   </div>
 )
 
+export const Positive = () => (
+  <div className="flex space-x-4">
+    <Button variant="positive" onPress={action("onPress")}>
+      Positive
+    </Button>
+    <Button variant="positive" isDisabled>
+      Disabled
+    </Button>
+  </div>
+)
+
 export const Negative = () => (
   <div className="flex space-x-4">
     <Button variant="negative" onPress={action("onPress")}>

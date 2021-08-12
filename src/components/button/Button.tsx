@@ -13,7 +13,7 @@ export type ButtonProps = React.PropsWithChildren<{
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** Controls what kind of button this is */
-  variant?: "primary" | "negative" | "secondary" | "quiet" | "link"
+  variant?: "primary" | "positive" | "negative" | "secondary" | "quiet" | "link"
   /** Controls if this button should steal focus when mounted */
   autoFocus?: boolean
   /** Controls if this button is disabled */
@@ -81,6 +81,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "bg-gray-800 text-white": variant === "primary" && isHovered,
               "bg-gray-900 text-white": variant === "primary" && isPressed,
               "bg-gray-200 text-gray-500": variant === "primary" && isDisabled,
+            },
+            {
+              "font-semibold": variant === "positive",
+              "bg-green-500 text-white":
+                variant === "positive" &&
+                !isDisabled &&
+                !isHovered &&
+                !isPressed,
+              "bg-green-600 text-white": variant === "positive" && isHovered,
+              "bg-green-700 text-white": variant === "positive" && isPressed,
+              "bg-green-300 text-green-100":
+                variant === "positive" && isDisabled,
             },
             {
               "font-semibold": variant === "negative",

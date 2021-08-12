@@ -133,6 +133,48 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
       )
     }
 
+    if (name === "hsplit") {
+      return (
+        <svg {...commonProps} viewBox="0 0 16 16">
+          <rect
+            x="1"
+            y="1"
+            width="14"
+            height="14"
+            rx="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+          />
+          <path
+            d="M13 16C14.6569 16 16 14.6569 16 13L16 9L3.0598e-07 9L1.31134e-07 13C5.87108e-08 14.6569 1.34315 16 3 16L13 16Z"
+            fill="currentColor"
+          />
+        </svg>
+      )
+    }
+
+    if (name === "vsplit") {
+      return (
+        <svg {...commonProps} viewBox="0 0 16 16">
+          <rect
+            x="1"
+            y="1"
+            width="14"
+            height="14"
+            rx="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+          />
+          <path
+            d="M16 3C16 1.34315 14.6569 0 13 0H9V16H13C14.6569 16 16 14.6569 16 13V3Z"
+            fill="currentColor"
+          />
+        </svg>
+      )
+    }
+
     return (
       <svg
         {...commonProps}

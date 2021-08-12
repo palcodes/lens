@@ -144,7 +144,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
             rx="2"
             stroke="currentColor"
             fill="none"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <path
             d="M13 16C14.6569 16 16 14.6569 16 13L16 9L3.0598e-07 9L1.31134e-07 13C5.87108e-08 14.6569 1.34315 16 3 16L13 16Z"
@@ -165,7 +165,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
             rx="2"
             stroke="currentColor"
             fill="none"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <path
             d="M16 3C16 1.34315 14.6569 0 13 0H9V16H13C14.6569 16 16 14.6569 16 13V3Z"

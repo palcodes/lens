@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: "Inter";
-}
-
 *:focus,
 *:active {
   outline: none !important; /* Outline will always be added using Tailwind */

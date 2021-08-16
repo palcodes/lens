@@ -33,9 +33,10 @@ module.exports = {
         "purple-800": "#5B21B6",
       },
       fontFamily: {
-        barlow: ["Barlow", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        sans: ["Inter", "sans-serif"], // Overrides "default" font so we don't have to set a `font-*` class everywhere
         mono: ["JetBrainsMono", "monospace"],
+        inter: ["Inter", "sans-serif"], // For convenience
+        barlow: ["Barlow", "sans-serif"],
       },
       animation: {
         "slide-top": "slide-top 0.1s cubic-bezier(0, 0, 0.2, 1) forwards",

@@ -13,6 +13,12 @@
       "groupSlug": "all-minor-patch"
     },
     {
+      "matchPackagePatterns": ["@fontsource/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Fonts",
+      "groupSlug": "fonts"
+    },
+    {
       "matchPackagePatterns": [
         "@react-aria/*",
         "@react-stately/*",

@@ -1,6 +1,9 @@
 import React from "react"
 import { OverlayProvider } from "@react-aria/overlays"
 import { SSRProvider } from "@react-aria/ssr"
+import "@fontsource/inter"
+import "@fontsource/barlow"
+import "@fontsource/jetbrains-mono"
 import {
   ToastContext,
   ToastContainer,

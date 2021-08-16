@@ -1,5 +1,7 @@
 import React from "react"
-import "../web.css"
+import "@fontsource/inter"
+import "@fontsource/barlow"
+import "@fontsource/jetbrains-mono"
 
 type Props = React.PropsWithChildren<{}>
 

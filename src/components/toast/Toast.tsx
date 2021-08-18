@@ -31,6 +31,9 @@ export function Toast({
       lens-role={`toast-${variant}`}
       id={id}
       role="alert"
+      style={{
+        zIndex: 99999,
+      }}
       className={cn(
         "flex items-center m-1",
         "rounded-md shadow-lg overflow-hidden",

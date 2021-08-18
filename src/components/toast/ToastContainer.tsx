@@ -15,6 +15,9 @@ export function ToastContainer() {
         "fixed top-20 left-0 right-0",
         "flex flex-col items-center"
       )}
+      style={{
+        zIndex: 9999,
+      }}
     >
       {toasts.map((t) => (
         <Toast key={t.toastId} {...t} onClose={() => remove(t.toastId)} />

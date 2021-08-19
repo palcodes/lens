@@ -1,4 +1,5 @@
 import { Link } from "./Link"
+import { Icon } from "../icon/Icon"
 
 export const Default = (props) => <Link {...props}>Link</Link>
 Default.storyName = "[Controlled]"
@@ -30,3 +31,12 @@ export const Inline = () => (
     within it
   </p>
 )
+
+export const WithRichChildren = () => {
+  return (
+    <Link href="/?path=/story/lens-link--open-in-new-tab" openInNewTab>
+      <Icon name="github-dark" />
+      <p>prisma/cloud</p>
+    </Link>
+  )
+}

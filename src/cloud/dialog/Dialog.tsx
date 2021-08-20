@@ -92,13 +92,9 @@ export type DialogBodyProps = PropsWithChildren<{
 
 export const DialogBody = ({ id, children }: DialogBodyProps) => {
   const { title, subtitle, icon, dimensions, close } = useContext(DialogContext)
-
   const ref = useRef<HTMLDivElement>(null)
-
   const { overlayProps } = useOverlay({ onClose: close }, ref)
-
   const { modalProps } = useModal()
-
   const { dialogProps, titleProps } = useDialog({ id, role: "dialog" }, ref)
 
   return (
@@ -128,9 +124,7 @@ export const DialogBody = ({ id, children }: DialogBodyProps) => {
               <Icon name="x" size="md" />
             </Button>
           </header>
-          <article>
-            {children} {/* render tab component here for example */}
-          </article>
+          <article>{children}</article>
         </div>
       </FocusScope>
     </OverlayContainer>

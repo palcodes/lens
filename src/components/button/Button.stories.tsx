@@ -99,10 +99,7 @@ export const Link = () => (
 export const Quiet = () => (
   <div className="flex space-x-4">
     <Button variant="quiet" onPress={action("onPress")}>
-      Primary
-    </Button>
-    <Button variant="quiet" isDisabled>
-      Disabled
+      <span className="text-gray-600 dark:text-gray-500">Primary</span>
     </Button>
   </div>
 )

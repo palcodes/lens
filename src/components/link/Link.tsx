@@ -39,7 +39,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           href={href}
           rel="noopener noreferrer"
           className={cn("mx-1 underline", {
-            "flex space-x-2": typeof children !== "string", // If "rich" children are provided, lay them out correctly
+            "flex items-center space-x-2": typeof children !== "string", // If "rich" children are provided, lay them out correctly
             "text-gray-600 dark:text-gray-400": !isHovered && !isDisabled,
             "text-gray-500 dark:text-gray-300": isHovered,
             "text-gray-400 dark:text-gray-700": isDisabled,

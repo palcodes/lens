@@ -118,9 +118,7 @@ function DialogBody({ id, children }: DialogBodyProps) {
   )
 
   usePreventScroll()
-
   const { modalProps } = useModal()
-
   const { dialogProps, titleProps } = useDialog(
     {
       id,

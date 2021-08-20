@@ -124,7 +124,7 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
         <div className="relative justify-end ml-2">
           <Button
             ref={ButtonRef}
-            variant="secondary"
+            variant="quiet"
             icon={
               copied && copied === CopiedStatus.Success
                 ? "check"

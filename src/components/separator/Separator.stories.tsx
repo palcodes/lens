@@ -1,6 +1,4 @@
-import { action } from "@storybook/addon-actions"
 import { Separator } from "./Separator"
-import { Button } from "../button/Button"
 import { Card } from "../card/Card"
 
 export const Default = (props) => (
@@ -27,26 +25,18 @@ export default {
 
 export const Horizontal = () => (
   <Card className="flex flex-col justify-center">
-    <Button variant="quiet" onPress={action("onPress")}>
-      Top
-    </Button>
+    <div className="text-gray-600 dark:text-gray-500">Top</div>
     <Separator />
-    <Button variant="quiet" onPress={action("onPress")}>
-      Bottom
-    </Button>
+    <div className="text-gray-600 dark:text-gray-500">Bottom</div>
   </Card>
 )
 
 export const Vertical = () => (
   <Card>
     <div className="flex justify-center">
-      <Button variant="quiet" onPress={action("onPress")}>
-        Left
-      </Button>
+      <div className="text-gray-600 dark:text-gray-500 mx-2">Left</div>
       <Separator orientation="vertical" />
-      <Button variant="quiet" onPress={action("onPress")}>
-        Right
-      </Button>
+      <div className="text-gray-600 dark:text-gray-500 mx-2">Right</div>
     </div>
   </Card>
 )

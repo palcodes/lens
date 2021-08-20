@@ -114,10 +114,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 !isPressed,
               "bg-gray-300": variant === "secondary" && isHovered,
               "bg-gray-400": variant === "secondary" && isPressed,
-              "text-gray-500": variant === "secondary" && isDisabled,
+              "bg-gray-200 text-gray-500":
+                variant === "secondary" && isDisabled,
             },
             {
-              "text-gray-800 dark:text-gray-100":
+              "text-gray-200 dark:text-gray-100":
                 variant === "quiet" && !isDisabled && !isHovered && !isPressed,
               "text-gray-500": variant === "quiet" && isPressed,
               "text-gray-400 dark:text-gray-500":

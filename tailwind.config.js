@@ -72,6 +72,12 @@ module.exports = {
           "100%": { transform: "translateY(0px)", opacity: "1" },
         },
       },
+      gridTemplateColumns: {
+        navbar: "1fr auto",
+      },
+      gridTemplateRows: {
+        navbar: "auto 1fr",
+      },
     },
   },
   variants: {

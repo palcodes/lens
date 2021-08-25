@@ -13,7 +13,8 @@ export const Navbar = () => {
       className={cn(
         "w-full",
         "grid grid-cols-navbar grid-rows-navbar items-center",
-        "px-5",
+        "px-5 py-5 md:py-0",
+        "overflow-y-auto",
         {
           "fixed inset-0 bg-white z-50": isMobileMenuOpen,
         }
@@ -183,7 +184,7 @@ const ProductsLinks = () => {
             onSelectionChange={navigateTo}
           >
             <Menu.Option key="client">
-              <div className="flex items-center py-1">
+              <div className="flex items-center py-1 group">
                 <div className="pr-2">
                   <Icon
                     name="terminal"
@@ -192,7 +193,10 @@ const ProductsLinks = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-semibold text-gray-800 dark:text-gray-400">
+                  <span
+                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    style={{ textUnderlineOffset: "2px" }}
+                  >
                     Client
                   </span>
                   <span className="text-gray-600">
@@ -202,7 +206,7 @@ const ProductsLinks = () => {
               </div>
             </Menu.Option>
             <Menu.Option key="migrate">
-              <div className="flex items-center py-1">
+              <div className="flex items-center py-1 group">
                 <div className="pr-2">
                   <Icon
                     name="repeat"
@@ -211,7 +215,10 @@ const ProductsLinks = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-semibold text-gray-800 dark:text-gray-400">
+                  <span
+                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    style={{ textUnderlineOffset: "2px" }}
+                  >
                     Migrate
                   </span>
                   <span className="text-gray-600">
@@ -221,7 +228,7 @@ const ProductsLinks = () => {
               </div>
             </Menu.Option>
             <Menu.Option key="studio">
-              <div className="flex items-center py-1">
+              <div className="flex items-center py-1 group">
                 <div className="pr-2">
                   <Icon
                     name="database"
@@ -230,7 +237,10 @@ const ProductsLinks = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-semibold text-gray-800 dark:text-gray-400">
+                  <span
+                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    style={{ textUnderlineOffset: "2px" }}
+                  >
                     Studio
                   </span>
                   <span className="text-gray-600">
@@ -240,7 +250,7 @@ const ProductsLinks = () => {
               </div>
             </Menu.Option>
             <Menu.Option key="data-platform">
-              <div className="flex items-center py-1">
+              <div className="flex items-center py-1 group">
                 <div className="pr-2">
                   <Icon
                     name="layout"
@@ -249,10 +259,15 @@ const ProductsLinks = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="flex items-center font-semibold text-gray-800 dark:text-gray-400">
-                    Data Platform &nbsp;
-                    <span className="text-xs px-1 py-[0.75] rounded-md text-indigo-600 bg-indigo-100">
-                      BETA
+                  <span
+                    className="flex items-center font-semibold text-gray-800 dark:text-gray-400"
+                    style={{ textUnderlineOffset: "2px" }}
+                  >
+                    <span className="md:group-hover:underline">
+                      Data Platform
+                    </span>
+                    <span className="text-xs px-1 py-[0.75] ml-1 rounded-md text-purple-800 bg-purple-100">
+                      EARLY ACCESS
                     </span>
                   </span>
                   <span className="text-gray-600">
@@ -270,7 +285,7 @@ const ProductsLinks = () => {
             Products
             <Icon
               name={isProductsMenuOpen ? "chevron-up" : "chevron-down"}
-              size="xs"
+              size="md"
               className="ml-2"
             />
           </span>
@@ -278,54 +293,60 @@ const ProductsLinks = () => {
         {isProductsMenuOpen && (
           <ul>
             <li>
-              <a href="https://www.prisma.io/client" className="py-2">
+              <a href="https://www.prisma.io/client" className="flex py-1">
                 <span className="flex items-center">
                   <Icon
                     name="terminal"
                     size="sm"
                     className="text-gray-800 mr-2"
                   />
-                  <span className="text-gray-800 text-lg">Client</span>
+                  <span className="text-gray-800 text-xl font-medium">
+                    Client
+                  </span>
                 </span>
               </a>
             </li>
             <li>
-              <a href="https://www.prisma.io/migrate" className="py-2">
+              <a href="https://www.prisma.io/migrate" className="flex py-1">
                 <span className="flex items-center">
                   <Icon
                     name="repeat"
                     size="sm"
                     className="text-gray-800 mr-2"
                   />
-                  <span className="text-gray-800 text-lg">Migrate</span>
+                  <span className="text-gray-800 text-xl font-medium">
+                    Migrate
+                  </span>
                 </span>
               </a>
             </li>
             <li>
-              <a href="https://www.prisma.io/studio" className="py-2">
+              <a href="https://www.prisma.io/studio" className="flex py-1">
                 <span className="flex items-center">
                   <Icon
                     name="database"
                     size="sm"
                     className="text-gray-800 mr-2"
                   />
-                  <span className="text-gray-800 text-lg">Studio</span>
+                  <span className="text-gray-800 text-xl font-medium">
+                    Studio
+                  </span>
                 </span>
               </a>
             </li>
             <li>
-              <a href="https://cloud.prisma.io/" className="py-2">
+              <a href="https://cloud.prisma.io/" className="flex py-1">
                 <span className="flex items-center">
                   <Icon
                     name="layout"
                     size="sm"
                     className="text-gray-800 mr-2"
                   />
-                  <span className="text-gray-800 text-lg mr-2">
+                  <span className="text-gray-800 text-xl font-medium mr-2">
                     Data Platform
                   </span>
-                  <span className="text-xs px-1 py-[0.75] rounded-md text-indigo-600 bg-indigo-100">
-                    BETA
+                  <span className="text-xs px-1 py-[0.75] rounded-md text-purple-800 bg-purple-100">
+                    EARLY ACCESS
                   </span>
                 </span>
               </a>

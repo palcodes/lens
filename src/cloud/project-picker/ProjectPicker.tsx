@@ -117,7 +117,7 @@ export function ProjectPicker({
               {state.selectedItem.rendered}
             </span>
             <Icon
-              name="chevron-down"
+              name="triangle-down"
               size="xs"
               className="ml-4 text-gray-400 dark:text-gray-300"
             />

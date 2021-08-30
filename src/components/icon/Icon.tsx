@@ -49,7 +49,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
       )
     }
 
-    if (name === "chevron-down") {
+    if (name === "triangle-down") {
       return (
         <svg {...commonProps} viewBox="0 0 9 6" fill="currentColor">
           <path d="M4.12835 5.08706L0.751034 1.33448C0.461449 1.01272 0.689796 0.5 1.12268 0.5H7.87732C8.3102 0.5 8.53855 1.01272 8.24897 1.33448L4.87165 5.08706C4.67303 5.30775 4.32697 5.30775 4.12835 5.08706Z" />

@@ -13,14 +13,14 @@ export const Navbar = () => {
       className={cn(
         "w-full",
         "grid grid-cols-navbar grid-rows-navbar items-center",
-        "px-5 py-5 md:py-0",
+        "px-5",
         "overflow-y-auto",
         {
           "fixed inset-0 bg-white z-50": isMobileMenuOpen,
         }
       )}
     >
-      <div className="logo">
+      <div className="inline-flex">
         <a href="/">
           <svg
             width="90"
@@ -39,7 +39,7 @@ export const Navbar = () => {
         </a>
       </div>
 
-      <div className="">
+      <div>
         <div className="hidden md:block">
           <MenuLinks />
         </div>
@@ -168,12 +168,15 @@ const ProductsLinks = () => {
     <>
       <div className="hidden md:block">
         <Menu.Container>
-          <Button variant="quiet">
+          <Button
+            variant="quiet"
+            onPress={() => setIsProductsMenuOpen(!isProductsMenuOpen)}
+          >
             <span className="flex items-center text-sm font-medium text-gray-200 hover:text-white">
               Products
               <Icon
                 name={isProductsMenuOpen ? "chevron-up" : "chevron-down"}
-                size="xs"
+                size="sm"
                 className="ml-2"
               />
             </span>
@@ -185,7 +188,7 @@ const ProductsLinks = () => {
           >
             <Menu.Option key="client">
               <div className="flex items-center py-1 group">
-                <div className="pr-2">
+                <div className="pr-3">
                   <Icon
                     name="terminal"
                     size="md"
@@ -207,7 +210,7 @@ const ProductsLinks = () => {
             </Menu.Option>
             <Menu.Option key="migrate">
               <div className="flex items-center py-1 group">
-                <div className="pr-2">
+                <div className="pr-3">
                   <Icon
                     name="repeat"
                     size="md"
@@ -229,7 +232,7 @@ const ProductsLinks = () => {
             </Menu.Option>
             <Menu.Option key="studio">
               <div className="flex items-center py-1 group">
-                <div className="pr-2">
+                <div className="pr-3">
                   <Icon
                     name="database"
                     size="md"
@@ -251,7 +254,7 @@ const ProductsLinks = () => {
             </Menu.Option>
             <Menu.Option key="data-platform">
               <div className="flex items-center py-1 group">
-                <div className="pr-2">
+                <div className="pr-3">
                   <Icon
                     name="layout"
                     size="md"
@@ -298,7 +301,7 @@ const ProductsLinks = () => {
                   <Icon
                     name="terminal"
                     size="sm"
-                    className="text-gray-800 mr-2"
+                    className="text-gray-800 mr-3"
                   />
                   <span className="text-gray-800 text-xl font-medium">
                     Client
@@ -312,7 +315,7 @@ const ProductsLinks = () => {
                   <Icon
                     name="repeat"
                     size="sm"
-                    className="text-gray-800 mr-2"
+                    className="text-gray-800 mr-3"
                   />
                   <span className="text-gray-800 text-xl font-medium">
                     Migrate
@@ -326,7 +329,7 @@ const ProductsLinks = () => {
                   <Icon
                     name="database"
                     size="sm"
-                    className="text-gray-800 mr-2"
+                    className="text-gray-800 mr-3"
                   />
                   <span className="text-gray-800 text-xl font-medium">
                     Studio
@@ -340,7 +343,7 @@ const ProductsLinks = () => {
                   <Icon
                     name="layout"
                     size="sm"
-                    className="text-gray-800 mr-2"
+                    className="text-gray-800 mr-3"
                   />
                   <span className="text-gray-800 text-xl font-medium mr-2">
                     Data Platform

@@ -27,6 +27,7 @@ export const CustomIcons = () => {
     <div className="flex flex-wrap items-center text-gray-400 dark:text-gray-300 max-w-[120px]">
       <Icon name="prisma" className="m-2" />
       <Icon name="chevron-down" className="m-2" />
+      <Icon name="triangle-down" className="m-2" />
       <Icon name="i" className="m-2" />
       <Icon name="heroku" className="m-2" />
       <Icon name="github-light" className="m-2" />

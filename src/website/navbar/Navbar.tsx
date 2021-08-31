@@ -4,8 +4,6 @@ import { Icon } from "../../components/icon/Icon"
 import { Menu } from "../../components/menu/Menu"
 import cn from "classnames"
 
-import "./navbar.css"
-
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -42,10 +40,10 @@ export const Navbar = () => {
       </div>
 
       <div>
-        <div className="hidden-sm">
+        <div className="hidden md:block">
           <MenuLinks />
         </div>
-        <div className="hidden-md">
+        <div className="md:hidden">
           <Button
             variant="quiet"
             onPress={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -62,7 +60,7 @@ export const Navbar = () => {
         </div>
       </div>
       {isMobileMenuOpen && (
-        <div className="col-span-2 self-start pt-4 hidden-md">
+        <div className="col-span-2 self-start pt-4 md:hidden">
           <MenuLinks />
         </div>
       )}
@@ -134,7 +132,7 @@ const MenuLinks = () => {
             />
           </svg>
 
-          <span className="hidden-md">GitHub</span>
+          <span className="md:hidden">GitHub</span>
         </a>
       </li>
     </ul>
@@ -168,7 +166,7 @@ const ProductsLinks = () => {
   }
   return (
     <>
-      <div className="hidden-sm">
+      <div className="hidden md:block">
         <Menu.Container>
           <Button
             variant="quiet"
@@ -284,7 +282,7 @@ const ProductsLinks = () => {
           </Menu.Body>
         </Menu.Container>
       </div>
-      <div className="hidden-md">
+      <div className="md:hidden">
         <button onClick={() => setIsProductsMenuOpen(!isProductsMenuOpen)}>
           <span className="flex items-center text-2xl py-3 font-medium text-gray-800">
             Products

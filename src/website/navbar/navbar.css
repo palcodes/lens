@@ -1,0 +1,12 @@
+.hidden-sm {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .hidden-sm {
+    display: block;
+  }
+  .hidden-md {
+    display: none;
+  }
+}

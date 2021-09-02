@@ -202,7 +202,7 @@ const WebsiteFooter = ({
           className="link"
           href={`${
             absoluteLinks ? "https://www.prisma.io" : ""
-          }/docs/getting-started/quickstart-typescript`}
+          }/docs/getting-started/quickstart`}
         >
           Get Started
         </a>

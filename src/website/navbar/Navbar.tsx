@@ -10,15 +10,9 @@ export const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className={cn(
-        "w-full",
-        "grid grid-cols-navbar grid-rows-navbar items-center",
-        "px-5",
-        "overflow-y-auto",
-        {
-          "fixed inset-0 bg-white z-50": isMobileMenuOpen,
-        }
-      )}
+      className={cn("flex flex-wrap", "px-5", "overflow-y-auto", {
+        "py-5 fixed inset-0 bg-white z-50": isMobileMenuOpen,
+      })}
     >
       <div className="inline-flex">
         <a href="/">
@@ -39,7 +33,7 @@ export const Navbar = () => {
         </a>
       </div>
 
-      <div>
+      <div className="flex-grow flex justify-end">
         <div className="hidden md:block">
           <MenuLinks />
         </div>
@@ -59,8 +53,9 @@ export const Navbar = () => {
           </Button>
         </div>
       </div>
+
       {isMobileMenuOpen && (
-        <div className="col-span-2 self-start pt-4 md:hidden">
+        <div className="w-full h-full self-start pt-4 md:hidden md:w-auto md:h-auto">
           <MenuLinks />
         </div>
       )}

@@ -4,10 +4,24 @@ export const Default = () => {
   return <Navbar />
 }
 
-Default.storyName = "[Controlled]"
+Default.storyName = "[Default]"
 export default {
   title: "Website/Navbar",
   component: Navbar,
 }
 
-export const Standard = () => <Navbar />
+export const MobileWidth = () => {
+  return (
+    <div style={{ width: "320px" }}>
+      <Navbar />
+    </div>
+  )
+}
+
+export const DesktopWidth = () => {
+  return (
+    <div style={{ width: "1200px" }}>
+      <Navbar />
+    </div>
+  )
+}

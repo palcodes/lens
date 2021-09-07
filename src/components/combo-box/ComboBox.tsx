@@ -190,7 +190,7 @@ function ComboBoxContainer<OptionKey extends string>({
               type="text"
               lens-role="input"
               {...mergeProps(inputProps, focusProps)}
-              aria-described-by={hintId}
+              aria-describedby={hintId}
               name={name}
               className={cn("flex-grow", "mr-4", {
                 "bg-white dark:bg-gray-900": !isDisabled,

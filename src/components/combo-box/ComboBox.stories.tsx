@@ -114,28 +114,54 @@ export const WithDynamicData = () => (
   </ComboBox.Container>
 )
 
-export const WithIcons = () => (
+export const WithTrailingIcons = () => (
   <ComboBox.Container
     label="Repository"
     onSelectionChange={action("onSelectionChange")}
   >
-    <ComboBox.Option key="prisma" icon="lock">
+    <ComboBox.Option key="prisma" trailingIcon="lock">
       prisma/prisma
     </ComboBox.Option>
-    <ComboBox.Option key="studio" icon="lock">
+    <ComboBox.Option key="studio" trailingIcon="lock">
       prisma/studio
     </ComboBox.Option>
-    <ComboBox.Option key="cloud" icon="lock">
+    <ComboBox.Option key="cloud" trailingIcon="lock">
       prisma/cloud
     </ComboBox.Option>
-    <ComboBox.Option key="engines" icon="lock">
+    <ComboBox.Option key="engines" trailingIcon="lock">
       prisma/engines
     </ComboBox.Option>
-    <ComboBox.Option key="examples" icon="lock">
+    <ComboBox.Option key="examples" trailingIcon="lock">
       prisma/examples
     </ComboBox.Option>
-    <ComboBox.Option key="docs" icon="lock">
+    <ComboBox.Option key="docs" trailingIcon="lock">
       prisma/docs
+    </ComboBox.Option>
+  </ComboBox.Container>
+)
+
+export const WithTrailingIconsMultiline = () => (
+  <ComboBox.Container
+    label="Repository"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <ComboBox.Option key="prisma" trailingIcon="lock">
+      prisma/thisisareallyreallyreallyreallylongrepositoryname
+    </ComboBox.Option>
+    <ComboBox.Option key="studio" trailingIcon="lock">
+      studio/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname
+    </ComboBox.Option>
+    <ComboBox.Option key="cloud" trailingIcon="lock">
+      cloud/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname-withhyphens
+    </ComboBox.Option>
+    <ComboBox.Option key="engines" trailingIcon="lock">
+      engines/thisisareallylongrepositoryname
+    </ComboBox.Option>
+    <ComboBox.Option key="examples" trailingIcon="lock">
+      examples/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname
+    </ComboBox.Option>
+    <ComboBox.Option key="docs" trailingIcon="lock">
+      docs/thisisareallylongrepositoryname
     </ComboBox.Option>
   </ComboBox.Container>
 )
@@ -189,50 +215,36 @@ export const WithIconsAndDescriptions = () => (
   <div className="w-96">
     <Form>
       <ComboBox.Container
-        label="Repository"
+        label="Role"
         onSelectionChange={action("onSelectionChange")}
       >
         <ComboBox.Option
-          key="prisma"
-          icon="lock"
-          description="Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server & SQLite "
+          key="admin"
+          leadingIcon="user"
+          description="Read and write access for the entire platform"
         >
-          prisma/prisma
+          Admin
         </ComboBox.Option>
         <ComboBox.Option
-          key="studio"
-          icon="lock"
-          description="The easiest way to explore and manipulate your data in all of your Prisma projects."
+          key="developer"
+          leadingIcon="user-check"
+          description="Read and write access to the database and read-only access for project settings and schema"
         >
-          prisma/studio
+          Developer
         </ComboBox.Option>
         <ComboBox.Option
-          key="cloud"
-          icon="lock"
-          description="Platform for modern database collaboration. "
+          key="collaborator"
+          leadingIcon="users"
+          description="Read and write access to the database and read-only access for project settings"
         >
-          prisma/cloud
+          Collaborator
         </ComboBox.Option>
         <ComboBox.Option
-          key="engines"
-          icon="lock"
-          description="Engine components of Prisma 2. "
+          key="viewer"
+          leadingIcon="user"
+          description="Read-only access for the entire platform"
         >
-          prisma/engines
-        </ComboBox.Option>
-        <ComboBox.Option
-          key="examples"
-          icon="lock"
-          description="🚀 Ready-to-run Prisma example projects "
-        >
-          prisma/examples
-        </ComboBox.Option>
-        <ComboBox.Option
-          key="docs"
-          icon="lock"
-          description="📚 Prisma Documentation "
-        >
-          prisma/docs
+          Viewer
         </ComboBox.Option>
       </ComboBox.Container>
     </Form>
@@ -333,13 +345,13 @@ export const WithIconsInOptions = () => (
     defaultSelectedKey="heroku"
     onSelectionChange={action("onSelectionChange")}
   >
-    <ComboBox.Option key="planetscale" icon="planetscale">
+    <ComboBox.Option key="planetscale" leadingIcon="planetscale">
       PlanetScale
     </ComboBox.Option>
-    <ComboBox.Option key="heroku" icon="heroku">
+    <ComboBox.Option key="heroku" leadingIcon="heroku">
       Heroku PostgreSQL
     </ComboBox.Option>
-    <ComboBox.Option key="railway" icon="railway">
+    <ComboBox.Option key="railway" leadingIcon="railway">
       Railway
     </ComboBox.Option>
   </ComboBox.Container>

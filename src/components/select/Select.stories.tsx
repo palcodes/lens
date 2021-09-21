@@ -54,17 +54,63 @@ export const WithIcons = () => (
     label="Role"
     onSelectionChange={action("onSelectionChange")}
   >
-    <Select.Option key="admin" icon="user">
+    <Select.Option key="admin" leadingIcon="user">
       Admin
     </Select.Option>
-    <Select.Option key="developer" icon="user-check">
+    <Select.Option key="developer" leadingIcon="user-check">
       Developer
     </Select.Option>
-    <Select.Option key="collaborator" icon="users">
+    <Select.Option key="collaborator" leadingIcon="users">
       Collaborator
     </Select.Option>
-    <Select.Option key="viewer" icon="user">
+    <Select.Option key="viewer" leadingIcon="user">
       Viewer
+    </Select.Option>
+  </Select.Container>
+)
+
+export const WithTrailingIcons = () => (
+  <Select.Container
+    label="Role"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <Select.Option key="prisma" trailingIcon="lock">
+      prisma/prisma
+    </Select.Option>
+    <Select.Option key="studio" trailingIcon="lock">
+      prisma/studio
+    </Select.Option>
+    <Select.Option key="cloud" trailingIcon="lock">
+      prisma/cloud
+    </Select.Option>
+    <Select.Option key="engines" trailingIcon="lock">
+      prisma/engines
+    </Select.Option>
+  </Select.Container>
+)
+
+export const WithTrailingIconsMultiline = () => (
+  <Select.Container
+    label="Role"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <Select.Option key="prisma" trailingIcon="lock">
+      prisma/thisisareallyreallyreallyreallylongrepositoryname
+    </Select.Option>
+    <Select.Option key="studio" trailingIcon="lock">
+      studio/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname
+    </Select.Option>
+    <Select.Option key="cloud" trailingIcon="lock">
+      cloud/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname-withhyphens
+    </Select.Option>
+    <Select.Option key="engines" trailingIcon="lock">
+      engines/thisisareallylongrepositoryname
+    </Select.Option>
+    <Select.Option key="examples" trailingIcon="lock">
+      examples/thisisareallyreallyreallyreallyreallyreallyreallylongrepositoryname
+    </Select.Option>
+    <Select.Option key="docs" trailingIcon="lock">
+      docs/thisisareallylongrepositoryname
     </Select.Option>
   </Select.Container>
 )
@@ -114,28 +160,28 @@ export const WithIconAndDescriptions = () => (
       >
         <Select.Option
           key="admin"
-          icon="user"
+          leadingIcon="user"
           description="Read and write access for the entire platform"
         >
           Admin
         </Select.Option>
         <Select.Option
           key="developer"
-          icon="user-check"
+          leadingIcon="user-check"
           description="Read and write access to the database and read-only access for project settings and schema"
         >
           Developer
         </Select.Option>
         <Select.Option
           key="collaborator"
-          icon="users"
+          leadingIcon="users"
           description="Read and write access to the database and read-only access for project settings"
         >
           Collaborator
         </Select.Option>
         <Select.Option
           key="viewer"
-          icon="user"
+          leadingIcon="user"
           description="Read-only access for the entire platform"
         >
           Viewer
@@ -192,13 +238,13 @@ export const WithIconsInOptions = () => (
     defaultSelectedKey="heroku"
     onSelectionChange={action("onSelectionChange")}
   >
-    <Select.Option key="planetscale" icon="planetscale">
+    <Select.Option key="planetscale" leadingIcon="planetscale">
       PlanetScale
     </Select.Option>
-    <Select.Option key="heroku" icon="heroku">
+    <Select.Option key="heroku" leadingIcon="heroku">
       Heroku PostgreSQL
     </Select.Option>
-    <Select.Option key="railway" icon="railway">
+    <Select.Option key="railway" leadingIcon="railway">
       Railway
     </Select.Option>
   </Select.Container>

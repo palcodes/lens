@@ -31,8 +31,10 @@ export type ListBoxOption<Key extends string> = {
   key: Key
   /** The main text to display within this option */
   title: string
-  /** An icon to show within this option */
-  icon?: string
+  /** An icon to show before the title */
+  leadingIcon?: string
+  /** An icon to show after the title */
+  trailingIcon?: string
   /** The secondary text to display within this option */
   description?: string
 }
@@ -244,7 +246,8 @@ export function ListBoxOption<Key extends string>({
     state,
     ref
   )
-  const { icon, description } = option.props as ListBoxOption<Key>
+  const { leadingIcon, description, trailingIcon } =
+    option.props as ListBoxOption<Key>
 
   return (
     <li
@@ -262,9 +265,11 @@ export function ListBoxOption<Key extends string>({
       )}
     >
       <div className="flex items-center space-x-2">
-        {icon && <Icon name={icon} size="sm" />}
-        <div className="whitespace-nowrap">{option.rendered}</div>
+        {leadingIcon && <Icon name={leadingIcon} size="sm" />}
+        <div className="">{option.rendered}</div>
+        {trailingIcon && <Icon name={trailingIcon} size="sm" />}
       </div>
+
       {description && (
         <div className={cn("mt-2", "text-gray-500")}>{description}</div>
       )}

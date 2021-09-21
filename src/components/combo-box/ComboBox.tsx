@@ -182,8 +182,8 @@ function ComboBoxContainer<OptionKey extends string>({
               }
             )}
           >
-            {state.selectedItem && state.selectedItem.props.icon && (
-              <Icon name={state.selectedItem.props.icon} size="sm" />
+            {state.selectedItem && state.selectedItem.props.leadingIcon && (
+              <Icon name={state.selectedItem.props.leadingIcon} size="sm" />
             )}
             <input
               ref={inputRef}
@@ -237,7 +237,8 @@ export const ComboBox = {
   Option: ReactAriaItem as <Key extends string>(props: {
     key: Key
     children: string
-    icon?: string
+    leadingIcon?: string
+    trailingIcon?: string
     description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,

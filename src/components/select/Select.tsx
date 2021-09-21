@@ -161,8 +161,8 @@ function SelectContainer<OptionKey extends string>({
                 "text-gray-800 dark:text-gray-100": state.selectedItem,
               })}
             >
-              {state.selectedItem && state.selectedItem.props.icon && (
-                <Icon name={state.selectedItem.props.icon} size="sm" />
+              {state.selectedItem && state.selectedItem.props.leadingIcon && (
+                <Icon name={state.selectedItem.props.leadingIcon} size="sm" />
               )}
               <span>
                 {state.selectedItem ? state.selectedItem.rendered : placeholder}
@@ -208,7 +208,8 @@ export const Select = {
   Option: ReactAriaItem as <Key extends string>(props: {
     key: Key
     children: string
-    icon?: string
+    leadingIcon?: string
+    trailingIcon?: string
     description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,

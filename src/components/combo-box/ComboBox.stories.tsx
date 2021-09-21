@@ -264,7 +264,38 @@ export const WithFooter = () => (
     <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
 
     <ComboBox.Footer onPress={action("onComboBoxFooterPress")}>
-      Can't find ye repository?
+      Can't find your repository?
+      <Link href="" openInNewTab>
+        Configure
+      </Link>
+    </ComboBox.Footer>
+  </ComboBox.Container>
+)
+
+export const WithLongList = () => (
+  <ComboBox.Container
+    label="Repository"
+    onSelectionChange={action("onSelectionChange")}
+  >
+    <ComboBox.Option key="prisma">prisma/prisma</ComboBox.Option>
+    <ComboBox.Option key="studio">prisma/studio</ComboBox.Option>
+    <ComboBox.Option key="cloud">prisma/cloud</ComboBox.Option>
+    <ComboBox.Option key="engines">prisma/engines</ComboBox.Option>
+    <ComboBox.Option key="examples">prisma/examples</ComboBox.Option>
+    <ComboBox.Option key="docs">prisma/docs</ComboBox.Option>
+    <ComboBox.Option key="lens">prisma/lens</ComboBox.Option>
+    <ComboBox.Option key="templates">prisma/templates</ComboBox.Option>
+    <ComboBox.Option key="templates-node">
+      prisma/templates-node
+    </ComboBox.Option>
+    <ComboBox.Option key="router">prisma/router</ComboBox.Option>
+    <ComboBox.Option key="migrate">prisma/migrate</ComboBox.Option>
+    <ComboBox.Option key="client">prisma/client</ComboBox.Option>
+    <ComboBox.Option key="deployment">prisma/deployment</ComboBox.Option>
+    <ComboBox.Option key="nexus-prisma">prisma/nexus-prisma</ComboBox.Option>
+
+    <ComboBox.Footer onPress={action("onComboBoxFooterPress")}>
+      Can't find your repository?
       <Link href="" openInNewTab>
         Configure
       </Link>

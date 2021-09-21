@@ -13,7 +13,7 @@ import {
   useOverlayPosition,
 } from "@react-aria/overlays"
 import { mergeProps } from "@react-aria/utils"
-import { PressResponder } from "@react-aria/interactions"
+import { PressResponder, useHover } from "@react-aria/interactions"
 
 import { Loader } from "../loader/Loader"
 import { Icon } from "../icon/Icon"
@@ -131,43 +131,45 @@ export function ListBoxOverlay<OptionKey extends string>({
               "animate-slide-bottom": placement === "top",
               "animate-slide-top": placement === "bottom",
             })}
-            style={{ maxHeight: "inherit" }}
           >
-            {state.collection.size === 0 && !loading && !error && (
-              <ListBoxEmptyOption />
-            )}
+            <div
+              className="relative overflow-y-auto"
+              style={{ maxHeight: "350px" }}
+            >
+              {state.collection.size === 0 && !loading && !error && (
+                <ListBoxEmptyOption />
+              )}
 
-            {[...state.collection].map((option) => {
-              if (option.type === "section") {
-                return (
-                  <ListBoxSection
-                    key={option.key}
-                    title={option.rendered as string}
-                    state={state}
-                    section={option}
-                  />
-                )
-              } else if (option.type === "item") {
-                return (
-                  <ListBoxOption
-                    key={option.key}
-                    option={option}
-                    state={state}
-                  />
-                )
-              } else {
-                return null
-              }
-            })}
+              {[...state.collection].map((option) => {
+                if (option.type === "section") {
+                  return (
+                    <ListBoxSection
+                      key={option.key}
+                      title={option.rendered as string}
+                      state={state}
+                      section={option}
+                    />
+                  )
+                } else if (option.type === "item") {
+                  return (
+                    <ListBoxOption
+                      key={option.key}
+                      option={option}
+                      state={state}
+                    />
+                  )
+                } else {
+                  return null
+                }
+              })}
 
-            {loading && <ListBoxLoadingOption />}
-            {error && <ListBoxErrorOption />}
-
-            {footer}
+              {loading && <ListBoxLoadingOption />}
+              {error && <ListBoxErrorOption />}
+            </div>
+            <div className="static">{footer}</div>
           </ul>
-
-          <DismissButton onDismiss={state.close} />
         </div>
+        <DismissButton onDismiss={state.close} />
       </FocusScope>
     </OverlayContainer>
   )
@@ -235,6 +237,7 @@ export function ListBoxOption<Key extends string>({
 
   const isDisabled = state.disabledKeys.has(option.key)
   const isFocused = state.selectionManager.focusedKey === option.key
+  const { hoverProps, isHovered } = useHover({ isDisabled })
   const { optionProps: domProps } = useOption(
     {
       key: option.key,
@@ -256,12 +259,12 @@ export function ListBoxOption<Key extends string>({
       {...domProps}
       className={cn(
         "flex flex-col",
-        "rounded-md px-2 py-1",
+        "px-2 py-1",
         "cursor-pointer",
+        "first:mt-1 last:mb-1",
         {
-          "bg-gray-100 dark:bg-gray-800": isFocused,
-        },
-        "hover:bg-gray-100"
+          "bg-gray-200 dark:bg-gray-800": isFocused || isHovered,
+        }
       )}
     >
       <div className="flex items-center space-x-2">

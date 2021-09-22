@@ -28,6 +28,6 @@ jobs:
         run: |
           git config --global user.name "Prismo"
           git config --global user.email "prismabots@gmail.com"
-          yarn version patch
+          yarn version --patch
           yarn publish
           git push https://$PRISMO_PAT@github.com/prisma/lens.git --follow-tags

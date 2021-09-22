@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect, useRef, useState } from "react"
+import React, { useLayoutEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import cn from "classnames"
 import { mergeProps } from "@react-aria/utils"
@@ -23,7 +23,12 @@ export type TooltipProps = React.PropsWithChildren<{
 /**
  * A tooltip is an overlay that is most commonly used to display a short description about an icon / image
  */
-export function Tooltip({ id, children, target, position }: TooltipProps) {
+export function Tooltip({
+  id,
+  children,
+  target,
+  position,
+}: TooltipProps): React.ReactElement {
   const state = useTooltipTriggerState({ isOpen: true })
   const { tooltipProps } = useTooltip({ id }, state)
 

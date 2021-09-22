@@ -35,7 +35,7 @@ Should loosely follow [the theme spec](https://system-ui.com/theme) with followi
 Prisma Lens uses [Storybook](https://storybook.js.org/) as a preview mechanism for local development.
 
 ```
-npm run dev
+yarn dev
 ```
 
 You can also use the VSCode task named `dev` to do the same thing. (<kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> > Tasks: Run Task > `dev`)
@@ -50,8 +50,8 @@ To publish manually, you should:
 
 ```
 npm login # Login to NPM
-npm version patch # Bump up the version
-npm publish # Publish package
+yarn version patch # Bump up the version
+yarn publish # Publish package
 ```
 
 To test changes in a local dependent project you can use yalc (https://www.npmjs.com/package/yalc).

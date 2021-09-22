@@ -20,7 +20,7 @@ export function Separator({ id, orientation = "horizontal" }: SeparatorProps) {
       lens-role="separator"
       {...separatorProps}
       className={cn("border-gray-300 dark:border-gray-700", {
-        "border-b my-2": orientation === "horizontal",
+        "border-b": orientation === "horizontal",
         "border-r": orientation === "vertical",
       })}
     />

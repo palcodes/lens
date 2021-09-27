@@ -1862,7 +1862,15 @@
     "@react-aria/utils" "^3.8.2"
     clsx "^1.1.1"
 
-"@react-stately/collections@3.3.3", "@react-stately/collections@^3.3.3":
+"@react-stately/collections@3.3.4":
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/@react-stately/collections/-/collections-3.3.4.tgz#ca9e481d2769dbebb593d5a1ed4bcc54013aef9d"
+  integrity sha512-HnlQip9RH+3nGNh8U2U1YkCdA+zGSedQLWVCdR53w/n6To7kIp7yDLby5dkmP+9VGQEkyfsoSjwGJ1NF94CCZg==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-types/shared" "^3.8.0"
+
+"@react-stately/collections@^3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@react-stately/collections/-/collections-3.3.3.tgz#9811f97a4bc2f7bfccefb5d5466824a5767a8bfc"
   integrity sha512-OGBHsrJEKl34Xk9ab+OQSdePylQ/FiiihHVsicXeBRHLqffsNaDqlZ+r9Fxs6S5bvaR5nb/A+mEIm3WR28EmXw==

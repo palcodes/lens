@@ -71,6 +71,34 @@ export const WithError = () => {
   )
 }
 
+export const WithAutocompleteOff = () => {
+  const [value, setValue] = useState("")
+
+  return (
+    <TextField
+      autoComplete="off"
+      type="text"
+      label="Password"
+      value={value}
+      onChange={chain(action("onChange"), setValue)}
+    />
+  )
+}
+
+export const WithAutocompleteEmail = () => {
+  const [value, setValue] = useState("")
+
+  return (
+    <TextField
+      autoComplete="email"
+      type="text"
+      label="Email"
+      value={value}
+      onChange={chain(action("onChange"), setValue)}
+    />
+  )
+}
+
 export const WithHint = () => {
   const [value, setValue] = useState("")
 

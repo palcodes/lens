@@ -201,7 +201,7 @@ function ProjectPickerOverlay({
           <ul
             ref={listBoxRef}
             {...listBoxProps}
-            className={cn("menu w-full", {
+            className={cn("menu w-full p-2", {
               "animate-slide-bottom": placement === "top",
               "animate-slide-top": placement === "bottom",
             })}

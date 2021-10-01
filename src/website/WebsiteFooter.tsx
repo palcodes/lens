@@ -344,6 +344,14 @@ const WebsiteFooter = ({
         </a>
         <a
           className="link"
+          href={`${
+            absoluteLinks ? "https://www.prisma.io" : ""
+          }/prisma-enterprise`}
+        >
+          Prisma Enterprise
+        </a>
+        <a
+          className="link"
           href="https://www.notion.so/prismaio/What-Prisma-Cares-About-32946d99f9ea4925a796663dc8945c42"
         >
           Causes

@@ -1,6 +1,7 @@
 {
   "name": "@prisma/lens",
   "version": "0.0.248",
+  "license": "Apache-2.0",
   "description": "Prisma's design system",
   "main": "dist/lib.js",
   "module": "dist/lib.esm.js",
@@ -17,12 +18,14 @@
     "type": "git",
     "url": "git+https://github.com/prisma/lens.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "prisma",
     "design"
   ],
   "author": "Prisma",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/prisma/lens/issues"
   },

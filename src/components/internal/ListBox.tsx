@@ -244,7 +244,6 @@ export function ListBoxOption<Key extends string>({
       isDisabled,
       shouldSelectOnPressUp: true,
       shouldFocusOnHover: true,
-      shouldUseVirtualFocus: true,
     },
     state,
     ref

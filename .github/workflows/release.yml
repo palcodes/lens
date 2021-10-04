@@ -1,5 +1,6 @@
 name: "Publish on NPM"
 on:
+  workflow_dispatch:
   push:
     tags-ignore:
       - "*.*"
@@ -12,22 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PRISMO_PAT }}
+          token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
           cache: "yarn"
-          registry-url: "https://registry.npmjs.org"
-          scope: "@prisma"
       - name: Install dependencies
         run: yarn
       - name: Publish to NPM
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          PRISMO_PAT: ${{ secrets.PRISMO_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          echo "Logged into NPM as: $(npm whoami)"
           git config --global user.name "Prismo"
-          git config --global user.email "prismabots@gmail.com"
+          git config --global user.email "<>"
           yarn version --patch
           yarn publish
           git push https://$PRISMO_PAT@github.com/prisma/lens.git --follow-tags

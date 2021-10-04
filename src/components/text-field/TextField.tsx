@@ -16,6 +16,8 @@ export type TextFieldProps = {
   id?: string
   /** Controls if this TextField should steal focus when mounted */
   autoFocus?: boolean
+  /** Controls if this TextField should be autocompleted */
+  autoComplete?: string
   /** An optional hint to show next to the TextField that describes what this TextField expects */
   hint?: string
   /** An optional error to show next to the TextField. If a `validator` is also supplied, the `validator` takes precendence */
@@ -47,6 +49,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     {
       id,
       autoFocus = false,
+      autoComplete,
       errorText: _errorText,
       hint,
       inputMode,
@@ -82,6 +85,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         id,
         "aria-describedby": errorText || hint ? hintId : undefined,
         autoFocus,
+        autoComplete,
         inputMode,
         isDisabled,
         isReadOnly: isDisabled,

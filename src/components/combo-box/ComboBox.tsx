@@ -12,7 +12,6 @@ import { CollectionChildren } from "@react-types/shared"
 import { useId, mergeProps, chain } from "@react-aria/utils"
 import { useFocus } from "@react-aria/interactions"
 
-import { useAsyncOptions } from "../../hooks/useAsyncOptions"
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
 import {
   ListBoxOption,
@@ -50,7 +49,9 @@ export type ComboBoxContainerProps<OptionKey extends string> = {
   /** A (dynamic) list of options to render within this ComboBox.
    * This may be provided upfront instead of providing static children.
    */
-  options?: ListBoxOption<OptionKey>[] | Promise<ListBoxOption<OptionKey>[]>
+  options?: ListBoxOption<OptionKey>[]
+  /** Controls if this ComboBox's options are not yet available, but will be in the future */
+  isLoading?: boolean
   /** Name of the value held by this ComboBox when placed inside a form */
   name?: string
   /** A value to display in the TextField when it is empty */
@@ -77,7 +78,8 @@ function ComboBoxContainer<OptionKey extends string>({
   errorText: _errorText,
   hint,
   isDisabled = false,
-  options: propOptions,
+  isLoading = false,
+  options,
   label,
   name,
   placeholder = "Select an option",
@@ -89,8 +91,6 @@ function ComboBoxContainer<OptionKey extends string>({
     children,
     footerType: ListBoxFooter,
   })
-  const { loading, error, options } =
-    useAsyncOptions<ListBoxOption<OptionKey>>(propOptions)
 
   const hintId = useId()
 
@@ -163,9 +163,9 @@ function ComboBoxContainer<OptionKey extends string>({
   const { buttonProps } = useButton({ ...triggerProps, isDisabled }, buttonRef)
 
   return (
-    <div id={id} className="table-row">
+    <div id={id} className="w-full flex flex-col space-y-3">
       <Label labelProps={labelProps}>{label}</Label>
-      <section className="table-cell w-full relative">
+      <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>
           <div
             ref={containerRef}
@@ -202,9 +202,9 @@ function ComboBoxContainer<OptionKey extends string>({
             />
             <button lens-role="chevron" ref={buttonRef} {...buttonProps}>
               <Icon
-                name="chevron-down"
-                size="xs"
-                className="text-gray-400 dark:text-gray-300"
+                name="triangle-down"
+                size="xxs"
+                className="text-gray-500 dark:text-gray-500"
               />
             </button>
           </div>
@@ -222,8 +222,7 @@ function ComboBoxContainer<OptionKey extends string>({
             overlayRef={overlayRef}
             state={state}
             footer={footer}
-            loading={loading}
-            error={error}
+            loading={isLoading}
           />
         )}
       </section>
@@ -239,6 +238,7 @@ export const ComboBox = {
     children: string
     leadingIcon?: string
     trailingIcon?: string
+    leadingImageSrc?: string
     description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,

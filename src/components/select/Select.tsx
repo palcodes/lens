@@ -133,9 +133,9 @@ function SelectContainer<OptionKey extends string>({
   const errorText = invalidText || _errorText
 
   return (
-    <div id={id} className="table-row">
+    <div id={id} className="w-full">
       <Label labelProps={labelProps}>{label}</Label>
-      <section className="table-cell w-full relative">
+      <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>
           <button
             ref={ref}
@@ -169,9 +169,9 @@ function SelectContainer<OptionKey extends string>({
               </span>
             </div>
             <Icon
-              name="chevron-down"
-              size="xs"
-              className="text-gray-400 dark:text-gray-300"
+              name="triangle-down"
+              size="xxs"
+              className="text-gray-500 dark:text-gray-500"
             />
           </button>
         </FocusRing>
@@ -210,6 +210,7 @@ export const Select = {
     children: string
     leadingIcon?: string
     trailingIcon?: string
+    leadingImageSrc?: string
     description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,

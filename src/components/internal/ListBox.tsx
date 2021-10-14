@@ -35,6 +35,8 @@ export type ListBoxOption<Key extends string> = {
   leadingIcon?: string
   /** An icon to show after the title */
   trailingIcon?: string
+  /** An image to show before the title */
+  leadingImageSrc?: string
   /** The secondary text to display within this option */
   description?: string
 }
@@ -57,7 +59,6 @@ type ListBoxOverlayProps<OptionKey extends string> = {
   /** An optional footer to render within the Overlay, after the Body */
   footer?: React.ReactElement
   loading?: boolean
-  error?: Error
   /** Additional props that will be spread over the overlay component */
   listBoxProps?: React.HTMLAttributes<Element>
 }
@@ -72,7 +73,6 @@ export function ListBoxOverlay<OptionKey extends string>({
   state,
   footer,
   loading,
-  error,
   listBoxProps: otherProps = {},
 }: ListBoxOverlayProps<OptionKey>) {
   // The following hook calls are conditional, but they should not be a problem because they'll be called the same number of times across renders
@@ -102,7 +102,7 @@ export function ListBoxOverlay<OptionKey extends string>({
   const { overlayProps: positionProps, placement } = useOverlayPosition({
     overlayRef,
     targetRef: containerRef,
-    offset: 8,
+    offset: 4,
     containerPadding: 0,
     shouldFlip: true,
     onClose: state.close,
@@ -136,7 +136,7 @@ export function ListBoxOverlay<OptionKey extends string>({
               className="relative overflow-y-auto"
               style={{ maxHeight: "350px" }}
             >
-              {state.collection.size === 0 && !loading && !error && (
+              {state.collection.size === 0 && !loading && (
                 <ListBoxEmptyOption />
               )}
 
@@ -164,7 +164,6 @@ export function ListBoxOverlay<OptionKey extends string>({
               })}
 
               {loading && <ListBoxLoadingOption />}
-              {error && <ListBoxErrorOption />}
             </div>
             <div className="static">{footer}</div>
           </ul>
@@ -249,33 +248,35 @@ export function ListBoxOption<Key extends string>({
     state,
     ref
   )
-  const { leadingIcon, description, trailingIcon } =
+  const { description, leadingIcon, trailingIcon, leadingImageSrc } =
     option.props as ListBoxOption<Key>
 
   return (
     <li
       ref={ref}
       lens-role="listbox-option"
+      {...hoverProps}
       {...domProps}
-      className={cn(
-        "flex flex-col",
-        "px-2 py-1",
-        "cursor-pointer",
-        "first:mt-1 last:mb-1",
-        {
-          "bg-gray-200 dark:bg-gray-800": isFocused || isHovered,
-        }
-      )}
+      className={cn("flex flex-col", "p-3", "cursor-pointer", {
+        "bg-gray-100 dark:bg-gray-800": isFocused || isHovered,
+      })}
     >
       <div className="flex items-center space-x-2">
-        {leadingIcon && <Icon name={leadingIcon} size="sm" />}
-        <div className="">{option.rendered}</div>
-        {trailingIcon && <Icon name={trailingIcon} size="sm" />}
+        {leadingIcon && (
+          <Icon name={leadingIcon} size="sm" className="text-gray-600" />
+        )}
+        {leadingImageSrc && (
+          <img src={leadingImageSrc} className="rounded-full w-6" />
+        )}
+        <div className="text-gray-800 dar:text-gray-100 font-medium">
+          {option.rendered}
+        </div>
+        {trailingIcon && (
+          <Icon name={trailingIcon} size="xs" className="text-gray-600" />
+        )}
       </div>
 
-      {description && (
-        <div className={cn("mt-2", "text-gray-500")}>{description}</div>
-      )}
+      {description && <div className="text-gray-500">{description}</div>}
     </li>
   )
 }
@@ -283,7 +284,7 @@ export function ListBoxOption<Key extends string>({
 /* A specialized Option that is to be used to represent the loading state for a ListBox */
 export function ListBoxLoadingOption() {
   return (
-    <li className={cn("flex flex-col justify-center items-center", "m-2")}>
+    <li className={cn("flex flex-col justify-center items-center", "m-3")}>
       <Loader size="md" />
     </li>
   )
@@ -326,7 +327,7 @@ export function ListBoxFooter({ children, onPress }: ListBoxFooterProps) {
   return (
     <PressResponder onPress={onPress}>
       <Separator />
-      <div className="p-2 whitespace-nowrap">{children}</div>
+      <div className="p-3 whitespace-nowrap">{children}</div>
     </PressResponder>
   )
 }

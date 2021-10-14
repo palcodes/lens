@@ -57,7 +57,7 @@ const SingleAvatar = ({ a, i, size, width }: CustomAvatarProps) => {
       {(a.name || a.email) && isHovered && (
         <Tooltip target={avatarRef} position="bottom">
           <div className="flex flex-col">
-            <div lens-role="name" className="font-semibold text-sm">
+            <div lens-role="name" className="font-medium text-sm">
               {a.name}
             </div>
             <div lens-role="email" className="text-xs">

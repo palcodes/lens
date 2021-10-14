@@ -16,8 +16,6 @@ export type TextFieldProps = {
   id?: string
   /** Controls if this TextField should steal focus when mounted */
   autoFocus?: boolean
-  /** Controls if this TextField should be autocompleted */
-  autoComplete?: string
   /** An optional hint to show next to the TextField that describes what this TextField expects */
   hint?: string
   /** An optional error to show next to the TextField. If a `validator` is also supplied, the `validator` takes precendence */
@@ -30,6 +28,8 @@ export type TextFieldProps = {
   label?: string
   /** Name of the value held by this TextField when placed inside a form */
   name?: string
+  /** Controls how this TextField announces itself as autocomplete-able to the browser */
+  nativeAutoComplete?: string
   /** Callback fired when the value of this TextField changes */
   onChange?: (value: string) => void
   /** A value to display in the TextField when it is empty */
@@ -39,9 +39,9 @@ export type TextFieldProps = {
   /** The type of input to render */
   type?: "text" | "email" | "tel" | "url" | "numeric" | "decimal"
   /** An custom function that runs for every change to validate the value. Return `undefined` if the value is valid, and a string describing the error otherwise */
-  validator?: (v: string) => string | undefined
+  validator?: (v: string) => string | undefined //| Promise<string> | Promise<void>
   /** The value of the TextField */
-  value: string
+  value?: string
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -49,13 +49,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     {
       id,
       autoFocus = false,
-      autoComplete,
       errorText: _errorText,
       hint,
       inputMode,
       isDisabled = false,
       label,
       name,
+      nativeAutoComplete,
       onChange,
       placeholder,
       prefix,
@@ -77,7 +77,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     })
 
     const hintId = useId()
-    // We want to make it so that if an `errorText` is supplied, it will always show up, even if `isValidatorEnabled` is false
+    // We want to make it so that if an `errorText` is supplied, it will always show up
     const errorText = invalidText || _errorText
 
     const { labelProps, inputProps } = useTextField(
@@ -85,7 +85,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         id,
         "aria-describedby": errorText || hint ? hintId : undefined,
         autoFocus,
-        autoComplete,
+        autoComplete: nativeAutoComplete,
         inputMode,
         isDisabled,
         isReadOnly: isDisabled,
@@ -107,9 +107,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     })
 
     return (
-      <div className={cn("table-row w-full")}>
+      <div className="w-full">
         {label && <Label labelProps={labelProps}>{label}</Label>}
-        <section className="table-cell w-full">
+        <section className="mt-3">
           <FocusRing autoFocus={autoFocus} within>
             <div
               {...focusWithinProps}

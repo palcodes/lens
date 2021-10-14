@@ -10,7 +10,8 @@ import {
 } from "@react-stately/collections"
 import { CollectionChildren } from "@react-types/shared"
 import { useId, mergeProps, chain } from "@react-aria/utils"
-import { useFocus } from "@react-aria/interactions"
+import { useFocus, useHover } from "@react-aria/interactions"
+import { Tooltip } from "../tooltip/Tooltip"
 
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
 import {
@@ -162,12 +163,15 @@ function ComboBoxContainer<OptionKey extends string>({
   )
   const { buttonProps } = useButton({ ...triggerProps, isDisabled }, buttonRef)
 
+  const { hoverProps, isHovered } = useHover({}) // deliberately not passing `isDisabled` because we want it to ignore that
+
   return (
     <div id={id} className="w-full flex flex-col space-y-3">
       <Label labelProps={labelProps}>{label}</Label>
       <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>
           <div
+            {...hoverProps}
             ref={containerRef}
             className={cn(
               "flex items-center w-full relative space-x-2",
@@ -182,6 +186,12 @@ function ComboBoxContainer<OptionKey extends string>({
               }
             )}
           >
+            {state.selectedItem && state.selectedItem.props.leadingImageSrc && (
+              <img
+                src={state.selectedItem.props.leadingImageSrc}
+                className="rounded-full w-4"
+              />
+            )}
             {state.selectedItem && state.selectedItem.props.leadingIcon && (
               <Icon name={state.selectedItem.props.leadingIcon} size="sm" />
             )}
@@ -209,6 +219,10 @@ function ComboBoxContainer<OptionKey extends string>({
             </button>
           </div>
         </FocusRing>
+
+        {isDisabled && isHovered && (
+          <Tooltip target={containerRef}>This ComboBox is disabled</Tooltip>
+        )}
 
         <Hint id={hintId} text={hint} errorText={errorText} />
 

@@ -164,6 +164,13 @@ function SelectContainer<OptionKey extends string>({
               {state.selectedItem && state.selectedItem.props.leadingIcon && (
                 <Icon name={state.selectedItem.props.leadingIcon} size="sm" />
               )}
+              {state.selectedItem &&
+                state.selectedItem.props.leadingImageSrc && (
+                  <img
+                    src={state.selectedItem.props.leadingImageSrc}
+                    className="rounded-full w-6"
+                  />
+                )}
               <span>
                 {state.selectedItem ? state.selectedItem.rendered : placeholder}
               </span>

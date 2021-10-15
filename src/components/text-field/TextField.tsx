@@ -62,11 +62,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       type = "text",
       validator,
       value,
-    }: TextFieldProps,
+    },
     forwardedRef
   ) => {
     const _inputRef = useRef<HTMLInputElement>(null)
-    const inputRef = forwardedRef || _inputRef
+    const inputRef =
+      (forwardedRef as React.RefObject<HTMLInputElement>) || _inputRef
 
     const [invalidText, setInvalidText] = useState<string | undefined>()
     const { focusProps } = useFocus({
@@ -99,7 +100,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         value,
         validationState: !!errorText ? "invalid" : undefined,
       },
-      inputRef as React.RefObject<HTMLInputElement>
+      inputRef
     )
 
     const { focusWithinProps } = useFocusWithin({

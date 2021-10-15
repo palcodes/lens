@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { Key, useRef, useState, forwardRef } from "react"
 import cn from "classnames"
 import { useComboBox } from "@react-aria/combobox"
 import { useComboBoxState } from "@react-stately/combobox"
@@ -24,9 +24,10 @@ import { Icon } from "../icon/Icon"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Hint } from "../internal/Hint"
 
-export type ComboBoxOption<Key extends string> = ListBoxOption<Key>
+export type ComboBoxOption<OptionKey extends Key = string> =
+  ListBoxOption<OptionKey>
 
-export type ComboBoxContainerProps<OptionKey extends string> = {
+export type ComboBoxContainerProps<OptionKey extends Key> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** Controls if this ComboBox should steal focus when first rendered */
@@ -69,7 +70,7 @@ export type ComboBoxContainerProps<OptionKey extends string> = {
  * A ComboBox is a specialized text field that only allows you its value to be one of the pre-provided options.
  * It displays a list of options below the text field. This list keeps getting shorter as you type, since fewer options match the text field's value.
  */
-function ComboBoxContainer<OptionKey extends string>({
+function ComboBoxContainer<OptionKey extends Key = string>({
   id,
   autoFocus,
   children,
@@ -110,9 +111,8 @@ function ComboBoxContainer<OptionKey extends string>({
     defaultFilter: contains,
     placeholder,
     selectedKey,
-    onSelectionChange: chain(
-      onSelectionChange as (k: React.Key) => void,
-      (v: OptionKey) => setInvalidText(validator?.(v) || undefined)
+    onSelectionChange: chain(onSelectionChange, (v: OptionKey) =>
+      setInvalidText(validator?.(v) || undefined)
     ),
   })
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, Key } from "react"
 import cn from "classnames"
 
 import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
@@ -26,9 +26,9 @@ import { Separator } from "../separator/Separator"
  */
 
 /** Value for a single Option inside this Select */
-export type ListBoxOption<Key extends string> = {
+export type ListBoxOption<OptionKey extends Key> = {
   /** A string that uniquely identifies this option */
-  key: Key
+  key: OptionKey
   /** The main text to display within this option */
   title: string
   /** An icon to show before the title */
@@ -41,7 +41,7 @@ export type ListBoxOption<Key extends string> = {
   description?: string
 }
 
-type ListBoxOverlayProps<OptionKey extends string> = {
+type ListBoxOverlayProps<OptionKey extends Key> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** A string describing what this ListBox represents */
@@ -64,7 +64,7 @@ type ListBoxOverlayProps<OptionKey extends string> = {
 }
 
 /** An overlay that renders individual ListBox Options */
-export function ListBoxOverlay<OptionKey extends string>({
+export function ListBoxOverlay<OptionKey extends Key = string>({
   id,
   label,
   containerRef,
@@ -174,7 +174,7 @@ export function ListBoxOverlay<OptionKey extends string>({
   )
 }
 
-type ListBoxSectionProps<OptionKey extends string> = {
+type ListBoxSectionProps<OptionKey extends Key> = {
   /** Title for this Section */
   title: string
   /** A group of similar options, only visual */
@@ -185,7 +185,7 @@ type ListBoxSectionProps<OptionKey extends string> = {
     | ComboBoxState<ListBoxOption<OptionKey>> // TODO:: Find a more generic type for this
 }
 /** A single ListBox Section. This is usually used to (visually) group similar `ListBoxOption`s together */
-export function ListBoxSection<OptionKey extends string>({
+export function ListBoxSection<OptionKey extends Key = string>({
   title,
   section,
   state,
@@ -221,17 +221,19 @@ export function ListBoxSection<OptionKey extends string>({
   )
 }
 
-type ListBoxOptionProps<Key extends string> = {
+type ListBoxOptionProps<OptionKey extends Key> = {
   /** The option to render */
-  option: Node<ListBoxOption<Key>>
+  option: Node<ListBoxOption<OptionKey>>
   /** The global Select state */
-  state: SelectState<ListBoxOption<Key>> | ComboBoxState<ListBoxOption<Key>> // TODO:: Find a more generic type for this
+  state:
+    | SelectState<ListBoxOption<OptionKey>>
+    | ComboBoxState<ListBoxOption<Key>> // TODO:: Find a more generic type for this
 }
 /** A single `ListBox` Option */
-export function ListBoxOption<Key extends string>({
+export function ListBoxOption<OptionKey extends Key = string>({
   option,
   state,
-}: ListBoxOptionProps<Key>) {
+}: ListBoxOptionProps<OptionKey>) {
   const ref = useRef<HTMLLIElement>(null)
 
   const isDisabled = state.disabledKeys.has(option.key)
@@ -249,7 +251,7 @@ export function ListBoxOption<Key extends string>({
     ref
   )
   const { description, leadingIcon, trailingIcon, leadingImageSrc } =
-    option.props as ListBoxOption<Key>
+    option.props as ListBoxOption<OptionKey>
 
   return (
     <li

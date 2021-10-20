@@ -13,8 +13,7 @@ import { ListBox } from "./ListBox"
 import { Popover } from "./Popover"
 
 import { PickerFooter } from "./PickerFooter"
-
-export { Item, Section } from "@react-stately/collections"
+import { Item, Section } from "@react-stately/collections"
 
 type PickerProps = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
@@ -29,7 +28,7 @@ type PickerProps = {
   onSelectionChange?: (key: React.Key) => void
 }
 
-export const Picker = ({
+const PickerContainer = ({
   id,
   children,
   name,
@@ -105,4 +104,11 @@ export const Picker = ({
       )}
     </div>
   )
+}
+
+export const Picker = {
+  Container: PickerContainer,
+  Section: Section,
+  Item: Item,
+  Footer: PickerFooter,
 }

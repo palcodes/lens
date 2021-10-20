@@ -1,4 +1,4 @@
-import { Picker, Section, Item, PickerFooter } from "./index"
+import { Picker } from "./Picker"
 import { Icon } from "../../components/icon/Icon"
 
 const ownedProjects = [
@@ -17,27 +17,27 @@ export const Default = (props) => {
   }
 
   return (
-    <Picker
+    <Picker.Container
       name="projectPicker"
       onSelectionChange={onChange}
       defaultSelectedKey="1"
     >
       {ownedProjects && (
-        <Section title="Your projects">
+        <Picker.Section title="Your projects">
           {ownedProjects.map((project) => (
-            <Item key={project.id}>{project.title}</Item>
+            <Picker.Item key={project.id}>{project.title}</Picker.Item>
           ))}
-        </Section>
+        </Picker.Section>
       )}
       {collaborations && (
-        <Section title="Collaborations">
+        <Picker.Section title="Collaborations">
           {collaborations.map((project) => (
-            <Item key={project.id}>{project.title}</Item>
+            <Picker.Item key={project.id}>{project.title}</Picker.Item>
           ))}
-        </Section>
+        </Picker.Section>
       )}
 
-      <PickerFooter>
+      <Picker.Footer>
         <div className="text-gray-800">
           <div className="flex mb-3">
             <Icon name="folder" size="sm" className="mr-2" />
@@ -52,8 +52,8 @@ export const Default = (props) => {
             </a>
           </div>
         </div>
-      </PickerFooter>
-    </Picker>
+      </Picker.Footer>
+    </Picker.Container>
   )
 }
 

@@ -77,7 +77,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       },
     })
 
-    const hintId = useId()
+    const _hintId = useId()
+    const hintId = id ? `${id}-hint` : _hintId
     // We want to make it so that if an `errorText` is supplied, it will always show up
     const errorText = invalidText || _errorText
 

@@ -83,7 +83,8 @@ function SelectContainer<OptionKey extends Key = string>({
     footerType: ListBoxFooter,
   })
 
-  const hintId = useId()
+  const _hintId = useId()
+  const hintId = id ? `${id}-hint` : _hintId
 
   const state = useSelectState({
     autoFocus,

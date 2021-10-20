@@ -94,7 +94,8 @@ function ComboBoxContainer<OptionKey extends Key = string>({
     footerType: ListBoxFooter,
   })
 
-  const hintId = useId()
+  const _hintId = useId()
+  const hintId = id ? `${id}-hint` : _hintId
 
   const { contains } = useFilter({ sensitivity: "base" })
   const state = useComboBoxState({

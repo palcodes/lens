@@ -12,20 +12,20 @@ import React, {
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Icon, IconProps } from "../icon/Icon"
 
-type Context<SegmentKey extends Key = string> = {
+type Context<SegmentKey extends string> = {
   active?: SegmentKey
   onChange: (key: SegmentKey) => void
 }
 const SwitchContext = createContext(null as any) // `as any` is okay because this value will never actually be used
 
-type ContainerProps<SegmentKey extends Key = string> = PropsWithChildren<{
+type ContainerProps<SegmentKey extends string> = PropsWithChildren<{
   /** The initially selected key */
   defaultActive?: SegmentKey
   /** A callback that will be called when the active Segment changes */
   onChange?: (key: SegmentKey) => void
 }>
 
-function Container<SegmentKey extends Key = string>({
+function Container<SegmentKey extends string = string>({
   children,
   defaultActive,
   onChange,
@@ -47,7 +47,7 @@ function Container<SegmentKey extends Key = string>({
   )
 }
 
-type SegmentProps<SegmentKey extends Key = string> = {
+type SegmentProps<SegmentKey extends string> = {
   /** A unique identifier for this Option. This will also be attached as the HTML id that will be attached to this `Option` */
   id: SegmentKey
   /** The text to render inside this Option */
@@ -58,7 +58,7 @@ type SegmentProps<SegmentKey extends Key = string> = {
   isDisabled?: boolean
 }
 
-function Segment<SegmentKey extends Key = Key>({
+function Segment<SegmentKey extends string = string>({
   id,
   title,
   icon,
@@ -66,7 +66,7 @@ function Segment<SegmentKey extends Key = Key>({
 }: SegmentProps<SegmentKey>) {
   const ref = useRef<HTMLButtonElement>(null)
   const { active, onChange } = useContext(SwitchContext)
-  const { buttonProps } = useButton({}, ref)
+  const { buttonProps } = useButton({ id, isDisabled }, ref)
   const isActive = active === id
 
   return (
@@ -91,6 +91,8 @@ function Segment<SegmentKey extends Key = Key>({
         )}
         onClick={(_) => onChange(id)}
         disabled={isDisabled}
+        lens-role="button"
+        active={String(isActive)}
       >
         {icon && (
           <div

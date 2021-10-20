@@ -117,7 +117,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               {...focusWithinProps}
               className={cn(
                 "flex flex-grow items-center",
-                "rounded-md shadow-sm border border-gray-300 dark:border-gray-700",
+                "rounded border border-gray-400 dark:border-gray-700",
                 "text-sm",
                 "overflow-hidden",
                 {
@@ -131,7 +131,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               {prefix && (
                 <div
                   className={cn(
-                    "py-1.5 px-3",
+                    "py-2.5 px-3",
                     "bg-gray-200 dark:bg-gray-700",
                     "text-gray-800 dark:text-gray-400 font-medium",
                     "select-none"
@@ -147,7 +147,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   focusProps,
                   inputProps
                 ) as React.InputHTMLAttributes<HTMLInputElement>)}
-                className={cn("flex-grow input", "px-3 py-1.5", {
+                className={cn("flex-grow input", "px-3 py-2.5", {
                   disabled: isDisabled,
                 })}
                 required

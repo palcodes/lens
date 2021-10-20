@@ -143,8 +143,8 @@ function SelectContainer<OptionKey extends Key = string>({
             {...mergeProps(buttonProps, focusProps)}
             className={cn(
               "inline-flex w-full items-center",
-              "rounded-md shadow-sm border border-gray-300 dark:border-gray-700",
-              "px-3 py-1.5",
+              "rounded border border-gray-400 dark:border-gray-700",
+              "px-3 py-2.5",
               "text-sm",
               {
                 "text-gray-400 dark:text-gray-400": isDisabled,

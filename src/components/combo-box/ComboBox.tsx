@@ -176,8 +176,8 @@ function ComboBoxContainer<OptionKey extends Key = string>({
             ref={containerRef}
             className={cn(
               "flex items-center w-full relative space-x-2",
-              "rounded-md shadow-sm border border-gray-300 dark:border-gray-700",
-              "px-3 py-1.5",
+              "rounded border border-gray-300 dark:border-gray-700",
+              "px-3 py-2.5",
               "text-sm",
               {
                 "text-gray-400 dark:text-gray-400": isDisabled,

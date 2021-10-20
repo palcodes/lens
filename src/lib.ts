@@ -35,4 +35,5 @@ export * from "./components/tooltip/Tooltip"
 
 // Cloud
 export * from "./cloud/project-picker/ProjectPicker"
+export * from "./cloud/picker/index"
 export { Dialog as CloudDialog } from "./cloud/dialog/Dialog" // TODO:: Reconsider

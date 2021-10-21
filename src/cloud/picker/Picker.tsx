@@ -22,6 +22,8 @@ type PickerProps = {
   children: any
   /** name value for native html components */
   name: string
+  /** The current selection */
+  selectedKey?: React.Key
   /** A required default selected key */
   defaultSelectedKey: string
   /** Callback invoked when the Select's selection changes */
@@ -33,6 +35,7 @@ const PickerContainer = ({
   children,
   name,
   defaultSelectedKey,
+  selectedKey,
   onSelectionChange,
 }: PickerProps) => {
   let body = children
@@ -47,6 +50,7 @@ const PickerContainer = ({
   let state = useSelectState({
     children: body,
     defaultSelectedKey: defaultSelectedKey,
+    selectedKey: selectedKey,
     onSelectionChange: onSelectionChange,
   })
 
@@ -54,6 +58,8 @@ const PickerContainer = ({
   let { triggerProps, valueProps, menuProps } = useSelect(
     {
       children: children,
+      selectedKey: selectedKey,
+      defaultSelectedKey: defaultSelectedKey,
       onSelectionChange: onSelectionChange,
     },
     state,
@@ -61,7 +67,7 @@ const PickerContainer = ({
   )
 
   let { buttonProps } = useButton(triggerProps, ref)
-  let { focusProps, isFocusVisible } = useFocusRing()
+  let { focusProps } = useFocusRing()
 
   return (
     /*

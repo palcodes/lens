@@ -25,6 +25,8 @@ export function ListBox(props: ListBoxProps) {
   let { listBoxRef = ref, state } = props
   let { listBoxProps } = useListBox(props, state, listBoxRef)
 
+  console.log(listBoxProps)
+
   return (
     <div>
       <ul

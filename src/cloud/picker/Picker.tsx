@@ -64,7 +64,15 @@ const PickerContainer = ({
   let { focusProps, isFocusVisible } = useFocusRing()
 
   return (
-    <div id={id} className="relative inline-flex flex-col w-48">
+    /*
+      removed fixed width of w-48
+      has max width for lengthy content restriction
+    */
+    <div
+      id={id}
+      className="relative inline-flex flex-col"
+      style={{ maxWidth: "150px" }}
+    >
       <HiddenSelect state={state} triggerRef={ref} name={name} />
       {/* Picker Trigger */}
       <FocusRing>
@@ -79,7 +87,7 @@ const PickerContainer = ({
           <span
             {...valueProps}
             className={cn(
-              "text-sm font-medium overflow-ellipsis whitespace-nowrap overflow-hidden",
+              "text-sm font-medium overflow-ellipsis whitespace-nowrap overflow-hidden mr-2",
               {
                 "text-gray-800": state.selectedItem,
                 "text-gray-500": !state.selectedItem,
@@ -93,7 +101,7 @@ const PickerContainer = ({
               ? state.selectedItem.rendered
               : "Select an option"}
           </span>
-          <Icon name="chevron-down" size="sm" className="text-gray-600" />
+          <Icon name="picker" size="xs" className="text-gray-600" />
         </button>
       </FocusRing>
       {state.isOpen && (

@@ -88,7 +88,7 @@ function Option({ item, state }: OptionProps) {
       {...optionProps}
       ref={ref}
       className={cn(
-        "m-1 rounded-md py-2 px-2 text-sm text-gray-800 outline-none cursor-default flex items-center justify-between",
+        "m-1 rounded-md py-2 px-2 text-sm text-gray-800 outline-none cursor-pointer flex items-center justify-between",
         {
           "font-semibold": isSelected,
           "bg-gray-100": isFocused || isSelected,
@@ -96,7 +96,7 @@ function Option({ item, state }: OptionProps) {
         }
       )}
     >
-      <span className="overflow-ellipsis max-w-full whitespace-nowrap overflow-hidden">
+      <span className="overflow-ellipsis max-w-full whitespace-nowrap overflow-hidden cursor-pointer">
         {item.rendered}
       </span>
     </li>

@@ -22,6 +22,8 @@ type PickerProps = {
   children: any
   /** name value for native html components */
   name: string
+  /** Controls what kind of picker this is */
+  variant?: "primary" | "secondary"
   /** The current selection */
   selectedKey?: React.Key
   /** A required default selected key */
@@ -34,6 +36,7 @@ const PickerContainer = ({
   id,
   children,
   name,
+  variant,
   defaultSelectedKey,
   selectedKey,
   onSelectionChange,
@@ -86,7 +89,7 @@ const PickerContainer = ({
           {...mergeProps(buttonProps, focusProps)}
           ref={ref}
           className={cn(
-            "relative inline-flex py-1 p-1 pl-3 items-center justify-between rounded-md overflow-hidden cursor-default border-2 outline-none bg-transparent border-transparent"
+            "relative inline-flex py-1 p-1 pl-3 items-center justify-between rounded-md overflow-hidden border-2 outline-none bg-transparent border-transparent"
           )}
         >
           {/* Selected Value */}
@@ -97,6 +100,7 @@ const PickerContainer = ({
               {
                 "text-gray-800": state.selectedItem,
                 "text-gray-500": !state.selectedItem,
+                "opacity-70": variant === "secondary",
               }
             )}
             style={{

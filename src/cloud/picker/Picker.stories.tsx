@@ -62,3 +62,89 @@ export default {
   title: "Cloud/Picker",
   component: Picker,
 }
+
+export const Primary = () => (
+  <Picker.Container
+    name="projectPicker"
+    onSelectionChange={(val) => {
+      console.log(val)
+    }}
+    defaultSelectedKey="1"
+    variant="primary"
+  >
+    {ownedProjects && (
+      <Picker.Section title="Your projects">
+        {ownedProjects.map((project) => (
+          <Picker.Item key={project.id}>{project.title}</Picker.Item>
+        ))}
+      </Picker.Section>
+    )}
+    {collaborations && (
+      <Picker.Section title="Collaborations">
+        {collaborations.map((project) => (
+          <Picker.Item key={project.id}>{project.title}</Picker.Item>
+        ))}
+      </Picker.Section>
+    )}
+
+    <Picker.Footer>
+      <div className="text-gray-800">
+        <div className="flex mb-3">
+          <Icon name="folder" size="sm" className="mr-2" />
+          <a href="https://prisma.io" target="_blank" className="text-sm">
+            View all projects
+          </a>
+        </div>
+        <div className="flex">
+          <Icon name="plus-circle" size="sm" className="mr-2" />
+          <a href="https://prisma.io" target="_blank" className="text-sm">
+            Create new project
+          </a>
+        </div>
+      </div>
+    </Picker.Footer>
+  </Picker.Container>
+)
+
+export const Secondary = () => (
+  <Picker.Container
+    name="projectPicker"
+    onSelectionChange={(val) => {
+      console.log(val)
+    }}
+    defaultSelectedKey="1"
+    variant="secondary"
+  >
+    {ownedProjects && (
+      <Picker.Section title="Your projects">
+        {ownedProjects.map((project) => (
+          <Picker.Item key={project.id}>{project.title}</Picker.Item>
+        ))}
+      </Picker.Section>
+    )}
+    {collaborations && (
+      <Picker.Section title="Collaborations">
+        {collaborations.map((project) => (
+          <Picker.Item key={project.id}>{project.title}</Picker.Item>
+        ))}
+      </Picker.Section>
+    )}
+
+    <Picker.Footer>
+      <div className="text-gray-800">
+        <div className="flex mb-3">
+          <Icon name="folder" size="sm" className="mr-2" />
+          <a href="https://prisma.io" target="_blank" className="text-sm">
+            View all projects
+          </a>
+        </div>
+        <div className="flex">
+          <Icon name="plus-circle" size="sm" className="mr-2" />
+          <a href="https://prisma.io" target="_blank" className="text-sm">
+            Create new project
+          </a>
+        </div>
+      </div>
+    </Picker.Footer>
+  </Picker.Container>
+)

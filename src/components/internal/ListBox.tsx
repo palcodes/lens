@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, Key } from "react"
 import cn from "classnames"
 
 import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
@@ -26,20 +26,22 @@ import { Separator } from "../separator/Separator"
  */
 
 /** Value for a single Option inside this Select */
-export type ListBoxOption<Key extends string> = {
+export type ListBoxOption<OptionKey extends Key> = {
   /** A string that uniquely identifies this option */
-  key: Key
+  key: OptionKey
   /** The main text to display within this option */
   title: string
   /** An icon to show before the title */
   leadingIcon?: string
   /** An icon to show after the title */
   trailingIcon?: string
+  /** An image to show before the title */
+  leadingImageSrc?: string
   /** The secondary text to display within this option */
   description?: string
 }
 
-type ListBoxOverlayProps<OptionKey extends string> = {
+type ListBoxOverlayProps<OptionKey extends Key> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** A string describing what this ListBox represents */
@@ -57,13 +59,12 @@ type ListBoxOverlayProps<OptionKey extends string> = {
   /** An optional footer to render within the Overlay, after the Body */
   footer?: React.ReactElement
   loading?: boolean
-  error?: Error
   /** Additional props that will be spread over the overlay component */
   listBoxProps?: React.HTMLAttributes<Element>
 }
 
 /** An overlay that renders individual ListBox Options */
-export function ListBoxOverlay<OptionKey extends string>({
+export function ListBoxOverlay<OptionKey extends Key = string>({
   id,
   label,
   containerRef,
@@ -72,7 +73,6 @@ export function ListBoxOverlay<OptionKey extends string>({
   state,
   footer,
   loading,
-  error,
   listBoxProps: otherProps = {},
 }: ListBoxOverlayProps<OptionKey>) {
   // The following hook calls are conditional, but they should not be a problem because they'll be called the same number of times across renders
@@ -102,7 +102,7 @@ export function ListBoxOverlay<OptionKey extends string>({
   const { overlayProps: positionProps, placement } = useOverlayPosition({
     overlayRef,
     targetRef: containerRef,
-    offset: 8,
+    offset: 4,
     containerPadding: 0,
     shouldFlip: true,
     onClose: state.close,
@@ -136,7 +136,7 @@ export function ListBoxOverlay<OptionKey extends string>({
               className="relative overflow-y-auto"
               style={{ maxHeight: "350px" }}
             >
-              {state.collection.size === 0 && !loading && !error && (
+              {state.collection.size === 0 && !loading && (
                 <ListBoxEmptyOption />
               )}
 
@@ -164,7 +164,6 @@ export function ListBoxOverlay<OptionKey extends string>({
               })}
 
               {loading && <ListBoxLoadingOption />}
-              {error && <ListBoxErrorOption />}
             </div>
             <div className="static">{footer}</div>
           </ul>
@@ -175,7 +174,7 @@ export function ListBoxOverlay<OptionKey extends string>({
   )
 }
 
-type ListBoxSectionProps<OptionKey extends string> = {
+type ListBoxSectionProps<OptionKey extends Key> = {
   /** Title for this Section */
   title: string
   /** A group of similar options, only visual */
@@ -186,7 +185,7 @@ type ListBoxSectionProps<OptionKey extends string> = {
     | ComboBoxState<ListBoxOption<OptionKey>> // TODO:: Find a more generic type for this
 }
 /** A single ListBox Section. This is usually used to (visually) group similar `ListBoxOption`s together */
-export function ListBoxSection<OptionKey extends string>({
+export function ListBoxSection<OptionKey extends Key = string>({
   title,
   section,
   state,
@@ -222,17 +221,19 @@ export function ListBoxSection<OptionKey extends string>({
   )
 }
 
-type ListBoxOptionProps<Key extends string> = {
+type ListBoxOptionProps<OptionKey extends Key> = {
   /** The option to render */
-  option: Node<ListBoxOption<Key>>
+  option: Node<ListBoxOption<OptionKey>>
   /** The global Select state */
-  state: SelectState<ListBoxOption<Key>> | ComboBoxState<ListBoxOption<Key>> // TODO:: Find a more generic type for this
+  state:
+    | SelectState<ListBoxOption<OptionKey>>
+    | ComboBoxState<ListBoxOption<Key>> // TODO:: Find a more generic type for this
 }
 /** A single `ListBox` Option */
-export function ListBoxOption<Key extends string>({
+export function ListBoxOption<OptionKey extends Key = string>({
   option,
   state,
-}: ListBoxOptionProps<Key>) {
+}: ListBoxOptionProps<OptionKey>) {
   const ref = useRef<HTMLLIElement>(null)
 
   const isDisabled = state.disabledKeys.has(option.key)
@@ -248,33 +249,35 @@ export function ListBoxOption<Key extends string>({
     state,
     ref
   )
-  const { leadingIcon, description, trailingIcon } =
-    option.props as ListBoxOption<Key>
+  const { description, leadingIcon, trailingIcon, leadingImageSrc } =
+    option.props as ListBoxOption<OptionKey>
 
   return (
     <li
       ref={ref}
       lens-role="listbox-option"
+      {...hoverProps}
       {...domProps}
-      className={cn(
-        "flex flex-col",
-        "px-2 py-1",
-        "cursor-pointer",
-        "first:mt-1 last:mb-1",
-        {
-          "bg-gray-200 dark:bg-gray-800": isFocused || isHovered,
-        }
-      )}
+      className={cn("flex flex-col", "p-3", "cursor-pointer", {
+        "bg-gray-100 dark:bg-gray-800": isFocused || isHovered,
+      })}
     >
       <div className="flex items-center space-x-2">
-        {leadingIcon && <Icon name={leadingIcon} size="sm" />}
-        <div className="">{option.rendered}</div>
-        {trailingIcon && <Icon name={trailingIcon} size="sm" />}
+        {leadingIcon && (
+          <Icon name={leadingIcon} size="sm" className="text-gray-600" />
+        )}
+        {leadingImageSrc && (
+          <img src={leadingImageSrc} className="rounded-full w-6" />
+        )}
+        <div className="text-gray-800 dar:text-gray-100 font-medium">
+          {option.rendered}
+        </div>
+        {trailingIcon && (
+          <Icon name={trailingIcon} size="xs" className="text-gray-600" />
+        )}
       </div>
 
-      {description && (
-        <div className={cn("mt-2", "text-gray-500")}>{description}</div>
-      )}
+      {description && <div className="text-gray-500">{description}</div>}
     </li>
   )
 }
@@ -282,7 +285,7 @@ export function ListBoxOption<Key extends string>({
 /* A specialized Option that is to be used to represent the loading state for a ListBox */
 export function ListBoxLoadingOption() {
   return (
-    <li className={cn("flex flex-col justify-center items-center", "m-2")}>
+    <li className={cn("flex flex-col justify-center items-center", "m-3")}>
       <Loader size="md" />
     </li>
   )
@@ -325,7 +328,7 @@ export function ListBoxFooter({ children, onPress }: ListBoxFooterProps) {
   return (
     <PressResponder onPress={onPress}>
       <Separator />
-      <div className="p-2 whitespace-nowrap">{children}</div>
+      <div className="p-3 whitespace-nowrap">{children}</div>
     </PressResponder>
   )
 }

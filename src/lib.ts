@@ -22,6 +22,7 @@ export * from "./components/label/Label"
 export * from "./components/link/Link"
 export * from "./components/loader/Loader"
 export * from "./components/menu/Menu"
+export * from "./components/segmented-switch/SegmentedSwitch"
 export * from "./components/select/Select"
 export * from "./components/separator/Separator"
 export * from "./components/stacked-avatar/StackedAvatar"
@@ -34,4 +35,5 @@ export * from "./components/tooltip/Tooltip"
 
 // Cloud
 export * from "./cloud/project-picker/ProjectPicker"
+export * from "./cloud/picker/Picker"
 export { Dialog as CloudDialog } from "./cloud/dialog/Dialog" // TODO:: Reconsider

@@ -15,15 +15,11 @@ export function Hint({ id, text, errorText }: HintProps) {
   return (
     <div
       id={id}
-      className={cn(
-        "mt-2",
-        "text-sm",
-        {
-          "text-red-500 dark:text-red-500": !!errorText,
-          "text-gray-600 dark:text-gray-400": !!text,
-        },
-        "animate-slide-top"
-      )}
+      className={cn("mt-3", "text-sm", {
+        "text-red-500 dark:text-red-500": errorText,
+        "text-gray-600 dark:text-gray-400": text,
+        "animate-slide-top": errorText,
+      })}
     >
       {errorText || text}
     </div>

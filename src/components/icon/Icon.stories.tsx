@@ -32,8 +32,10 @@ export const CustomIcons = () => {
       <Icon name="heroku" className="m-2" />
       <Icon name="github-light" className="m-2" />
       <Icon name="github-dark" className="m-2" />
+      <Icon name="aws" className="m-2" />
       <Icon name="railway" className="m-2" />
       <Icon name="planetscale" className="m-2" />
+      <Icon name="nextjs" className="m-2" />
       <Icon name="hsplit" className="m-2" />
       <Icon name="vsplit" className="m-2" />
     </div>

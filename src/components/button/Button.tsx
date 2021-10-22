@@ -72,7 +72,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "flex-grow": fillParent,
             },
             {
-              "font-semibold": variant === "primary",
+              "font-medium": variant === "primary",
               "bg-gray-700 text-white":
                 variant === "primary" &&
                 !isDisabled &&
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "bg-gray-200 text-gray-500": variant === "primary" && isDisabled,
             },
             {
-              "font-semibold": variant === "positive",
+              "font-medium": variant === "positive",
               "bg-green-500 text-white":
                 variant === "positive" &&
                 !isDisabled &&
@@ -95,7 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 variant === "positive" && isDisabled,
             },
             {
-              "font-semibold": variant === "negative",
+              "font-medium": variant === "negative",
               "bg-red-600 text-white":
                 variant === "negative" &&
                 !isDisabled &&
@@ -106,7 +106,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "bg-red-300 text-red-100": variant === "negative" && isDisabled,
             },
             {
-              "font-semibold": variant === "secondary",
+              "font-medium": variant === "secondary",
               "bg-gray-200 text-gray-800":
                 variant === "secondary" &&
                 !isDisabled &&

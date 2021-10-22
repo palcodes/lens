@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { forwardRef, useRef, useState, Key } from "react"
 import cn from "classnames"
 import { useSelect, HiddenSelect } from "@react-aria/select"
 import { useSelectState } from "@react-stately/select"
@@ -24,7 +24,7 @@ import { Hint } from "../internal/Hint"
 
 export type SelectOption<Key extends string> = ListBoxOption<Key>
 
-export type SelectContainerProps<OptionKey extends string> = {
+export type SelectContainerProps<OptionKey extends Key> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** Controls if this Select should steal focus when first rendered */
@@ -60,7 +60,7 @@ export type SelectContainerProps<OptionKey extends string> = {
 /**
  * A Select displays a list of options that you may choose one from. Its value can only ever be one of these options.
  */
-function SelectContainer<OptionKey extends string>({
+function SelectContainer<OptionKey extends Key = string>({
   id,
   autoFocus = false,
   children,
@@ -76,14 +76,15 @@ function SelectContainer<OptionKey extends string>({
   onSelectionChange,
   validator,
 }: SelectContainerProps<OptionKey>) {
-  const ref = useRef(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   const { body, footer } = useCollectionComponents({
     children,
     footerType: ListBoxFooter,
   })
 
-  const hintId = useId()
+  const _hintId = useId()
+  const hintId = id ? `${id}-hint` : _hintId
 
   const state = useSelectState({
     autoFocus,
@@ -94,7 +95,7 @@ function SelectContainer<OptionKey extends string>({
     label,
     selectedKey,
     onSelectionChange: chain(
-      onSelectionChange as (k: React.Key) => void,
+      onSelectionChange as (k: Key) => void,
       (v: OptionKey) => {
         setInvalidText(validator?.(v) || undefined)
       }
@@ -116,7 +117,7 @@ function SelectContainer<OptionKey extends string>({
       onSelectionChange: onSelectionChange as (k: React.Key) => void,
     },
     state,
-    ref
+    buttonRef
   )
 
   const [invalidText, setInvalidText] = useState<string | undefined>()
@@ -127,23 +128,23 @@ function SelectContainer<OptionKey extends string>({
     },
   })
 
-  const { buttonProps } = useButton({ ...triggerProps, isDisabled }, ref)
+  const { buttonProps } = useButton({ ...triggerProps, isDisabled }, buttonRef)
 
   // We want to make it so that if an `errorText` is supplied, it will always show up, even if `isValidatorEnabled` is false
   const errorText = invalidText || _errorText
 
   return (
-    <div id={id} className="table-row">
+    <div id={id} className="w-full">
       <Label labelProps={labelProps}>{label}</Label>
-      <section className="table-cell w-full relative">
+      <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>
           <button
-            ref={ref}
+            ref={buttonRef}
             {...mergeProps(buttonProps, focusProps)}
             className={cn(
               "inline-flex w-full items-center",
-              "rounded-md shadow-sm border border-gray-300 dark:border-gray-700",
-              "px-3 py-1.5",
+              "rounded border border-gray-400 dark:border-gray-700",
+              "px-3 py-2.5",
               "text-sm",
               {
                 "text-gray-400 dark:text-gray-400": isDisabled,
@@ -156,7 +157,7 @@ function SelectContainer<OptionKey extends string>({
             <div
               {...valueProps}
               lens-role="selected-option"
-              className={cn("flex flex-grow space-x-2", "mr-4", {
+              className={cn("flex flex-grow items-center space-x-2", "mr-4", {
                 "text-gray-400 dark:text-gray-300": !state.selectedItem,
                 "text-gray-800 dark:text-gray-100": state.selectedItem,
               })}
@@ -164,14 +165,21 @@ function SelectContainer<OptionKey extends string>({
               {state.selectedItem && state.selectedItem.props.leadingIcon && (
                 <Icon name={state.selectedItem.props.leadingIcon} size="sm" />
               )}
+              {state.selectedItem &&
+                state.selectedItem.props.leadingImageSrc && (
+                  <img
+                    src={state.selectedItem.props.leadingImageSrc}
+                    className="rounded-full w-6"
+                  />
+                )}
               <span>
                 {state.selectedItem ? state.selectedItem.rendered : placeholder}
               </span>
             </div>
             <Icon
-              name="chevron-down"
-              size="xs"
-              className="text-gray-400 dark:text-gray-300"
+              name="triangle-down"
+              size="xxs"
+              className="text-gray-500 dark:text-gray-500"
             />
           </button>
         </FocusRing>
@@ -184,7 +192,7 @@ function SelectContainer<OptionKey extends string>({
             label={label}
             state={state}
             listBoxProps={menuProps}
-            containerRef={ref}
+            containerRef={buttonRef}
             footer={footer}
           />
         )}
@@ -193,7 +201,7 @@ function SelectContainer<OptionKey extends string>({
       {/* A HiddenSelect is used to render a hidden native <select>, which enables browser form autofill support */}
       <HiddenSelect
         state={state}
-        triggerRef={ref}
+        triggerRef={buttonRef}
         label={label}
         isDisabled={isDisabled}
         name={name}
@@ -210,6 +218,7 @@ export const Select = {
     children: string
     leadingIcon?: string
     trailingIcon?: string
+    leadingImageSrc?: string
     description?: string
   }) => JSX.Element,
   Footer: ListBoxFooter,

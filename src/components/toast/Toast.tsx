@@ -70,7 +70,7 @@ export function Toast({
           lens-role="toast-title"
           className={cn(
             "ml-3",
-            "text-sm font-semibold text-gray-800 dark:text-gray-100"
+            "text-sm font-medium text-gray-800 dark:text-gray-100"
           )}
         >
           {title}
@@ -79,7 +79,7 @@ export function Toast({
       </section>
 
       <Button variant="quiet" onPress={onClose}>
-        <Icon name="x" size="sm" />
+        <Icon name="x" size="sm" className="text-gray-500 dark:text-gray-500" />
       </Button>
     </div>
   )

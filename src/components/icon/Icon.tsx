@@ -23,6 +23,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
     const width = sizeToNumeric(size)
     const commonProps = {
       id,
+      name,
       "lens-role": "icon",
       ref: iconRef,
       width,

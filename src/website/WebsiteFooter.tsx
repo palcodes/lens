@@ -245,6 +245,12 @@ const WebsiteFooter = ({
         </a>
         <a
           className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/typescript`}
+        >
+          Prisma with TypeScript
+        </a>
+        <a
+          className="link"
           href={`${absoluteLinks ? "https://www.prisma.io" : ""}/graphql`}
         >
           Prisma with GraphQL

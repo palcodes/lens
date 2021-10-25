@@ -1,6 +1,6 @@
 {
   "name": "@prisma/lens",
-  "version": "0.0.275",
+  "version": "0.0.276",
   "license": "Apache-2.0",
   "description": "Prisma's design system",
   "main": "dist/lib.js",

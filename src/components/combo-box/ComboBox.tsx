@@ -167,7 +167,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
   const { hoverProps, isHovered } = useHover({}) // deliberately not passing `isDisabled` because we want it to ignore that
 
   return (
-    <div id={id} className="w-full flex flex-col space-y-3">
+    <div className="w-full flex flex-col space-y-3">
       <Label labelProps={labelProps}>{label}</Label>
       <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>

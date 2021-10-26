@@ -134,7 +134,7 @@ function SelectContainer<OptionKey extends Key = string>({
   const errorText = invalidText || _errorText
 
   return (
-    <div id={id} className="w-full">
+    <div className="w-full">
       <Label labelProps={labelProps}>{label}</Label>
       <section className="w-full relative mt-3">
         <FocusRing autoFocus={autoFocus} within>

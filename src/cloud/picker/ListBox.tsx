@@ -8,6 +8,7 @@ import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
   listBoxRef?: RefObject<HTMLUListElement>
   state: ListState<unknown>
+  footer?: React.ReactElement
 }
 
 interface SectionProps {
@@ -25,8 +26,6 @@ export function ListBox(props: ListBoxProps) {
   let { listBoxRef = ref, state } = props
   let { listBoxProps } = useListBox(props, state, listBoxRef)
 
-  console.log(listBoxProps)
-
   return (
     <div>
       <ul
@@ -41,6 +40,7 @@ export function ListBox(props: ListBoxProps) {
             <Option key={item.key} item={item} state={state} />
           )
         )}
+        {props.footer && <li>{props.footer}</li>}
       </ul>
     </div>
   )

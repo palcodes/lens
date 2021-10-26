@@ -220,16 +220,16 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
           <path
             d="M6.00015 4L3.50015 1.5L1.00015 4"
             stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M1 8L3.5 10.5L6 8"
             stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )

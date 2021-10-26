@@ -116,8 +116,7 @@ const PickerContainer = ({
       </FocusRing>
       {state.isOpen && (
         <Popover isOpen={state.isOpen} onClose={state.close}>
-          <ListBox {...menuProps} state={state} />
-          {footer}
+          <ListBox {...menuProps} state={state} footer={footer} />
         </Popover>
       )}
     </div>

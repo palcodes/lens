@@ -8,7 +8,11 @@ const ownedProjects = [
 ]
 const collaborations = [
   { id: "4", title: "Yellow Platinum Mimosa" },
-  { id: "5", title: "White Bronze Daffodil" },
+  { id: "6", title: "White Bronze Daffodil" },
+  { id: "7", title: "Black Yellow Rose" },
+  { id: "8", title: "Copper Green Curtain" },
+  { id: "9", title: "Red Blue Rock" },
+  { id: "10", title: "Orange Sage Water" },
 ]
 
 export const Default = (props) => {
@@ -39,16 +43,24 @@ export const Default = (props) => {
 
       <Picker.Footer>
         <div className="text-gray-800">
-          <div className="flex mb-3">
-            <Icon name="folder" size="sm" className="mr-2" />
-            <a href="https://prisma.io" target="_blank" className="text-sm">
-              View all projects
+          <div className="flex">
+            <a
+              href="https://prisma.io"
+              target="_blank"
+              className="text-sm flex items-center p-2 w-full"
+            >
+              <Icon name="folder" size="sm" className="mr-2" />
+              <span>View all projects</span>
             </a>
           </div>
-          <div className="flex">
-            <Icon name="plus-circle" size="sm" className="mr-2" />
-            <a href="https://prisma.io" target="_blank" className="text-sm">
-              Create new project
+          <div className="flex ">
+            <a
+              href="https://prisma.io"
+              target="_blank"
+              className="text-sm flex items-center p-2 w-full"
+            >
+              <Icon name="plus-circle" size="sm" className="mr-2" />
+              <span>Create new project</span>
             </a>
           </div>
         </div>

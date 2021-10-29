@@ -7,5 +7,5 @@ type PickerFooterProps = {
 export const PickerFooter: FC<PickerFooterProps> = ({
   children,
 }: PickerFooterProps) => {
-  return <div className="px-3 py-3 border-t border-gray-300">{children}</div>
+  return <div className="p-1 border-t border-gray-300">{children}</div>
 }

@@ -9,6 +9,7 @@ interface ListBoxProps extends AriaListBoxOptions<unknown> {
   listBoxRef?: RefObject<HTMLUListElement>
   state: ListState<unknown>
   footer?: React.ReactElement
+  onClose: () => void
 }
 
 interface SectionProps {
@@ -26,21 +27,27 @@ export function ListBox(props: ListBoxProps) {
   let { listBoxRef = ref, state } = props
   let { listBoxProps } = useListBox(props, state, listBoxRef)
 
+  const handleFooterLinkSelection = (): void => {
+    props.onClose()
+  }
+
   return (
     <div>
-      <ul
-        {...listBoxProps}
-        ref={listBoxRef}
-        className="max-h-96 overflow-auto outline-none"
-      >
-        {[...state.collection].map((item) =>
-          item.type === "section" ? (
-            <ListBoxSection key={item.key} section={item} state={state} />
-          ) : (
-            <Option key={item.key} item={item} state={state} />
-          )
+      <ul ref={listBoxRef} {...listBoxProps}>
+        <li>
+          <ul className="max-h-96 overflow-auto outline-none">
+            {[...state.collection].map((item) =>
+              item.type === "section" ? (
+                <ListBoxSection key={item.key} section={item} state={state} />
+              ) : (
+                <Option key={item.key} item={item} state={state} />
+              )
+            )}
+          </ul>
+        </li>
+        {props.footer && (
+          <li onClick={handleFooterLinkSelection}>{props.footer}</li>
         )}
-        {props.footer && <li>{props.footer}</li>}
       </ul>
     </div>
   )

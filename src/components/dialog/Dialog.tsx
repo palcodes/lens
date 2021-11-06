@@ -10,14 +10,14 @@ import {
   useOverlay,
   usePreventScroll,
 } from "@react-aria/overlays"
-import { mergeProps } from "@react-aria/utils"
+import { chain, mergeProps } from "@react-aria/utils"
 import {
   OverlayTriggerState,
   useOverlayTriggerState,
 } from "@react-stately/overlays"
 import { TitleGroup } from "../../typography/title-group/TitleGroup"
 
-interface DialogState {
+interface DialogContext {
   title: string
   subtitle: string
   icon: string
@@ -25,18 +25,7 @@ interface DialogState {
   close: OverlayTriggerState["close"]
 }
 
-const defaultFn = (): void | Promise<void> => {
-  console.warn(`Context not ready!`)
-}
-
-const initialDialogState: DialogState = {
-  title: "",
-  subtitle: "",
-  icon: "user",
-  close: defaultFn,
-}
-
-const DialogContext = createContext(initialDialogState)
+const DialogContext = createContext<DialogContext>(null as any) // `as any is fine because the Context Provider will correctly initialize it
 
 /* The Dialog's Container */
 type DialogContainerProps = {
@@ -52,6 +41,8 @@ type DialogContainerProps = {
   defaultOpen?: boolean
   /** Controls if this dialog should close when it goes out of focus */
   shouldCloseOnBlur?: boolean
+  /** Callback invoked when this Dialog is closed */
+  onClose?: () => void
 }
 
 function DialogContainer({
@@ -61,6 +52,7 @@ function DialogContainer({
   icon,
   defaultOpen,
   shouldCloseOnBlur = true,
+  onClose,
 }: DialogContainerProps) {
   if (!Array.isArray(children)) {
     throw new Error("A Dialog.Container must receive an array of children")
@@ -76,19 +68,20 @@ function DialogContainer({
     defaultOpen,
   })
 
-  const value = {
-    title,
-    subtitle,
-    icon,
-    shouldCloseOnBlur,
-    close: state.close,
-  }
-
   return (
-    <DialogContext.Provider value={value}>
+    <DialogContext.Provider
+      value={{
+        title,
+        subtitle,
+        icon,
+        shouldCloseOnBlur,
+        close: chain(state.close, onClose),
+      }}
+    >
       <PressResponder isPressed={state.isOpen} onPress={state.toggle}>
         {trigger}
       </PressResponder>
+
       {state.isOpen && content(state.close)}
     </DialogContext.Provider>
   )

@@ -10,15 +10,13 @@ import { ButtonProps } from "../button/Button"
 export type ButtonGroupProps = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
-  /** Controls if the buttons show up in the flex-reverse direction (right-to-left for LTR languages) */
-  reversed?: boolean
   children:
     | React.ReactElement
     | [React.ReactElement, React.ReactElement]
     | [React.ReactElement, React.ReactElement, React.ReactElement]
 }
 
-export function ButtonGroup({ id, reversed, children }: ButtonGroupProps) {
+export function ButtonGroup({ id, children }: ButtonGroupProps) {
   const buttons = Children.toArray(children) as React.ReactElement[]
 
   if (buttons.length === 1) {
@@ -26,9 +24,7 @@ export function ButtonGroup({ id, reversed, children }: ButtonGroupProps) {
       <section
         id={id}
         lens-role="button-group"
-        className={cn("flex flex-grow space-x-4", {
-          "flex-row-reverse": reversed,
-        })}
+        className="flex flex-row-reverse flex-grow space-x-4"
       >
         {React.cloneElement(buttons[0], {
           variant: "primary",
@@ -40,15 +36,13 @@ export function ButtonGroup({ id, reversed, children }: ButtonGroupProps) {
       <section
         id={id}
         lens-role="button-group"
-        className={cn("flex flex-grow justify-between", {
-          "flex-row-reverse": reversed,
-        })}
+        className="flex flex-grow justify-between"
       >
-        {React.cloneElement(buttons[0], {
-          variant: "primary",
-        } as ButtonProps)}
         {React.cloneElement(buttons[1], {
           variant: "secondary",
+        } as ButtonProps)}
+        {React.cloneElement(buttons[0], {
+          variant: "primary",
         } as ButtonProps)}
       </section>
     )
@@ -57,24 +51,17 @@ export function ButtonGroup({ id, reversed, children }: ButtonGroupProps) {
       <section
         id={id}
         lens-role="button-group"
-        className={cn("flex flex-grow justify-between", {
-          "flex-row-reverse": reversed,
-        })}
+        className="flex flex-grow justify-between"
       >
-        {React.cloneElement(buttons[0], {
-          variant: "primary",
+        {React.cloneElement(buttons[2], {
+          variant: "link",
         } as ButtonProps)}
-        <div
-          className={cn("flex", {
-            "space-x-4": reversed,
-            "flex-row-reverse -space-x-4": !reversed,
-          })}
-        >
+        <div className="flex space-x-4">
           {React.cloneElement(buttons[1], {
             variant: "secondary",
           } as ButtonProps)}
-          {React.cloneElement(buttons[2], {
-            variant: "link",
+          {React.cloneElement(buttons[0], {
+            variant: "primary",
           } as ButtonProps)}
         </div>
       </section>

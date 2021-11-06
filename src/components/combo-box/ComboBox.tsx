@@ -36,8 +36,6 @@ export type ComboBoxContainerProps<OptionKey extends Key> = {
   children?: CollectionChildren<ListBoxOption<OptionKey>>
   /** Value to be pre-populated in the input when this ComboBox is first rendered */
   defaultInputValue?: string
-  /** Controls if this ComboBox will be open by default */
-  defaultOpen?: boolean
   /** Key of the Option that is selected when this ComboBox is first rendered */
   defaultSelectedKey?: OptionKey
   /** An optional hint to show next to the ComboBox that describes what this ComboBox expects */
@@ -74,7 +72,6 @@ function ComboBoxContainer<OptionKey extends Key = string>({
   id,
   autoFocus,
   children,
-  defaultOpen = false,
   defaultInputValue,
   defaultSelectedKey,
   errorText: _errorText,
@@ -144,14 +141,12 @@ function ComboBoxContainer<OptionKey extends Key = string>({
       autoFocus,
       children: body,
       menuTrigger: "focus",
-      defaultOpen,
       defaultInputValue,
       defaultSelectedKey,
       isDisabled,
       isReadOnly: isDisabled,
       defaultItems: options,
       placeholder,
-      shouldFlip: true,
       selectedKey,
       label,
       onSelectionChange: onSelectionChange as (k: React.Key) => void,
@@ -159,7 +154,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
       buttonRef,
       popoverRef: overlayRef,
       listBoxRef,
-    } as any, // need `as any` because types do not allow `label` to be passed on, which causes warnings to show up about missing labels
+    },
     state
   )
   const { buttonProps } = useButton({ ...triggerProps, isDisabled }, buttonRef)

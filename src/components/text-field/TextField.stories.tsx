@@ -76,7 +76,7 @@ export const WithAutocompleteOff = () => {
 
   return (
     <TextField
-      autoComplete="off"
+      nativeAutoComplete="off"
       type="text"
       label="Password"
       value={value}
@@ -90,7 +90,7 @@ export const WithAutocompleteEmail = () => {
 
   return (
     <TextField
-      autoComplete="email"
+      nativeAutoComplete="email"
       type="text"
       label="Email"
       value={value}

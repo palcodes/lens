@@ -73,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             },
             {
               "font-medium": variant === "primary",
-              "bg-gray-700 text-white":
+              "bg-green-500 text-white":
                 variant === "primary" &&
                 !isDisabled &&
                 !isHovered &&

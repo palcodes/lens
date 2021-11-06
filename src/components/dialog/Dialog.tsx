@@ -180,7 +180,7 @@ export type DialogFooterProps = {
 
 function DialogFooter({ children }: DialogFooterProps) {
   return (
-    <div lens-role="dialog-footer" className="px-3 py-2">
+    <div lens-role="dialog-footer" className="px-6 py-4">
       {children}
     </div>
   )

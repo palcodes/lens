@@ -12,12 +12,12 @@ export type SubtitleProps = {
 
 export function Subtitle({ id, children, className }: SubtitleProps) {
   return (
-    <div
+    <p
       id={id}
       lens-role="subtitle"
-      className={cn("font-light text-sm text-gray-600", className)}
+      className={cn("text-base text-gray-700", className)}
     >
       {children}
-    </div>
+    </p>
   )
 }

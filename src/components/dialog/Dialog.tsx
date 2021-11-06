@@ -15,7 +15,9 @@ import {
   OverlayTriggerState,
   useOverlayTriggerState,
 } from "@react-stately/overlays"
-import { TitleGroup } from "../../typography/title-group/TitleGroup"
+import { Icon } from "../icon/Icon"
+import { Title } from "../title/Title"
+import { Subtitle } from "../subtitle/Subtitle"
 
 interface DialogContext {
   title: string
@@ -143,17 +145,26 @@ function DialogBody({ id, children }: DialogBodyProps) {
             )}
             style={{ width: 580 }}
           >
-            <TitleGroup
-              title={title}
-              subtitle={subtitle}
-              icon={icon}
-              titleProps={titleProps}
+            <section
+              lens-role="title-group"
               className={cn(
+                "flex items-center",
                 "py-4 px-6",
                 "bg-white dark:bg-gray-900",
                 "border-b border-gray-300 dark:border-gray-600"
               )}
-            />
+            >
+              <Icon
+                name={icon}
+                size="lg"
+                className="text-gray-400 dark:text-gray-300"
+              />
+              <div className="flex-column ml-6">
+                <Title>{title}</Title>
+                <Subtitle>{subtitle}</Subtitle>
+              </div>
+            </section>
+
             <section
               lens-role="dialog-body"
               className={cn(

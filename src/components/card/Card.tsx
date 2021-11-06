@@ -1,7 +1,7 @@
 import React from "react"
 import cn from "classnames"
 import { Icon } from "../icon/Icon"
-import { Title } from "../../typography/title/Title"
+import { Title } from "../title/Title"
 import { Button, ButtonProps } from "../button/Button"
 
 export type CardProps = React.PropsWithChildren<{

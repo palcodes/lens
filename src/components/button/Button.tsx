@@ -56,6 +56,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     )
     const { hoverProps, isHovered } = useHover({ isDisabled })
 
+    if (variant === "positive") variant = "primary"
+
     return (
       <FocusRing autoFocus={autoFocus}>
         <button
@@ -78,32 +80,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 !isDisabled &&
                 !isHovered &&
                 !isPressed,
-              "bg-gray-800 text-white": variant === "primary" && isHovered,
-              "bg-gray-900 text-white": variant === "primary" && isPressed,
-              "bg-gray-200 text-gray-500": variant === "primary" && isDisabled,
-            },
-            {
-              "font-medium": variant === "positive",
-              "bg-green-500 text-white":
-                variant === "positive" &&
-                !isDisabled &&
-                !isHovered &&
-                !isPressed,
-              "bg-green-600 text-white": variant === "positive" && isHovered,
-              "bg-green-700 text-white": variant === "positive" && isPressed,
+              "bg-green-600 text-white": variant === "primary" && isHovered,
+              "bg-green-700 text-white": variant === "primary" && isPressed,
               "bg-green-300 text-green-100":
-                variant === "positive" && isDisabled,
-            },
-            {
-              "font-medium": variant === "negative",
-              "bg-red-600 text-white":
-                variant === "negative" &&
-                !isDisabled &&
-                !isHovered &&
-                !isPressed,
-              "bg-red-700 text-white": variant === "negative" && isHovered,
-              "bg-red-800 text-white": variant === "negative" && isPressed,
-              "bg-red-300 text-red-100": variant === "negative" && isDisabled,
+                variant === "primary" && isDisabled,
             },
             {
               "font-medium": variant === "secondary",
@@ -116,6 +96,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "bg-gray-400": variant === "secondary" && isPressed,
               "bg-gray-200 text-gray-500":
                 variant === "secondary" && isDisabled,
+            },
+            {
+              "font-medium": variant === "negative",
+              "bg-red-600 text-white":
+                variant === "negative" &&
+                !isDisabled &&
+                !isHovered &&
+                !isPressed,
+              "bg-red-700 text-white": variant === "negative" && isHovered,
+              "bg-red-800 text-white": variant === "negative" && isPressed,
+              "bg-red-300 text-red-100": variant === "negative" && isDisabled,
             },
             {
               "text-gray-200 dark:text-gray-100":
@@ -150,7 +141,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <Loader
               size={iconSize}
               className={cn({
-                "mr-1": !!children, // only add a margin if there are children
+                "mr-2": !!children, // only add a margin if there are children
+                "bg-green-300 text-white": variant === "primary",
+                "bg-gray-200 text-gray-800": variant === "secondary",
+                "bg-red-300 text-white": variant === "negative",
               })}
             />
           )}

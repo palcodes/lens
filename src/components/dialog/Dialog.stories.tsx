@@ -109,20 +109,19 @@ export const WithLongTitle = () => (
       <Dialog.Body>
         <div className="flex justify-between">
           <TextField
-            label="Retype name"
-            hint="Retype name of the connection string to confirm"
-            value={""}
-            onChange={() => {}}
+            label="Confirm deletion"
+            hint='Type the word "delete" to confirm deletion'
+            onChange={action("onTextFieldChange")}
           />
         </div>
 
         <Dialog.Footer>
           <ButtonGroup>
             <Button isDisabled={false} onPress={async () => {}}>
-              I’m sure, let’s delete
+              Delete
             </Button>
             <Button isDisabled={false} onPress={() => {}}>
-              Don’t delete
+              Cancel
             </Button>
           </ButtonGroup>
         </Dialog.Footer>

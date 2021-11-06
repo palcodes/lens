@@ -14,16 +14,17 @@ export type TitleProps = {
 
 export function Title({ id, children, className, titleProps }: TitleProps) {
   return (
-    <div
+    <h1
       id={id}
       lens-role="title"
       className={cn(
-        "font-barlow font-light text-xl text-gray-800 dark:text-gray-100",
+        "font-inter font-medium",
+        "text-gray-800 text-2xl",
         className
       )}
       {...titleProps}
     >
       {children}
-    </div>
+    </h1>
   )
 }

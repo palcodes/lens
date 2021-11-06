@@ -4,6 +4,6 @@ export const Default = (props) => <Subtitle>This is a subtitle</Subtitle>
 
 Default.storyName = "[Controlled]"
 export default {
-  title: "Typography/Subtitle",
+  title: "Lens/Subtitle",
   component: Subtitle,
 }

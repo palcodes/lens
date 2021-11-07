@@ -73,6 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         isDisabled,
         children,
         autoFocus,
+        type: "submit",
         onPress,
       },
       ref as React.RefObject<HTMLButtonElement>

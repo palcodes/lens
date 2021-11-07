@@ -160,8 +160,12 @@ function DialogBody({ id, children }: DialogBodyProps) {
                 className="text-gray-400 dark:text-gray-300"
               />
               <div className="flex-column ml-6">
-                <Title>{title}</Title>
-                <Subtitle>{subtitle}</Subtitle>
+                <div className="font-barlow font-light text-xl text-gray-800 dark:text-gray-100">
+                  {title}
+                </div>
+                <div className="font-light text-sm text-gray-600">
+                  {subtitle}
+                </div>
               </div>
             </section>
 

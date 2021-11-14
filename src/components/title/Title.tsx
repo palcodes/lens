@@ -18,8 +18,8 @@ export function Title({ id, children, className, titleProps }: TitleProps) {
       id={id}
       lens-role="title"
       className={cn(
-        "font-inter font-medium",
-        "text-gray-800 text-2xl",
+        "font-inter font-semibold",
+        "text-gray-900 text-2xl",
         className
       )}
       {...titleProps}

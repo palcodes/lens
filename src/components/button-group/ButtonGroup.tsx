@@ -39,7 +39,7 @@ export function ButtonGroup({ id, children }: ButtonGroupProps) {
         className="flex flex-grow justify-between"
       >
         {React.cloneElement(buttons[1], {
-          variant: "secondary",
+          variant: buttons[1].props.variant ?? "secondary",
         } as ButtonProps)}
         {React.cloneElement(buttons[0], {
           variant: buttons[0].props.variant ?? "primary",
@@ -54,11 +54,11 @@ export function ButtonGroup({ id, children }: ButtonGroupProps) {
         className="flex flex-grow justify-between"
       >
         {React.cloneElement(buttons[2], {
-          variant: "link",
+          variant: buttons[2].props.variant ?? "link",
         } as ButtonProps)}
         <div className="flex space-x-4">
           {React.cloneElement(buttons[1], {
-            variant: "secondary",
+            variant: buttons[1].props.variant ?? "secondary",
           } as ButtonProps)}
           {React.cloneElement(buttons[0], {
             variant: buttons[0].props.variant ?? "primary",

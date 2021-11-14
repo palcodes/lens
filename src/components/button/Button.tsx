@@ -98,8 +98,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
            */
           onClick={onClick}
           className={cn(
-            "flex justify-center items-center px-3 py-1.5",
-            "rounded-md",
+            "flex justify-center items-center",
+            "h-8 px-3 py-1.5 rounded-md",
             "text-sm whitespace-nowrap",
             {
               "cursor-not-allowed": isDisabled,

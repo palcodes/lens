@@ -22,7 +22,8 @@ import { Icon } from "../icon/Icon"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Hint } from "../internal/Hint"
 
-export type SelectOption<Key extends string> = ListBoxOption<Key>
+export type SelectOption<OptionKey extends Key = string> =
+  ListBoxOption<OptionKey>
 
 export type SelectContainerProps<OptionKey extends Key> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
@@ -31,8 +32,8 @@ export type SelectContainerProps<OptionKey extends Key> = {
   autoFocus?: boolean
   /** A list of Options to render inside this Select */
   children:
-    | CollectionChildren<ListBoxOption<OptionKey>>
-    | [CollectionChildren<ListBoxOption<OptionKey>>, React.ReactElement]
+    | CollectionChildren<SelectOption<OptionKey>>
+    | [CollectionChildren<SelectOption<OptionKey>>, React.ReactElement]
   /** Controls if this Select will be open by default */
   defaultOpen?: boolean
   /** Key of the Option that is selected when this Select is first rendered */
@@ -40,7 +41,7 @@ export type SelectContainerProps<OptionKey extends Key> = {
   /** An optional hint to show next to the Select that describes what this Select expects */
   hint?: string
   /** An optional error to show next to the Select. If a `validator` is also supplied, the `validator` takes precendence */
-  errorText?: string
+  error?: string
   /** Controls if this Select is disabled */
   isDisabled?: boolean
   /** A string describing what this Select represents */
@@ -53,8 +54,6 @@ export type SelectContainerProps<OptionKey extends Key> = {
   selectedKey?: OptionKey
   /** Callback invoked when the Select's selection changes */
   onSelectionChange?: (key: OptionKey) => void
-  /** An custom function that runs for every change to validate the value. Return `undefined` if the value is valid, and a string describing the error otherwise */
-  validator?: (v: OptionKey) => string | undefined
 }
 
 /**
@@ -66,7 +65,7 @@ function SelectContainer<OptionKey extends Key = string>({
   children,
   defaultOpen = false,
   defaultSelectedKey,
-  errorText: _errorText,
+  error,
   hint,
   isDisabled = false,
   label,
@@ -74,7 +73,6 @@ function SelectContainer<OptionKey extends Key = string>({
   placeholder = "Select an option",
   selectedKey,
   onSelectionChange,
-  validator,
 }: SelectContainerProps<OptionKey>) {
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -94,12 +92,7 @@ function SelectContainer<OptionKey extends Key = string>({
     isDisabled,
     label,
     selectedKey,
-    onSelectionChange: chain(
-      onSelectionChange as (k: Key) => void,
-      (v: OptionKey) => {
-        setInvalidText(validator?.(v) || undefined)
-      }
-    ),
+    onSelectionChange: onSelectionChange as (k: Key) => void,
   })
 
   const { labelProps, menuProps, triggerProps, valueProps } = useSelect(
@@ -120,18 +113,7 @@ function SelectContainer<OptionKey extends Key = string>({
     buttonRef
   )
 
-  const [invalidText, setInvalidText] = useState<string | undefined>()
-  const { focusProps } = useFocus({
-    onBlur: () => {
-      // Validation is disabled until the user touches / focuses the field at least once
-      setInvalidText(validator?.(state.selectedKey as OptionKey))
-    },
-  })
-
   const { buttonProps } = useButton({ ...triggerProps, isDisabled }, buttonRef)
-
-  // We want to make it so that if an `errorText` is supplied, it will always show up, even if `isValidatorEnabled` is false
-  const errorText = invalidText || _errorText
 
   return (
     <div className="w-full">
@@ -140,7 +122,7 @@ function SelectContainer<OptionKey extends Key = string>({
         <FocusRing autoFocus={autoFocus} within>
           <button
             ref={buttonRef}
-            {...mergeProps(buttonProps, focusProps)}
+            {...buttonProps}
             className={cn(
               "inline-flex w-full items-center",
               "rounded border border-gray-400 dark:border-gray-700",
@@ -184,7 +166,7 @@ function SelectContainer<OptionKey extends Key = string>({
           </button>
         </FocusRing>
 
-        <Hint id={hintId} text={hint} errorText={errorText} />
+        <Hint id={hintId} text={hint} error={error} />
 
         {state.isOpen && (
           <ListBoxOverlay

@@ -15,9 +15,9 @@ import { Tooltip } from "../tooltip/Tooltip"
 
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
 import {
-  ListBoxOption,
   ListBoxFooter,
   ListBoxOverlay,
+  ListBoxOption,
 } from "../internal/ListBox"
 import { Label } from "../label/Label"
 import { Icon } from "../icon/Icon"
@@ -33,7 +33,7 @@ export type ComboBoxContainerProps<OptionKey extends Key> = {
   /** Controls if this ComboBox should steal focus when first rendered */
   autoFocus?: boolean
   /** A list of Options to render inside this ComboBox */
-  children?: CollectionChildren<ListBoxOption<OptionKey>>
+  children?: CollectionChildren<ComboBoxOption<OptionKey>>
   /** Value to be pre-populated in the input when this ComboBox is first rendered */
   defaultInputValue?: string
   /** Key of the Option that is selected when this ComboBox is first rendered */
@@ -41,7 +41,7 @@ export type ComboBoxContainerProps<OptionKey extends Key> = {
   /** An optional hint to show next to the ComboBox that describes what this ComboBox expects */
   hint?: string
   /** An optional error to show next to the ComboBox. If a `validator` is also supplied, the `validator` takes precendence */
-  errorText?: string
+  error?: string
   /** Controls if this ComboBox is disabled */
   isDisabled?: boolean
   /** A string describing what this ComboBox represents */
@@ -49,7 +49,7 @@ export type ComboBoxContainerProps<OptionKey extends Key> = {
   /** A (dynamic) list of options to render within this ComboBox.
    * This may be provided upfront instead of providing static children.
    */
-  options?: ListBoxOption<OptionKey>[]
+  options?: ComboBoxOption<OptionKey>[]
   /** Controls if this ComboBox's options are not yet available, but will be in the future */
   isLoading?: boolean
   /** Name of the value held by this ComboBox when placed inside a form */
@@ -60,8 +60,6 @@ export type ComboBoxContainerProps<OptionKey extends Key> = {
   selectedKey?: OptionKey
   /** Callback invoked when the ComboBox's selection changes */
   onSelectionChange?: (key: OptionKey) => void
-  /** An custom function that runs for every change to validate the value. Return `undefined` if the value is valid, and a string describing the error otherwise */
-  validator?: (v: OptionKey) => string | undefined
 }
 
 /**
@@ -74,7 +72,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
   children,
   defaultInputValue,
   defaultSelectedKey,
-  errorText: _errorText,
+  error,
   hint,
   isDisabled = false,
   isLoading = false,
@@ -84,7 +82,6 @@ function ComboBoxContainer<OptionKey extends Key = string>({
   placeholder = "Select an option",
   selectedKey,
   onSelectionChange,
-  validator,
 }: ComboBoxContainerProps<OptionKey>) {
   const { body, footer } = useCollectionComponents({
     children,
@@ -109,21 +106,8 @@ function ComboBoxContainer<OptionKey extends Key = string>({
     defaultFilter: contains,
     placeholder,
     selectedKey,
-    onSelectionChange: chain(onSelectionChange, (v: OptionKey) =>
-      setInvalidText(validator?.(v) || undefined)
-    ),
+    onSelectionChange: onSelectionChange as (k: Key) => void,
   })
-
-  const [invalidText, setInvalidText] = useState<string | undefined>()
-  const { focusProps } = useFocus({
-    onBlur: () => {
-      // disable validation until the user touches/ focuses the field at least once
-      setInvalidText(validator?.(state.selectedKey as OptionKey))
-    },
-  })
-
-  // We want to make it so that if an `errorText` is supplied, it will always show up, even if `isValidatorEnabled` is false
-  const errorText = invalidText || _errorText
 
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -195,7 +179,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
               ref={inputRef}
               type="text"
               lens-role="input"
-              {...mergeProps(inputProps, focusProps)}
+              {...inputProps}
               aria-describedby={hintId}
               name={name}
               className={cn("flex-1 min-w-0", "mr-4", {
@@ -220,7 +204,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
           <Tooltip target={containerRef}>This ComboBox is disabled</Tooltip>
         )}
 
-        <Hint id={hintId} text={hint} errorText={errorText} />
+        <Hint id={hintId} text={hint} error={error} />
 
         {state.isOpen && (
           <ListBoxOverlay

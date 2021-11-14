@@ -18,18 +18,19 @@ type Context<SegmentKey extends string> = {
 }
 const SwitchContext = createContext(null as any) // `as any` is okay because this value will never actually be used
 
-type ContainerProps<SegmentKey extends string> = PropsWithChildren<{
-  /** The initially selected key */
-  defaultActive?: SegmentKey
-  /** A callback that will be called when the active Segment changes */
-  onChange?: (key: SegmentKey) => void
-}>
+export type SegmentedSwitchContainerProps<SegmentKey extends string> =
+  PropsWithChildren<{
+    /** The initially selected key */
+    defaultActive?: SegmentKey
+    /** A callback that will be called when the active Segment changes */
+    onChange?: (key: SegmentKey) => void
+  }>
 
 function Container<SegmentKey extends string = string>({
   children,
   defaultActive,
   onChange,
-}: ContainerProps<SegmentKey>) {
+}: SegmentedSwitchContainerProps<SegmentKey>) {
   const [active, setActive] = useState(defaultActive)
 
   return (

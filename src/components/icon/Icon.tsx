@@ -115,14 +115,14 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
             fill="#252F3E" // Deliberately leaving color in so it cannot be changed externally
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M29.5987 15.2767C26.0972 17.8629 21.0099 19.2359 16.6357 19.2359C10.5054 19.2359 4.98174 16.9689 0.809733 13.2014C0.479805 12.9034 0.777805 12.4989 1.17159 12.7331C5.68416 15.3512 11.2504 16.937 17.0082 16.937C20.8928 16.937 25.1606 16.1281 29.0878 14.4679C29.6732 14.2018 30.1734 14.851 29.5987 15.2767Z"
             fill="#FF9900" // Deliberately leaving color in so it cannot be changed externally
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M31.0568 13.6164C30.6098 13.0417 28.098 13.3397 26.9593 13.4781C26.6187 13.5206 26.5655 13.2226 26.8741 12.9991C28.875 11.5943 32.1636 11.9987 32.5468 12.467C32.9299 12.9459 32.4403 16.2346 30.5672 17.8097C30.2798 18.0545 30.0031 17.9268 30.1308 17.6075C30.5565 16.5539 31.5038 14.1805 31.0568 13.6164Z"
             fill="#FF9900" // Deliberately leaving color in so it cannot be changed externally
           />

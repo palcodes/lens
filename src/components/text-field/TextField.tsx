@@ -19,13 +19,15 @@ export type TextFieldProps = {
   /** An optional hint to show next to the TextField that describes what this TextField expects */
   hint?: string
   /** An optional error to show next to the TextField. If a `validator` is also supplied, the `validator` takes precendence */
-  errorText?: string
+  error?: string
   /** Hints at the type of data that might be entered into this TextField */
   inputMode?: "text" | "email" | "tel" | "url" | "numeric" | "decimal"
   /** Controls if this TextField is disabled */
   isDisabled?: boolean
   /** A label that identifies this TextField's purpose */
   label?: string
+  /** An icon to render inside the TextField, before the input */
+  leadingIcon?: string
   /** Name of the value held by this TextField when placed inside a form */
   name?: string
   /** Controls how this TextField announces itself as autocomplete-able to the browser */
@@ -36,10 +38,6 @@ export type TextFieldProps = {
   placeholder?: string
   /** A fixed value that is appended to the beginning of the TextField */
   prefix?: string
-  /** The type of input to render */
-  type?: "text" | "email" | "tel" | "url" | "numeric" | "decimal"
-  /** An custom function that runs for every change to validate the value. Return `undefined` if the value is valid, and a string describing the error otherwise */
-  validator?: (v: string) => string | undefined //| Promise<string> | Promise<void>
   /** The value of the TextField */
   value?: string
 }
@@ -49,18 +47,17 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     {
       id,
       autoFocus = false,
-      errorText: _errorText,
+      error,
       hint,
       inputMode,
       isDisabled = false,
       label,
+      leadingIcon,
       name,
       nativeAutoComplete,
       onChange,
       placeholder,
       prefix,
-      type = "text",
-      validator,
       value,
     },
     forwardedRef
@@ -69,23 +66,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const inputRef =
       (forwardedRef as React.RefObject<HTMLInputElement>) || _inputRef
 
-    const [invalidText, setInvalidText] = useState<string | undefined>()
-    const { focusProps } = useFocus({
-      onBlur: () => {
-        // Validation is disabled until the user touches / focuses the field at least once
-        setInvalidText(validator?.(value || ""))
-      },
-    })
-
-    const _hintId = useId()
+    const _hintId = useId(id)
     const hintId = id ? `${id}-hint` : _hintId
-    // We want to make it so that if an `errorText` is supplied, it will always show up
-    const errorText = invalidText || _errorText
 
     const { labelProps, inputProps } = useTextField(
       {
         id,
-        "aria-describedby": errorText || hint ? hintId : undefined,
+        "aria-describedby": error || hint ? hintId : undefined,
         autoFocus,
         autoComplete: nativeAutoComplete,
         inputMode,
@@ -93,13 +80,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         isReadOnly: isDisabled,
         label,
         name,
-        onChange: chain(onChange, (v: string) =>
-          setInvalidText(validator?.(v) || undefined)
-        ),
+        onChange,
         placeholder,
-        type,
         value,
-        validationState: !!errorText ? "invalid" : undefined,
+        validationState: !!error ? "invalid" : undefined,
       },
       inputRef
     )
@@ -109,9 +93,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     })
 
     return (
-      <div className="w-full">
+      <div className="w-full space-y-3">
         {label && <Label labelProps={labelProps}>{label}</Label>}
-        <section className="mt-3">
+
+        <section>
           <FocusRing autoFocus={autoFocus} within>
             <div
               {...focusWithinProps}
@@ -124,7 +109,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   "bg-gray-100 dark:bg-gray-800": isDisabled,
                   "bg-white dark:bg-gray-900": !isDisabled,
                   "cursor-not-allowed": isDisabled,
-                  "border-2 border-red-500 dark:border-red-500": !!errorText,
+                  "border-2 border-red-500 dark:border-red-500": !!error,
                 }
               )}
             >
@@ -140,20 +125,23 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                   {prefix}
                 </div>
               )}
+              {leadingIcon && (
+                <Icon
+                  name={leadingIcon}
+                  size="sm"
+                  className="ml-4 text-gray-600"
+                />
+              )}
               <input
                 ref={inputRef}
                 lens-role="text-field"
-                {...(mergeProps(
-                  focusProps,
-                  inputProps
-                ) as React.InputHTMLAttributes<HTMLInputElement>)}
+                {...(inputProps as React.InputHTMLAttributes<HTMLInputElement>)}
                 className={cn("flex-grow input", "px-3 py-2.5", {
                   disabled: isDisabled,
                 })}
-                required
               />
 
-              {!!errorText && (
+              {!!error && (
                 <Icon
                   name="alert-circle"
                   className={cn("m-2", "text-red-500 dark:text-red-500")}
@@ -163,7 +151,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             </div>
           </FocusRing>
 
-          <Hint id={hintId} text={hint} errorText={errorText} />
+          <Hint id={hintId} text={hint} error={error} />
         </section>
       </div>
     )

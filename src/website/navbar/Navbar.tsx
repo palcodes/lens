@@ -152,7 +152,7 @@ const ProductsLinks = () => {
         break
       }
       case "data-platform": {
-        window.location.href = "https://cloud.prisma.io/"
+        window.location.href = "https://www.prisma.io/dataplatform"
         break
       }
       default:

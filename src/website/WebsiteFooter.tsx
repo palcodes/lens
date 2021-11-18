@@ -183,7 +183,10 @@ const WebsiteFooter = ({
         <a className="link" href="https://app.prisma.io/login">
           Prisma 1 Cloud
         </a>
-        <a className="link" href="https://cloud.prisma.io">
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/dataplatform`}
+        >
           Prisma Data Platform
         </a>
         <a className="link" href="https://pris.ly/roadmap">

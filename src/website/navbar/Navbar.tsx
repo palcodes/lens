@@ -152,7 +152,7 @@ const ProductsLinks = () => {
         break
       }
       case "data-platform": {
-        window.location.href = "https://cloud.prisma.io/"
+        window.location.href = "https://www.prisma.io/dataplatform"
         break
       }
       default:
@@ -192,7 +192,7 @@ const ProductsLinks = () => {
                 </div>
                 <div className="flex flex-col">
                   <span
-                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    className="font-medium text-gray-800 dark:text-gray-400 md:group-hover:underline"
                     style={{ textUnderlineOffset: "2px" }}
                   >
                     Client
@@ -214,7 +214,7 @@ const ProductsLinks = () => {
                 </div>
                 <div className="flex flex-col">
                   <span
-                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    className="font-medium text-gray-800 dark:text-gray-400 md:group-hover:underline"
                     style={{ textUnderlineOffset: "2px" }}
                   >
                     Migrate
@@ -236,7 +236,7 @@ const ProductsLinks = () => {
                 </div>
                 <div className="flex flex-col">
                   <span
-                    className="font-semibold text-gray-800 dark:text-gray-400 md:group-hover:underline"
+                    className="font-medium text-gray-800 dark:text-gray-400 md:group-hover:underline"
                     style={{ textUnderlineOffset: "2px" }}
                   >
                     Studio
@@ -258,7 +258,7 @@ const ProductsLinks = () => {
                 </div>
                 <div className="flex flex-col">
                   <span
-                    className="flex items-center font-semibold text-gray-800 dark:text-gray-400"
+                    className="flex items-center font-medium text-gray-800 dark:text-gray-400"
                     style={{ textUnderlineOffset: "2px" }}
                   >
                     <span className="md:group-hover:underline">

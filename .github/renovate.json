@@ -29,7 +29,7 @@
       "groupSlug": "types"
     },
     {
-      "matchPackagePatterns": ["rollup-*"],
+      "matchPackagePatterns": ["rollup-*", "@rollup/*"],
       "matchPackageNames": ["rollup"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Rollup",

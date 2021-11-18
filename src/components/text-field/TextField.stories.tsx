@@ -1,7 +1,6 @@
 import { chain } from "@react-aria/utils"
 import { action } from "@storybook/addon-actions"
 import { useState } from "react"
-import { Separator } from "../separator/Separator"
 import { TextField } from "./TextField"
 
 export const Default = (props) => <TextField {...props} />
@@ -20,7 +19,6 @@ export const WithInitialValue = () => {
 
   return (
     <TextField
-      type="text"
       label="Environment"
       placeholder="production"
       value={value}
@@ -34,7 +32,6 @@ export const WithPlaceholder = () => {
 
   return (
     <TextField
-      type="text"
       label="Environment"
       value={value}
       placeholder="production"
@@ -48,11 +45,21 @@ export const WithPrefix = () => {
 
   return (
     <TextField
-      type="text"
       label="Handle"
       value={value}
       prefix="cloud.prisma.io/prisma/"
       onChange={chain(action("onChange"), setValue)}
+    />
+  )
+}
+
+export const WithLeadingIcon = () => {
+  return (
+    <TextField
+      label="Handle"
+      leadingIcon="search"
+      placeholder="Search for an environment"
+      onChange={action("onChange")}
     />
   )
 }
@@ -62,10 +69,9 @@ export const WithError = () => {
 
   return (
     <TextField
-      type="text"
       label="Handle"
       value={value}
-      errorText="This username is already taken"
+      error="This username is already taken"
       onChange={chain(action("onChange"), setValue)}
     />
   )
@@ -76,8 +82,7 @@ export const WithAutocompleteOff = () => {
 
   return (
     <TextField
-      autoComplete="off"
-      type="text"
+      nativeAutoComplete="off"
       label="Password"
       value={value}
       onChange={chain(action("onChange"), setValue)}
@@ -90,8 +95,7 @@ export const WithAutocompleteEmail = () => {
 
   return (
     <TextField
-      autoComplete="email"
-      type="text"
+      nativeAutoComplete="email"
       label="Email"
       value={value}
       onChange={chain(action("onChange"), setValue)}
@@ -104,7 +108,6 @@ export const WithHint = () => {
 
   return (
     <TextField
-      type="text"
       label="Handle"
       value={value}
       hint="This should be something you can easily remember"
@@ -118,53 +121,11 @@ export const WithHintAndError = () => {
 
   return (
     <TextField
-      type="text"
       label="Handle"
       value={value}
       hint="This should be something you can easily remember"
-      errorText="This username is already taken"
+      error="This username is already taken"
       onChange={chain(action("onChange"), setValue)}
     />
-  )
-}
-
-export const WithValidator = () => {
-  const [value1, setValue1] = useState("")
-  const [value2, setValue2] = useState("")
-
-  return (
-    <section className="flex flex-col">
-      <div className="text-sm mb-4">
-        The following input will accept all handles except `prisma`, `lens` &
-        `world-domination`
-      </div>
-      <TextField
-        type="text"
-        label="Handle"
-        value={value1}
-        validator={(v) =>
-          ["prisma", "lens", "world-domination"].includes(v)
-            ? "This is a reserved keyword"
-            : undefined
-        }
-        onChange={chain(action("onChange"), setValue1)}
-      />
-
-      <div className="mb-4" />
-      <Separator />
-      <div className="mb-4" />
-
-      <div className="text-sm mb-4" tabIndex={1}>
-        The following input is required. It will only start validation once the
-        user has "touched" it at least once.
-      </div>
-      <TextField
-        type="text"
-        label="Handle"
-        value={value2}
-        validator={(v) => (v ? undefined : "You must provide a handle")}
-        onChange={chain(action("onChange"), setValue2)}
-      />
-    </section>
   )
 }

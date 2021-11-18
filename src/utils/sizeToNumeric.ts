@@ -1,7 +1,9 @@
-export type Size = "xs" | "sm" | "md" | "lg" | "xl"
+export type Size = "xxs" | "xs" | "sm" | "md" | "lg" | "xl"
 
 export function sizeToNumeric(size: Size): number {
   switch (size) {
+    case "xxs":
+      return 9
     case "xs":
       return 12
     case "sm":

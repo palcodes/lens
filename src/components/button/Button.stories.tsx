@@ -122,11 +122,19 @@ export const WithLoader = () => (
     </Button>
 
     <Button variant="secondary" isLoading>
-      Creating database
+      Cancelling action
+    </Button>
+
+    <Button variant="negative" isLoading>
+      Deleting database
     </Button>
 
     <Button variant="quiet" isLoading>
-      Creating database
+      Doing something inline
+    </Button>
+
+    <Button variant="link" isLoading>
+      Finding link
     </Button>
   </div>
 )

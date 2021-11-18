@@ -4,6 +4,6 @@ export const Default = (props) => <Title>Create Project</Title>
 
 Default.storyName = "[Controlled]"
 export default {
-  title: "Typography/Title",
+  title: "Lens/Title",
   component: Title,
 }

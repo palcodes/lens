@@ -14,43 +14,8 @@ export default {
   },
 }
 
-export const WithTitle = () => (
-  <section className="w-full">
-    {/* Cards fill their parent by default. This `section` only exists to make the story look better */}
-    <Card title="Instance configuration">{renderForm()}</Card>
-  </section>
-)
-
-export const WithIconAndTitle = () => (
-  <section className="w-full">
-    {/* Cards fill their parent by default. This `section` only exists to make the story look better */}
-    <Card icon="server" title="Instance configuration">
-      {renderForm()}
-    </Card>
-  </section>
-)
-
-export const WithAction = () => (
-  <section className="w-full">
-    {/* Cards fill their parent by default. This `section` only exists to make the story look better */}
-    <Card
-      icon="server"
-      title="Instance configuration"
-      action={{ title: "Pricing", onPress: action("onAction") }}
-    >
-      {renderForm()}
-    </Card>
-  </section>
-)
-
 export const WithFixedDimensions = () => (
-  <Card
-    icon="server"
-    title="Instance configuration"
-    width={500}
-    height={400}
-    action={{ title: "Learn More", onPress: action("onAction") }}
-  >
+  <Card width={500} height={400}>
     {renderForm()}
   </Card>
 )

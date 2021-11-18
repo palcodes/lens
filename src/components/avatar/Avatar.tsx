@@ -94,7 +94,7 @@ export function Avatar({
         <div className="flex flex-col">
           <span
             lens-role="name"
-            className="font-semibold text-gray-800 dark:text-gray-100"
+            className="font-medium text-gray-800 dark:text-gray-100"
           >
             {name}
           </span>

@@ -5,6 +5,7 @@ import { Button } from "../button/Button"
 import { Avatar } from "../avatar/Avatar"
 import { Select } from "../select/Select"
 import { ButtonGroup } from "../button-group/ButtonGroup"
+import { TextField } from "../text-field/TextField"
 
 export const Default = (props) => (
   <Dialog.Container {...props}>
@@ -89,6 +90,38 @@ export const WithFooter = () => (
             </Button>
             <Button variant="link" onPress={chain(close, action("onPress"))}>
               Remove from project
+            </Button>
+          </ButtonGroup>
+        </Dialog.Footer>
+      </Dialog.Body>
+    )}
+  </Dialog.Container>
+)
+
+export const WithLongTitle = () => (
+  <Dialog.Container
+    title='You’re revoking "Your first API Key, created by the Prisma Data Platform"'
+    subtitle="Any app using this connection string will stop working."
+    icon="trash"
+  >
+    <Button>Dialog Trigger</Button>
+    {(close) => (
+      <Dialog.Body>
+        <div className="flex justify-between">
+          <TextField
+            label="Confirm deletion"
+            hint='Type the word "delete" to confirm deletion'
+            onChange={action("onTextFieldChange")}
+          />
+        </div>
+
+        <Dialog.Footer>
+          <ButtonGroup>
+            <Button isDisabled={false} onPress={async () => {}}>
+              Delete
+            </Button>
+            <Button isDisabled={false} onPress={() => {}}>
+              Cancel
             </Button>
           </ButtonGroup>
         </Dialog.Footer>

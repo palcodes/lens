@@ -8,7 +8,6 @@ const avatars: AvatarProps[] = [
     url: "/avatar1.png",
     name: "Lens user 1",
     email: "user1@prisma.io",
-    onPress: action("onPress 1"),
   },
   {
     label: "Lens user 2",
@@ -60,13 +59,9 @@ export default {
   },
 }
 
-export const Sizes = () => (
+export const MediumSize = () => (
   <div className="flex flex-col items-center space-y-4">
-    <StackedAvatar size="xs" avatars={avatars.slice(0, 5)} />
-    <StackedAvatar size="sm" avatars={avatars.slice(0, 5)} />
     <StackedAvatar size="md" avatars={avatars.slice(0, 5)} />
-    <StackedAvatar size="lg" avatars={avatars.slice(0, 5)} />
-    <StackedAvatar size="xl" avatars={avatars.slice(0, 5)} />
   </div>
 )
 

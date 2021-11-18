@@ -35,7 +35,6 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", "sans-serif"], // Overrides "default" font so we don't have to set a `font-*` class everywhere
         mono: ["JetBrainsMono", "monospace"],
-        inter: ["Inter", "sans-serif"], // For convenience
         barlow: ["Barlow", "sans-serif"],
       },
       animation: {

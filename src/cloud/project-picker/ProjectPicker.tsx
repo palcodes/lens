@@ -112,7 +112,7 @@ export function ProjectPicker({
           <button className="flex items-center space-x-2">
             <span
               lens-role="active-project"
-              className="text-md font-semibold text-gray-800 dark:text-gray-100"
+              className="text-md font-medium text-gray-800 dark:text-gray-100"
             >
               {state.selectedItem.rendered}
             </span>
@@ -320,7 +320,7 @@ function ProjectPickerOption({ option, state }: ProjectPickerOptionProps) {
         "cursor-default whitespace-nowrap",
         {
           "bg-gray-100 dark:bg-gray-800": isFocused,
-          "font-semibold": isSelected,
+          "font-medium": isSelected,
         },
         "hover:bg-gray-100"
       )}

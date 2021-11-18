@@ -72,7 +72,7 @@ function TabContainer<TabKey extends string>({
         {...tabListProps}
         ref={ref}
         className={cn(
-          "flex mb-8",
+          "flex",
           "border-b",
           "border-gray-400 dark:border-gray-700"
         )}
@@ -103,7 +103,7 @@ function TabItem<TabKey extends string>({ tab, state }: TabItemProps<TabKey>) {
         {...tabProps}
         ref={ref}
         lens-role="tab"
-        className={cn("relative py-2 mr-4 text-sm", {
+        className={cn("relative py-2 mr-6 text-sm", {
           "opacity-50 cursor-not-allowed": isDisabled,
           "cursor-pointer": !isDisabled,
           "text-gray-800 dark:text-gray-300": isSelected,

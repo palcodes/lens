@@ -10,14 +10,16 @@ import {
   useOverlay,
   usePreventScroll,
 } from "@react-aria/overlays"
-import { mergeProps } from "@react-aria/utils"
+import { chain, mergeProps } from "@react-aria/utils"
 import {
   OverlayTriggerState,
   useOverlayTriggerState,
 } from "@react-stately/overlays"
-import { TitleGroup } from "../../typography/title-group/TitleGroup"
+import { Icon } from "../icon/Icon"
+import { Title } from "../title/Title"
+import { Subtitle } from "../subtitle/Subtitle"
 
-interface DialogState {
+interface DialogContext {
   title: string
   subtitle: string
   icon: string
@@ -25,18 +27,7 @@ interface DialogState {
   close: OverlayTriggerState["close"]
 }
 
-const defaultFn = (): void | Promise<void> => {
-  console.warn(`Context not ready!`)
-}
-
-const initialDialogState: DialogState = {
-  title: "",
-  subtitle: "",
-  icon: "user",
-  close: defaultFn,
-}
-
-const DialogContext = createContext(initialDialogState)
+const DialogContext = createContext<DialogContext>(null as any) // `as any is fine because the Context Provider will correctly initialize it
 
 /* The Dialog's Container */
 type DialogContainerProps = {
@@ -52,6 +43,8 @@ type DialogContainerProps = {
   defaultOpen?: boolean
   /** Controls if this dialog should close when it goes out of focus */
   shouldCloseOnBlur?: boolean
+  /** Callback invoked when this Dialog is closed */
+  onClose?: () => void
 }
 
 function DialogContainer({
@@ -61,6 +54,7 @@ function DialogContainer({
   icon,
   defaultOpen,
   shouldCloseOnBlur = true,
+  onClose,
 }: DialogContainerProps) {
   if (!Array.isArray(children)) {
     throw new Error("A Dialog.Container must receive an array of children")
@@ -76,19 +70,20 @@ function DialogContainer({
     defaultOpen,
   })
 
-  const value = {
-    title,
-    subtitle,
-    icon,
-    shouldCloseOnBlur,
-    close: state.close,
-  }
-
   return (
-    <DialogContext.Provider value={value}>
+    <DialogContext.Provider
+      value={{
+        title,
+        subtitle,
+        icon,
+        shouldCloseOnBlur,
+        close: chain(state.close, onClose),
+      }}
+    >
       <PressResponder isPressed={state.isOpen} onPress={state.toggle}>
         {trigger}
       </PressResponder>
+
       {state.isOpen && content(state.close)}
     </DialogContext.Provider>
   )
@@ -150,17 +145,30 @@ function DialogBody({ id, children }: DialogBodyProps) {
             )}
             style={{ width: 580 }}
           >
-            <TitleGroup
-              title={title}
-              subtitle={subtitle}
-              icon={icon}
-              titleProps={titleProps}
+            <section
+              lens-role="title-group"
               className={cn(
+                "flex items-center",
                 "py-4 px-6",
                 "bg-white dark:bg-gray-900",
                 "border-b border-gray-300 dark:border-gray-600"
               )}
-            />
+            >
+              <Icon
+                name={icon}
+                size="lg"
+                className="text-gray-400 dark:text-gray-300"
+              />
+              <div className="flex-column ml-6">
+                <div className="font-barlow font-light text-xl text-gray-800 dark:text-gray-100">
+                  {title}
+                </div>
+                <div className="font-light text-sm text-gray-600">
+                  {subtitle}
+                </div>
+              </div>
+            </section>
+
             <section
               lens-role="dialog-body"
               className={cn(
@@ -187,7 +195,7 @@ export type DialogFooterProps = {
 
 function DialogFooter({ children }: DialogFooterProps) {
   return (
-    <div lens-role="dialog-footer" className="px-3 py-2">
+    <div lens-role="dialog-footer" className="px-6 py-4">
       {children}
     </div>
   )

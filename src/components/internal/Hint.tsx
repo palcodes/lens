@@ -4,28 +4,24 @@ import cn from "classnames"
 type HintProps = {
   id: string
   text?: string
-  errorText?: string
+  error?: string
 }
 
-export function Hint({ id, text, errorText }: HintProps) {
-  if (!text && !errorText) {
+export function Hint({ id, text, error }: HintProps) {
+  if (!text && !error) {
     return null
   }
 
   return (
     <div
       id={id}
-      className={cn(
-        "mt-2",
-        "text-sm",
-        {
-          "text-red-500 dark:text-red-500": !!errorText,
-          "text-gray-600 dark:text-gray-400": !!text,
-        },
-        "animate-slide-top"
-      )}
+      className={cn("mt-3", "text-sm", {
+        "text-red-500 dark:text-red-500": error,
+        "text-gray-600 dark:text-gray-400": text,
+        "animate-slide-top": error,
+      })}
     >
-      {errorText || text}
+      {error || text}
     </div>
   )
 }

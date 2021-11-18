@@ -1,11 +1,6 @@
 // Globals
 export * from "./provider/LensProvider"
 
-// Typography
-export * from "./typography/title/Title"
-export * from "./typography/subtitle/Subtitle"
-export * from "./typography/title-group/TitleGroup"
-
 // Components
 export * from "./components/avatar/Avatar"
 export * from "./components/button/Button"
@@ -22,16 +17,19 @@ export * from "./components/label/Label"
 export * from "./components/link/Link"
 export * from "./components/loader/Loader"
 export * from "./components/menu/Menu"
+export * from "./components/segmented-switch/SegmentedSwitch"
 export * from "./components/select/Select"
 export * from "./components/separator/Separator"
 export * from "./components/stacked-avatar/StackedAvatar"
+export * from "./components/subtitle/Subtitle"
 export * from "./components/tab/Tab"
 export * from "./components/table/Table"
 export * from "./components/text-field/TextField"
+export * from "./components/title/Title"
 export * from "./components/toast/Toast"
 export * from "./components/toast/useToasts"
 export * from "./components/tooltip/Tooltip"
 
 // Cloud
 export * from "./cloud/project-picker/ProjectPicker"
-export { Dialog as CloudDialog } from "./cloud/dialog/Dialog" // TODO:: Reconsider
+export * from "./cloud/picker/Picker"

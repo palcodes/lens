@@ -237,6 +237,12 @@ const WebsiteFooter = ({
         >
           Enterprise Event
         </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/serverless`}
+        >
+          Serverless Conference
+        </a>
       </div>
       <div className="group">
         <h3 className="header">Prisma With</h3>

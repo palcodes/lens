@@ -1,6 +1,6 @@
 {
   "name": "@prisma/lens",
-  "version": "0.0.296",
+  "version": "0.0.298",
   "license": "Apache-2.0",
   "description": "Prisma's design system",
   "main": "dist/lib.js",
@@ -88,7 +88,7 @@
     "@types/react-dom": "17.0.11",
     "@types/styled-components": "5.1.15",
     "autoprefixer": "10.4.0",
-    "chromatic": "6.0.5",
+    "chromatic": "6.0.6",
     "classnames": "2.3.1",
     "lodash-es": "4.17.21",
     "postcss": "8.3.11",

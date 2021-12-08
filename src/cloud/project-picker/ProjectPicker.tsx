@@ -1,9 +1,5 @@
-import React, { useRef } from "react"
-import cn from "classnames"
-import { chain } from "@react-aria/utils"
-import { SelectState, useSelectState } from "@react-stately/select"
-import { Item, Section } from "@react-stately/collections"
-import { Node } from "@react-types/shared"
+import { useButton } from "@react-aria/button"
+import { FocusScope } from "@react-aria/focus"
 import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
 import {
   DismissButton,
@@ -11,11 +7,14 @@ import {
   useOverlay,
   useOverlayPosition,
 } from "@react-aria/overlays"
-import { useButton } from "@react-aria/button"
-import { FocusScope } from "@react-aria/focus"
-import { mergeProps } from "@react-aria/utils"
-import { Icon } from "../../components/icon/Icon"
+import { chain, mergeProps } from "@react-aria/utils"
+import { Item, Section } from "@react-stately/collections"
+import { SelectState, useSelectState } from "@react-stately/select"
+import { Node } from "@react-types/shared"
+import cn from "classnames"
+import React, { useRef } from "react"
 import { Button, ButtonProps } from "../../components/button/Button"
+import { Icon } from "../../components/icon/Icon"
 
 export type ProjectId = string
 export type Project = {
@@ -180,7 +179,7 @@ function ProjectPickerOverlay({
       disallowEmptySelection: true,
       autoFocus: state.focusStrategy || true,
     },
-    state,
+    state as any, // There's some type inconsistency here, so we use `as any`
     listBoxRef
   )
 
@@ -306,7 +305,7 @@ function ProjectPickerOption({ option, state }: ProjectPickerOptionProps) {
       shouldSelectOnPressUp: true,
       shouldFocusOnHover: true,
     },
-    state,
+    state as any, // There's some type inconsistency here, so we use `as any`
     ref
   )
 

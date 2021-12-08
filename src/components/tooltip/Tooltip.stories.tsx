@@ -1,8 +1,8 @@
-import { useRef } from "react"
 import { action } from "@storybook/addon-actions"
-import { Tooltip } from "./Tooltip"
-import { Icon } from "../icon/Icon"
+import { useRef } from "react"
 import { Button } from "../button/Button"
+import { Icon } from "../icon/Icon"
+import { Tooltip } from "./Tooltip"
 
 export const Default = (props) => {
   const ref = useRef<HTMLDivElement>(null)

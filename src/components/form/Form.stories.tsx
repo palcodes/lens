@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { action } from "@storybook/addon-actions"
 import { chain } from "@react-aria/utils"
-import { Form } from "./Form"
-import { TextField } from "../text-field/TextField"
-import { Select } from "../select/Select"
+import { action } from "@storybook/addon-actions"
+import { useState } from "react"
 import { Card } from "../card/Card"
 import { ComboBox, ComboBoxOption } from "../combo-box/ComboBox"
+import { Select } from "../select/Select"
+import { TextField } from "../text-field/TextField"
+import { Form } from "./Form"
 
 type RepositoryId =
   | "prisma"
@@ -95,21 +95,18 @@ export const WithValidation = () => {
         <TextField
           label="First Name"
           value={firstName}
-          validator={(v) => (v ? undefined : "This field is required")}
           onChange={chain(action("onChangeFirstName"), setFirstName)}
         />
         <TextField
           label="Environment"
           placeholder="production"
           value={environment}
-          validator={(v) => (v ? undefined : "This field is required")}
           onChange={chain(action("onChangeEnvironment"), setEnvironment)}
         />
         <TextField
           label="Handle"
           prefix="cloud.prisma.io/lens/"
           value={handle}
-          validator={(v) => (v ? undefined : "This field is required")}
           onChange={chain(action("onChangeHandle"), setHandle)}
         />
         <Select.Container label="Project">

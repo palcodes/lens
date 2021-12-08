@@ -1,5 +1,5 @@
-import { Separator } from "./Separator"
 import { Card } from "../card/Card"
+import { Separator } from "./Separator"
 
 export const Default = (props) => (
   <div className="flex h-10 w-10">

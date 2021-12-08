@@ -1,7 +1,7 @@
-import React, { createContext } from "react"
 import cn from "classnames"
-import { ToastState, useToasts } from "./useToasts"
+import React, { createContext } from "react"
 import { Toast } from "./Toast"
+import { ToastState, useToasts } from "./useToasts"
 
 // @ts-expect-error: This is okay because we cannot initialize the context with correct values here
 export const ToastContext = createContext<ToastState>(null)

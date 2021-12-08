@@ -1,5 +1,3 @@
-import React, { Children, createContext, useContext, useRef } from "react"
-import cn from "classnames"
 import { useDialog } from "@react-aria/dialog"
 import { FocusScope } from "@react-aria/focus"
 import { PressResponder } from "@react-aria/interactions"
@@ -15,9 +13,9 @@ import {
   OverlayTriggerState,
   useOverlayTriggerState,
 } from "@react-stately/overlays"
+import cn from "classnames"
+import React, { Children, createContext, useContext, useRef } from "react"
 import { Icon } from "../icon/Icon"
-import { Title } from "../title/Title"
-import { Subtitle } from "../subtitle/Subtitle"
 
 interface DialogContext {
   title: string

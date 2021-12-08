@@ -1,5 +1,5 @@
-import { Link } from "./Link"
 import { Icon } from "../icon/Icon"
+import { Link } from "./Link"
 
 export const Default = (props) => <Link {...props}>Link</Link>
 Default.storyName = "[Controlled]"

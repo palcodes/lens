@@ -1,19 +1,23 @@
-import React from "react"
-import cn from "classnames"
-import { useSelectState } from "@react-stately/select"
-import { useSelect, HiddenSelect } from "@react-aria/select"
-import { Icon } from "../../components/icon/Icon"
-import { FocusRing } from "../../components/focus-ring/FocusRing"
-
-import { useFocusRing } from "@react-aria/focus"
-import { mergeProps } from "@react-aria/utils"
 import { useButton } from "@react-aria/button"
-
+import { useFocusRing } from "@react-aria/focus"
+import { HiddenSelect, useSelect } from "@react-aria/select"
+import { mergeProps } from "@react-aria/utils"
+import {
+  Item as ReactAriaItem,
+  Section as ReactAriaSection,
+} from "@react-stately/collections"
+import { useSelectState } from "@react-stately/select"
+import {
+  ItemProps as ReactAriaItemProps,
+  SectionProps as ReactAriaSectionProps,
+} from "@react-types/shared"
+import cn from "classnames"
+import React, { Key } from "react"
+import { FocusRing } from "../../components/focus-ring/FocusRing"
+import { Icon } from "../../components/icon/Icon"
 import { ListBox } from "./ListBox"
-import { Popover } from "./Popover"
-
 import { PickerFooter } from "./PickerFooter"
-import { Item, Section } from "@react-stately/collections"
+import { Popover } from "./Popover"
 
 type PickerProps = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
@@ -118,7 +122,7 @@ const PickerContainer = ({
         <Popover isOpen={state.isOpen} onClose={state.close}>
           <ListBox
             {...menuProps}
-            state={state}
+            state={state as any}
             footer={footer}
             onClose={state.close}
           />
@@ -130,7 +134,11 @@ const PickerContainer = ({
 
 export const Picker = {
   Container: PickerContainer,
-  Section: Section,
-  Item: Item,
+  Section: ReactAriaSection as <SectionKey extends Key = string>(
+    props: ReactAriaSectionProps<SectionKey>
+  ) => JSX.Element,
+  Item: ReactAriaItem as <ItemKey extends Key = string>(
+    props: ReactAriaItemProps<ItemKey>
+  ) => JSX.Element,
   Footer: PickerFooter,
 }

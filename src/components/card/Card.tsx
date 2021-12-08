@@ -1,8 +1,5 @@
-import React from "react"
 import cn from "classnames"
-import { Icon } from "../icon/Icon"
-import { Title } from "../title/Title"
-import { Button, ButtonProps } from "../button/Button"
+import React from "react"
 
 export type CardProps = React.PropsWithChildren<{
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */

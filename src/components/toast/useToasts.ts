@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react"
-import { ToastContext } from "./ToastContainer"
 import { ToastProps } from "./Toast"
+import { ToastContext } from "./ToastContainer"
 
 const TOAST_TIMEOUT = 5000
 

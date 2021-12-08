@@ -1,12 +1,12 @@
-import React, { forwardRef, MouseEventHandler, useRef } from "react"
-import cn from "classnames"
 import { useButton } from "@react-aria/button"
 import { useHover } from "@react-aria/interactions"
 import { mergeProps } from "@react-aria/utils"
+import { PressEvent } from "@react-types/shared"
+import cn from "classnames"
+import React, { forwardRef, MouseEventHandler, useRef } from "react"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Icon } from "../icon/Icon"
 import { Loader } from "../loader/Loader"
-import { PressEvent } from "@react-types/shared"
 
 export type ButtonProps = React.PropsWithChildren<{
   /** A React ref to attach to the rendered Button */

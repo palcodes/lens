@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions"
-import { ComboBoxOption, ComboBox } from "./ComboBox"
 import { Link } from "../link/Link"
+import { ComboBox, ComboBoxOption } from "./ComboBox"
 
 type RepositoryId =
   | "prisma"

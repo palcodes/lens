@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions"
+import { Button } from "../button/Button"
 import { Toast } from "./Toast"
 import { useToasts } from "./useToasts"
-import { Button } from "../button/Button"
 
 export const Default = (props) => <Toast {...props} />
 Default.storyName = "[Controlled]"

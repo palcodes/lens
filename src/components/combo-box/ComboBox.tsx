@@ -1,28 +1,31 @@
-import React, { Key, useRef, useState, forwardRef } from "react"
-import cn from "classnames"
-import { useComboBox } from "@react-aria/combobox"
-import { useComboBoxState } from "@react-stately/combobox"
-import { useFilter } from "@react-aria/i18n"
 import { useButton } from "@react-aria/button"
+import { useComboBox } from "@react-aria/combobox"
+import { useFilter } from "@react-aria/i18n"
+import { useHover } from "@react-aria/interactions"
+import { useId } from "@react-aria/utils"
 import {
   Item as ReactAriaItem,
   Section as ReactAriaSection,
 } from "@react-stately/collections"
-import { CollectionChildren } from "@react-types/shared"
-import { useId, mergeProps, chain } from "@react-aria/utils"
-import { useFocus, useHover } from "@react-aria/interactions"
-import { Tooltip } from "../tooltip/Tooltip"
-
+import { useComboBoxState } from "@react-stately/combobox"
+import {
+  CollectionChildren,
+  ItemProps as ReactAriaItemProps,
+  SectionProps as ReactAriaSectionProps,
+} from "@react-types/shared"
+import cn from "classnames"
+import React, { Key, useRef } from "react"
 import { useCollectionComponents } from "../../hooks/useCollectionComponents"
+import { FocusRing } from "../focus-ring/FocusRing"
+import { Icon } from "../icon/Icon"
+import { Hint } from "../internal/Hint"
 import {
   ListBoxFooter,
-  ListBoxOverlay,
   ListBoxOption,
+  ListBoxOverlay,
 } from "../internal/ListBox"
 import { Label } from "../label/Label"
-import { Icon } from "../icon/Icon"
-import { FocusRing } from "../focus-ring/FocusRing"
-import { Hint } from "../internal/Hint"
+import { Tooltip } from "../tooltip/Tooltip"
 
 export type ComboBoxOption<OptionKey extends Key = string> =
   ListBoxOption<OptionKey>
@@ -226,14 +229,16 @@ function ComboBoxContainer<OptionKey extends Key = string>({
 
 export const ComboBox = {
   Container: ComboBoxContainer,
-  Section: ReactAriaSection,
-  Option: ReactAriaItem as <Key extends string>(props: {
-    key: Key
-    children: string
-    leadingIcon?: string
-    trailingIcon?: string
-    leadingImageSrc?: string
-    description?: string
-  }) => JSX.Element,
+  Section: ReactAriaSection as <SectionKey extends Key = string>(
+    props: ReactAriaSectionProps<SectionKey>
+  ) => JSX.Element, // Need manual typing to please Typescript
+  Option: ReactAriaItem as <OptionKey extends Key = string>(
+    props: ReactAriaItemProps<OptionKey> & {
+      leadingIcon?: string
+      trailingIcon?: string
+      leadingImageSrc?: string
+      description?: string
+    }
+  ) => JSX.Element, // Need manual typing to please Typescript
   Footer: ListBoxFooter,
 }

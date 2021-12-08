@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions"
-import { Select } from "./Select"
-import { Link } from "../link/Link"
 import { Form } from "../form/Form"
+import { Link } from "../link/Link"
+import { Select } from "./Select"
 
 export const Default = (props) => (
   <Select.Container {...props}>

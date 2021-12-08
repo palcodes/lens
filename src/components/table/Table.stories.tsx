@@ -1,12 +1,12 @@
+import { chain } from "@react-aria/utils"
 import { action } from "@storybook/addon-actions"
-import { Table } from "./Table"
-import { Card } from "../card/Card"
+import { useState } from "react"
 import { Avatar } from "../avatar/Avatar"
 import { Button } from "../button/Button"
+import { Card } from "../card/Card"
 import { Dialog } from "../dialog/Dialog"
 import { TextField } from "../text-field/TextField"
-import { useState } from "react"
-import { chain } from "@react-aria/utils"
+import { Table } from "./Table"
 
 const dynamicColumns = [
   { key: "user", title: "User" },

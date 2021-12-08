@@ -1,13 +1,12 @@
-import React, { useRef, forwardRef, useState } from "react"
-import cn from "classnames"
+import { useFocusWithin } from "@react-aria/interactions"
 import { useTextField } from "@react-aria/textfield"
-import { useFocus, useFocusWithin } from "@react-aria/interactions"
-import { chain, mergeProps, useId } from "@react-aria/utils"
-
-import { Label } from "../label/Label"
+import { useId } from "@react-aria/utils"
+import cn from "classnames"
+import React, { forwardRef, useRef } from "react"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Icon } from "../icon/Icon"
 import { Hint } from "../internal/Hint"
+import { Label } from "../label/Label"
 
 export type TextFieldProps = {
   /** A React ref to attach to the rendered Button */

@@ -1,8 +1,8 @@
+import cn from "classnames"
 import React, { useState } from "react"
 import { Button } from "../../components/button/Button"
 import { Icon } from "../../components/icon/Icon"
 import { Menu } from "../../components/menu/Menu"
-import cn from "classnames"
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

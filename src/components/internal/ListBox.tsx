@@ -1,11 +1,6 @@
-import React, { useRef, Key } from "react"
-import cn from "classnames"
-
-import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
-import { Node } from "@react-types/shared"
-import { SelectState } from "@react-stately/select"
-import { ComboBoxState } from "@react-stately/combobox"
 import { FocusScope } from "@react-aria/focus"
+import { PressResponder, useHover } from "@react-aria/interactions"
+import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
 import {
   DismissButton,
   OverlayContainer,
@@ -13,10 +8,13 @@ import {
   useOverlayPosition,
 } from "@react-aria/overlays"
 import { mergeProps } from "@react-aria/utils"
-import { PressResponder, useHover } from "@react-aria/interactions"
-
-import { Loader } from "../loader/Loader"
+import { ComboBoxState } from "@react-stately/combobox"
+import { SelectState } from "@react-stately/select"
+import { Node } from "@react-types/shared"
+import cn from "classnames"
+import React, { Key, useRef } from "react"
 import { Icon } from "../icon/Icon"
+import { Loader } from "../loader/Loader"
 import { Separator } from "../separator/Separator"
 
 /**
@@ -88,7 +86,7 @@ export function ListBoxOverlay<OptionKey extends Key = string>({
       autoFocus: state.focusStrategy,
       ...otherProps,
     },
-    state,
+    state as any, // There's some type inconsistency here, so we use `as any`
     listBoxRef
   )
   const { overlayProps } = useOverlay(
@@ -247,7 +245,7 @@ export function ListBoxOption<OptionKey extends Key = string>({
       shouldFocusOnHover: true,
       shouldUseVirtualFocus: true,
     },
-    state,
+    state as any, // There's some type inconsistency here, so we use `as any`
     ref
   )
   const { description, leadingIcon, trailingIcon, leadingImageSrc } =

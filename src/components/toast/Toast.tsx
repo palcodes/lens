@@ -1,7 +1,7 @@
-import React from "react"
 import cn from "classnames"
-import { Icon } from "../icon/Icon"
+import React from "react"
 import { Button } from "../button/Button"
+import { Icon } from "../icon/Icon"
 import { Link, LinkProps } from "../link/Link"
 
 export type ToastProps = {

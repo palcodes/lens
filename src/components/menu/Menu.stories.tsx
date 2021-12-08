@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions"
-import { Menu } from "./Menu"
 import { Button } from "../button/Button"
 import { Icon } from "../icon/Icon"
+import { Menu } from "./Menu"
 
 export const Default = (props) => (
   <Menu.Container>

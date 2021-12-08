@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react"
 import {
   FocusRing as AriaFocusRing,
   FocusRingProps as AriaFocusRingProps,
 } from "@react-aria/focus"
+import React, { ReactElement } from "react"
 
 export type FocusRingProps = AriaFocusRingProps & {
   /** Element to draw the FocusRing around */

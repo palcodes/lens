@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions"
-import { ButtonGroup } from "./ButtonGroup"
 import { Button } from "../button/Button"
+import { ButtonGroup } from "./ButtonGroup"
 
 export default {
   title: "Lens/ButtonGroup",

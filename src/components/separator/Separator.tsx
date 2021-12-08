@@ -1,6 +1,6 @@
-import React from "react"
-import cn from "classnames"
 import { useSeparator } from "@react-aria/separator"
+import cn from "classnames"
+import React from "react"
 
 export type SeparatorProps = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */

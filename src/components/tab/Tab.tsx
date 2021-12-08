@@ -1,10 +1,9 @@
-import React, { ReactElement, useMemo, useRef } from "react"
-import cn from "classnames"
-
-import { useTabList, useTab, useTabPanel } from "@react-aria/tabs"
-import { useTabListState, TabListState } from "@react-stately/tabs"
+import { useTab, useTabList, useTabPanel } from "@react-aria/tabs"
 import { Item as ReactAriaItem } from "@react-stately/collections"
+import { TabListState, useTabListState } from "@react-stately/tabs"
 import { CollectionChildren, Node } from "@react-types/shared"
+import cn from "classnames"
+import React, { useRef } from "react"
 import { FocusRing } from "../focus-ring/FocusRing"
 
 type Tab<Key extends string> = {

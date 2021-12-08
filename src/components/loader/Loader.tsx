@@ -1,6 +1,5 @@
-import React from "react"
 import cn from "classnames"
-
+import React from "react"
 import { Size, sizeToNumeric } from "../../utils/sizeToNumeric"
 
 export type LoaderProps = {

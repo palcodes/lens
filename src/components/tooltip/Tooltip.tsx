@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, useRef, useState } from "react"
-import { createPortal } from "react-dom"
-import cn from "classnames"
-import { mergeProps } from "@react-aria/utils"
 import { useOverlayPosition } from "@react-aria/overlays"
 import { useTooltip } from "@react-aria/tooltip"
+import { mergeProps } from "@react-aria/utils"
 import { useTooltipTriggerState } from "@react-stately/tooltip"
+import cn from "classnames"
+import React, { useLayoutEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 const ARROW_SIZE = 5 // in px
 const SPACING = 8

@@ -1,7 +1,6 @@
-import * as React from "react"
-
-import { DismissButton, useOverlay } from "@react-aria/overlays"
 import { FocusScope } from "@react-aria/focus"
+import { DismissButton, useOverlay } from "@react-aria/overlays"
+import * as React from "react"
 
 interface PopoverProps {
   popoverRef?: React.RefObject<HTMLDivElement>

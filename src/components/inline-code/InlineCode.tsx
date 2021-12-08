@@ -1,5 +1,5 @@
-import React from "react"
 import cn from "classnames"
+import React from "react"
 
 interface InlineCodeProps {
   /** Text to be styled as code like representation */

@@ -1,24 +1,32 @@
-import React, { Children, useRef, createContext, useContext } from "react"
-import cn from "classnames"
-import { CollectionChildren, Node } from "@react-types/shared"
-import { mergeProps } from "@react-aria/utils"
+import { useButton } from "@react-aria/button"
 import { PressResponder } from "@react-aria/interactions"
-import {
-  DismissButton,
-  OverlayContainer,
-  useOverlayPosition,
-  useOverlay,
-} from "@react-aria/overlays"
 import {
   useMenu,
   useMenuItem,
   useMenuSection,
   useMenuTrigger,
 } from "@react-aria/menu"
-import { useButton } from "@react-aria/button"
-import { Section, Item } from "@react-stately/collections"
-import { TreeState, useTreeState } from "@react-stately/tree"
+import {
+  DismissButton,
+  OverlayContainer,
+  useOverlay,
+  useOverlayPosition,
+} from "@react-aria/overlays"
+import { mergeProps } from "@react-aria/utils"
+import {
+  Item as ReactAriaItem,
+  Section as ReactAriaSection,
+} from "@react-stately/collections"
 import { MenuTriggerState, useMenuTriggerState } from "@react-stately/menu"
+import { TreeState, useTreeState } from "@react-stately/tree"
+import {
+  CollectionChildren,
+  ItemProps as ReactAriaItemProps,
+  Node,
+  SectionProps as ReactAriaSectionProps,
+} from "@react-types/shared"
+import cn from "classnames"
+import React, { Children, createContext, Key, useContext, useRef } from "react"
 
 type MenuContext = {
   triggerRef: React.RefObject<HTMLElement>
@@ -29,13 +37,13 @@ type MenuContext = {
 const MenuContext = createContext<MenuContext>(null)
 
 /** Value for a single Option inside this Menu */
-export type MenuOption<Key extends string> = {
+export type MenuOption<OptionKey extends Key = string> = {
   /** A string that uniquely identifies this option */
-  key: Key
+  key: OptionKey
   /** The main text to display within this option */
   title: string
   /** Sub-options for this option */
-  children?: MenuOption<Key>[]
+  children?: MenuOption<OptionKey>[]
 }
 
 export type MenuContainerProps = {
@@ -96,7 +104,7 @@ function MenuContainer({
   )
 }
 
-export type MenuBodyProps<OptionKey extends string> = {
+export type MenuBodyProps<OptionKey extends Key = string> = {
   /** An HTML ID attribute that will be attached to the the rendered component. Useful for targeting it from tests */
   id?: string
   /** Children to render */
@@ -112,7 +120,7 @@ export type MenuBodyProps<OptionKey extends string> = {
 /**
  * Container for all Menu Sections and Options
  */
-function MenuBody<OptionKey extends string>({
+function MenuBody<OptionKey extends Key = string>({
   id,
   children,
   title,
@@ -231,7 +239,7 @@ function MenuBody<OptionKey extends string>({
   )
 }
 
-type MenuSectionProps<OptionKey extends string> = {
+type MenuSectionProps<OptionKey extends Key = string> = {
   /** Title for this Section */
   title: string
   /** A group of similar options, only visual */
@@ -245,12 +253,12 @@ type MenuSectionProps<OptionKey extends string> = {
 /**
  * A divided section of the Menu that may contain other options within
  */
-function MenuSection<OptionKey extends string>({
+function MenuSection<SectionKey extends Key = string>({
   title,
   section,
   state,
   onAction,
-}: MenuSectionProps<OptionKey>) {
+}: MenuSectionProps<SectionKey>) {
   const {
     groupProps,
     headingProps,
@@ -288,21 +296,21 @@ function MenuSection<OptionKey extends string>({
   )
 }
 
-type MenuOptionProps<Key extends string> = {
+type MenuOptionProps<OptionKey extends Key = string> = {
   /** The option to render */
-  option: Node<MenuOption<Key>>
+  option: Node<MenuOption<OptionKey>>
   /** The global Menu state */
   state: TreeState<any>
   /** Callback invoked when this option is selected */
-  onAction?: (key: Key) => void
+  onAction?: (key: OptionKey) => void
 }
 
 /** A single Menu Option */
-function MenuOption<Key extends string>({
+function MenuOption<OptionKey extends Key = string>({
   option,
   state,
   onAction,
-}: MenuOptionProps<Key>) {
+}: MenuOptionProps<OptionKey>) {
   const context = useContext(MenuContext)
   const ref = useRef<HTMLLIElement>(null)
 
@@ -310,7 +318,7 @@ function MenuOption<Key extends string>({
   const { menuItemProps: menuOptionProps } = useMenuItem(
     {
       key: option.key,
-      onAction: onAction as (k: React.Key) => void,
+      onAction: onAction as (k: Key) => void,
       closeOnSelect: true,
       onClose: context.close,
     },
@@ -339,7 +347,11 @@ function MenuOption<Key extends string>({
 
 export const Menu = {
   Container: MenuContainer,
-  Section,
-  Option: Item,
+  Section: ReactAriaSection as <SectionKey extends Key = string>(
+    props: ReactAriaSectionProps<SectionKey>
+  ) => JSX.Element,
+  Option: ReactAriaItem as <OptionKey extends Key = string>(
+    props: ReactAriaItemProps<OptionKey>
+  ) => JSX.Element,
   Body: MenuBody,
 }

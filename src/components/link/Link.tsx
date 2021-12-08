@@ -1,8 +1,8 @@
-import React, { forwardRef, Props, useRef } from "react"
-import cn from "classnames"
 import { useHover } from "@react-aria/interactions"
 import { useLink } from "@react-aria/link"
 import { mergeProps } from "@react-aria/utils"
+import cn from "classnames"
+import React, { forwardRef, useRef } from "react"
 import { FocusRing } from "../focus-ring/FocusRing"
 
 export type LinkProps = React.PropsWithChildren<{

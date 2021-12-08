@@ -1,9 +1,9 @@
-import React, { useRef, RefObject, useState } from "react"
 import type { AriaListBoxOptions } from "@react-aria/listbox"
+import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
 import type { ListState } from "@react-stately/list"
 import type { Node } from "@react-types/shared"
 import cn from "classnames"
-import { useListBox, useListBoxSection, useOption } from "@react-aria/listbox"
+import React, { RefObject, useRef } from "react"
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
   listBoxRef?: RefObject<HTMLUListElement>

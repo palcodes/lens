@@ -1,6 +1,5 @@
-import React, { Component, RefObject, createRef } from "react"
+import React, { Component, createRef, RefObject } from "react"
 import styled from "styled-components"
-
 import { theme } from "../theme"
 
 const NavLinksWrapper = styled.div`

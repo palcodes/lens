@@ -1,10 +1,10 @@
-import React, { useRef } from "react"
-import cn from "classnames"
-import { useHover } from "@react-aria/interactions"
 import { useButton } from "@react-aria/button"
-import { ImageOrIcon, AvatarProps } from "../avatar/Avatar"
+import { useHover } from "@react-aria/interactions"
+import cn from "classnames"
+import React, { useRef } from "react"
+import { Size, sizeToNumeric } from "../../utils/sizeToNumeric"
+import { AvatarProps, ImageOrIcon } from "../avatar/Avatar"
 import { Tooltip } from "../tooltip/Tooltip"
-import { sizeToNumeric, Size } from "../../utils/sizeToNumeric"
 
 const MAX_AVATARS = 5
 

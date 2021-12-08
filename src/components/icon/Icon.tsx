@@ -1,5 +1,5 @@
-import React, { useRef, forwardRef } from "react"
 import cn from "classnames"
+import React, { forwardRef, useRef } from "react"
 import { Size, sizeToNumeric } from "../../utils/sizeToNumeric"
 
 export type IconProps = {

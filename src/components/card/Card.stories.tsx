@@ -1,7 +1,6 @@
-import { action } from "@storybook/addon-actions"
-import { Card } from "./Card"
 import { Form } from "../form/Form"
 import { Select } from "../select/Select"
+import { Card } from "./Card"
 
 export const Default = (props) => <Card {...props}>{renderForm()}</Card>
 Default.storyName = "[Controlled]"

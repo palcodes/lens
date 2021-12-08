@@ -1,5 +1,5 @@
-import { Picker } from "./Picker"
 import { Icon } from "../../components/icon/Icon"
+import { Picker } from "./Picker"
 
 const ownedProjects = [
   { id: "1", title: "My Project" },

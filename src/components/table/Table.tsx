@@ -1,28 +1,28 @@
-import React, { createContext, useRef, useContext } from "react"
-import cn from "classnames"
 import {
   useTable,
-  useTableRow,
-  useTableColumnHeader,
   useTableCell,
+  useTableColumnHeader,
+  useTableRow,
   useTableRowGroup,
 } from "@react-aria/table"
 import {
-  useTableState,
-  TableState,
-  TableHeader as ReactAriaTableHeader,
-  TableBody as ReactAriaTableBody,
-  Row as ReactAriaTableRow,
-  Column as ReactAriaTableColumn,
   Cell as ReactAriaTableCell,
+  Column as ReactAriaTableColumn,
+  Row as ReactAriaTableRow,
+  TableBody as ReactAriaTableBody,
+  TableHeader as ReactAriaTableHeader,
+  TableState,
+  useTableState,
 } from "@react-stately/table"
 import {
-  TableHeaderProps as ReactAriaTableHeaderProps,
-  TableBodyProps as ReactAriaTableBodyProps,
-  RowProps as ReactAriaTableRowProps,
-  ColumnProps as ReactAriaTableColumnProps,
   CellProps as ReactAriaTableCellProps,
+  ColumnProps as ReactAriaTableColumnProps,
+  RowProps as ReactAriaTableRowProps,
+  TableBodyProps as ReactAriaTableBodyProps,
+  TableHeaderProps as ReactAriaTableHeaderProps,
 } from "@react-types/table"
+import cn from "classnames"
+import React, { createContext, useContext, useRef } from "react"
 
 // @ts-expect-error: We cannot provide a valid initial value, but TSC does not understand that it is okay
 const TableContext = createContext<TableState<TableValue>>(null)

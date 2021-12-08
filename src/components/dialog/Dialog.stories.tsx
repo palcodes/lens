@@ -1,11 +1,11 @@
-import { action } from "@storybook/addon-actions"
 import { chain } from "@react-aria/utils"
-import { Dialog } from "./Dialog"
-import { Button } from "../button/Button"
+import { action } from "@storybook/addon-actions"
 import { Avatar } from "../avatar/Avatar"
-import { Select } from "../select/Select"
 import { ButtonGroup } from "../button-group/ButtonGroup"
+import { Button } from "../button/Button"
+import { Select } from "../select/Select"
 import { TextField } from "../text-field/TextField"
+import { Dialog } from "./Dialog"
 
 export const Default = (props) => (
   <Dialog.Container {...props}>

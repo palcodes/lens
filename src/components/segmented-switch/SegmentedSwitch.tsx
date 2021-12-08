@@ -1,13 +1,11 @@
 import { useButton } from "@react-aria/button"
 import cn from "classnames"
 import React, {
-  forwardRef,
-  Key,
   createContext,
   PropsWithChildren,
   useContext,
-  useState,
   useRef,
+  useState,
 } from "react"
 import { FocusRing } from "../focus-ring/FocusRing"
 import { Icon, IconProps } from "../icon/Icon"

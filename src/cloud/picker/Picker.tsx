@@ -28,6 +28,8 @@ type PickerProps = {
   selectedKey?: React.Key
   /** A required default selected key */
   defaultSelectedKey: string
+  /** A value to display in the Field when it is empty */
+  placeholder?: string
   /** Callback invoked when the Select's selection changes */
   onSelectionChange?: (key: React.Key) => void
 }
@@ -39,6 +41,7 @@ const PickerContainer = ({
   variant,
   defaultSelectedKey,
   selectedKey,
+  placeholder,
   onSelectionChange,
 }: PickerProps) => {
   let body = children
@@ -80,7 +83,7 @@ const PickerContainer = ({
     <div
       id={id}
       className="relative inline-flex flex-col"
-      style={{ maxWidth: "150px" }}
+      style={{ maxWidth: "175px" }}
     >
       <HiddenSelect state={state} triggerRef={ref} name={name} />
       {/* Picker Trigger */}
@@ -104,11 +107,13 @@ const PickerContainer = ({
               }
             )}
             style={{
-              maxWidth: "85%",
+              maxWidth: "90%",
             }}
           >
             {state.selectedItem
               ? state.selectedItem.rendered
+              : placeholder
+              ? placeholder
               : "Select an option"}
           </span>
           <Icon name="picker" size="xs" className="text-gray-600" />

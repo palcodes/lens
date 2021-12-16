@@ -352,6 +352,12 @@ const WebsiteFooter = ({
           About
         </a>
         <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/showcase`}
+        >
+          Showcase
+        </a>
+        <a
           className="link jobs"
           href={`${absoluteLinks ? "https://www.prisma.io" : ""}/jobs`}
         >

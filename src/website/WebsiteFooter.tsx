@@ -28,7 +28,7 @@ const FooterSection = styled.div`
     font-size: ${theme.fontSizes[18]};
     line-height: 1;
     text-transform: uppercase;
-    color: ${theme.colors.gray500};
+    color: ${theme.colors.gray800};
   }
 
   .column .link {
@@ -36,7 +36,7 @@ const FooterSection = styled.div`
     margin-top: ${theme.space[24]};
     font-size: ${theme.fontSizes[16]};
     line-height: 1;
-    color: ${theme.colors.gray500};
+    color: ${theme.colors.gray800};
   }
 
   .column .link + .link {
@@ -44,11 +44,11 @@ const FooterSection = styled.div`
   }
 
   .column .link:hover {
-    color: ${theme.colors.gray600};
+    color: ${theme.colors.gray900};
   }
 
   .column .link:active {
-    color: ${theme.colors.gray700};
+    color: ${theme.colors.gray900};
   }
 
   .column .group + .group {
@@ -60,7 +60,7 @@ const FooterSection = styled.div`
     border-radius: 6px;
     margin-left: ${theme.space[8]};
     padding: ${theme.space[4]} ${theme.space[8]};
-    background: ${theme.colors.green500};
+    background: ${theme.colors.indigo600};
     font-size: ${theme.fontSizes[12]};
     font-weight: bold;
     color: white;
@@ -76,14 +76,14 @@ const FooterSection = styled.div`
   }
 
   .logo {
-    fill: ${theme.colors.gray500};
+    fill: ${theme.colors.gray800};
   }
 
   .four .description {
     margin-top: ${theme.space[16]};
     font-size: ${theme.fontSizes[16]};
     line-height: 1.375;
-    color: ${theme.colors.gray500};
+    color: ${theme.colors.gray800};
   }
 
   .social {
@@ -109,7 +109,7 @@ const FooterSection = styled.div`
     margin-top: ${theme.space[32]};
     font-size: ${theme.fontSizes[16]};
     line-height: 1;
-    color: ${theme.colors.gray500};
+    color: ${theme.colors.gray800};
   }
 
   a.cookie-pref {
@@ -121,7 +121,7 @@ const FooterSection = styled.div`
     margin-top: ${theme.space[8]};
     font-size: ${theme.fontSizes[16]};
     line-height: 1;
-    color: ${theme.colors.gray500};
+    color: ${theme.colors.gray800};
   }
 
   @media (max-width: ${theme.breakpoints.tablet}) {
@@ -416,7 +416,7 @@ const WebsiteFooter = ({
               <title id="footerIconTwitter">Find us on Twitter</title>
               <path
                 d="M23 1.01a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1a10.66 10.66 0 01-9-4.53s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5 0-.278-.028-.556-.08-.83A7.72 7.72 0 0023 1.01v0z"
-                stroke={theme.colors.gray500}
+                stroke={theme.colors.gray800}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -434,14 +434,14 @@ const WebsiteFooter = ({
               <title id="footerIconYT">Find us on YouTube</title>
               <path
                 d="M22.54 3.42a2.78 2.78 0 00-1.94-2C18.88 1 12 1 12 1s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 8.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 16c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2c.313-1.732.467-3.49.46-5.25a29.005 29.005 0 00-.46-5.33v0z"
-                stroke={theme.colors.gray500}
+                stroke={theme.colors.gray800}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M9.75 12.02l5.75-3.27-5.75-3.27v6.54z"
-                stroke={theme.colors.gray500}
+                stroke={theme.colors.gray800}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -459,7 +459,7 @@ const WebsiteFooter = ({
               <title id="footerIconSlack">Join us on Slack</title>
               <path
                 d="M16 10.6c-.996 0-1.8-.804-1.8-1.8v-6c0-.996.804-1.8 1.8-1.8s1.8.804 1.8 1.8v6c0 .996-.804 1.8-1.8 1.8zM23.2 10.6h-1.8V8.8c0-.996.804-1.8 1.8-1.8s1.8.804 1.8 1.8-.804 1.8-1.8 1.8zM10 15.4c.996 0 1.8.804 1.8 1.8v6c0 .996-.804 1.8-1.8 1.8s-1.8-.804-1.8-1.8v-6c0-.996.804-1.8 1.8-1.8zM2.8 15.4h1.8v1.8c0 .996-.804 1.8-1.8 1.8S1 18.196 1 17.2s.804-1.8 1.8-1.8zM15.4 16c0-.996.804-1.8 1.8-1.8h6c.996 0 1.8.804 1.8 1.8s-.804 1.8-1.8 1.8h-6c-.996 0-1.8-.804-1.8-1.8zM17.2 21.4h-1.8v1.8c0 .996.804 1.8 1.8 1.8s1.8-.804 1.8-1.8-.804-1.8-1.8-1.8zM10.6 10c0-.996-.804-1.8-1.8-1.8h-6C1.804 8.2 1 9.004 1 10s.804 1.8 1.8 1.8h6c.996 0 1.8-.804 1.8-1.8zM8.8 4.6h1.8V2.8c0-.996-.804-1.8-1.8-1.8S7 1.804 7 2.8s.804 1.8 1.8 1.8z"
-                stroke={theme.colors.gray500}
+                stroke={theme.colors.gray800}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -477,7 +477,7 @@ const WebsiteFooter = ({
               <title id="footerIconGH">Find us on GitHub</title>
               <path
                 d="M8.99 21.576C3.283 23.288 3.283 18.722 1 18.152M16.98 25v-4.417a3.847 3.847 0 00-1.073-2.98c3.584-.399 7.35-1.757 7.35-7.99a6.21 6.21 0 00-1.712-4.28 5.787 5.787 0 00-.103-4.302S20.096.63 16.98 2.72a15.272 15.272 0 00-7.99 0C5.874.63 4.527 1.03 4.527 1.03a5.787 5.787 0 00-.103 4.304 6.21 6.21 0 00-1.712 4.314c0 6.187 3.767 7.545 7.35 7.99a3.847 3.847 0 00-1.072 2.945V25"
-                stroke={theme.colors.gray500}
+                stroke={theme.colors.gray800}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

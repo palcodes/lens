@@ -229,20 +229,6 @@ const WebsiteFooter = ({
         >
           Data Guide
         </a>
-        <a
-          className="link"
-          href={`${
-            absoluteLinks ? "https://www.prisma.io" : ""
-          }/enterprise-event-2021`}
-        >
-          Enterprise Event
-        </a>
-        <a
-          className="link"
-          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/serverless`}
-        >
-          Serverless Conference
-        </a>
       </div>
       <div className="group">
         <h3 className="header">Prisma With</h3>
@@ -305,12 +291,6 @@ const WebsiteFooter = ({
         >
           Meet the Community
         </a>
-        <a
-          className="link"
-          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/day`}
-        >
-          Prisma Day
-        </a>
         <a className="link" href="https://slack.prisma.io/">
           Slack
         </a>
@@ -320,27 +300,11 @@ const WebsiteFooter = ({
         <a className="link" href="https://github.com/prisma/prisma/discussions">
           Discussions
         </a>
-        <a className="link" href="https://www.meetup.com/graphql-berlin/">
-          GraphQL Meetup
-        </a>
-        <a className="link" href="https://www.meetup.com/TypeScript-Berlin/">
-          TypeScript Meetup
-        </a>
         <a
           className="link"
-          href="https://www.meetup.com/advanced-typescript-trickery/"
-          rel="norefferer noopener"
-          target="_blank"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/events`}
         >
-          Advanced TypeScript Trickery
-        </a>
-        <a
-          className="link"
-          href="https://www.meetup.com/connect-dev-africa/"
-          rel="norefferer noopener"
-          target="_blank"
-        >
-          Connect Dev Africa
+          Events
         </a>
       </div>
       <div className="group">

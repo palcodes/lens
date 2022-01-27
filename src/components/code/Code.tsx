@@ -91,6 +91,7 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
 
         {isSecret && (
           <Button
+            type="button"
             variant="quiet"
             onPress={toggleVisibility}
             isDisabled={!canReveal}
@@ -100,6 +101,7 @@ export const Code = forwardRef<HTMLButtonElement, CodeProps>(
         )}
 
         <Button
+          type="button"
           ref={ButtonRef}
           variant="quiet"
           icon={

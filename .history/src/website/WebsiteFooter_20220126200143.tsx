@@ -229,6 +229,20 @@ const WebsiteFooter = ({
         >
           Data Guide
         </a>
+        <a
+          className="link"
+          href={`${
+            absoluteLinks ? "https://www.prisma.io" : ""
+          }/enterprise-event-2021`}
+        >
+          Enterprise Event
+        </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/serverless`}
+        >
+          Serverless Conference
+        </a>
       </div>
       <div className="group">
         <h3 className="header">Prisma With</h3>
@@ -340,12 +354,6 @@ const WebsiteFooter = ({
           href="https://www.notion.so/prismaio/What-Prisma-Cares-About-32946d99f9ea4925a796663dc8945c42"
         >
           Causes
-        </a>
-        <a
-          className="link"
-          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/scholarship`}
-        >
-          Scholarship
         </a>
         <a
           className="link"

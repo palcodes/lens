@@ -345,7 +345,7 @@ const WebsiteFooter = ({
           className="link"
           href={`${absoluteLinks ? "https://www.prisma.io" : ""}/scholarship`}
         >
-          Scholarship
+          Showcase
         </a>
         <a
           className="link"

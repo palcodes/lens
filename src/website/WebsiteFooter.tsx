@@ -274,6 +274,12 @@ const WebsiteFooter = ({
         >
           Prisma with hapi
         </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/planetscale`}
+        >
+          Prisma with Planetscale
+        </a>
       </div>
     </div>
     <div className="column three">
@@ -340,6 +346,12 @@ const WebsiteFooter = ({
           href="https://www.notion.so/prismaio/What-Prisma-Cares-About-32946d99f9ea4925a796663dc8945c42"
         >
           Causes
+        </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/scholarship`}
+        >
+          Scholarship
         </a>
         <a
           className="link"

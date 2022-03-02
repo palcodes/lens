@@ -91,3 +91,15 @@ export const SecretWithReveal = () => (
 export const SecretWithoutReveal = () => (
   <Code prefix="$" value="secret git clone" isSecret />
 )
+
+export const StandardWithinForm = () => {
+  const handleSubmit = () => {
+    console.log("I was submitted")
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Code prefix="$" value="secret git clone" isSecret canReveal />
+    </form>
+  )
+}

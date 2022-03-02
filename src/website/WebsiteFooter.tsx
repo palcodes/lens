@@ -274,6 +274,12 @@ const WebsiteFooter = ({
         >
           Prisma with hapi
         </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/planetscale`}
+        >
+          Prisma with Planetscale
+        </a>
       </div>
     </div>
     <div className="column three">

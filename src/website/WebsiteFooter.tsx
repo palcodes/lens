@@ -341,10 +341,7 @@ const WebsiteFooter = ({
         >
           Prisma Enterprise
         </a>
-        <a
-          className="link"
-          href="https://www.notion.so/prismaio/Prisma-Causes-0c9e1ddc0f5942edaba355692cfee69f"
-        >
+        <a className="link" href="http://pris.ly/causes">
           Causes 🇺🇦
         </a>
         <a

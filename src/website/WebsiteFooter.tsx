@@ -343,9 +343,9 @@ const WebsiteFooter = ({
         </a>
         <a
           className="link"
-          href="https://www.notion.so/prismaio/What-Prisma-Cares-About-32946d99f9ea4925a796663dc8945c42"
+          href="https://www.notion.so/prismaio/Prisma-Causes-0c9e1ddc0f5942edaba355692cfee69f"
         >
-          Causes
+          Causes 🇺🇦
         </a>
         <a
           className="link"

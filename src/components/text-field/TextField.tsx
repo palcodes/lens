@@ -34,6 +34,8 @@ export type TextFieldProps = {
   nativeAutoComplete?: string
   /** Callback fired when the value of this TextField changes */
   onChange?: (value: string) => void
+  /** Callback fired when the element loses focus. */
+  onBlur?: () => void
   /** A value to display in the TextField when it is empty */
   placeholder?: string
   /** A fixed value that is appended to the beginning of the TextField */
@@ -56,6 +58,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       name,
       nativeAutoComplete,
       onChange,
+      onBlur,
       placeholder,
       prefix,
       value,
@@ -81,6 +84,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         label,
         name,
         onChange,
+        onBlur,
         placeholder,
         value,
         validationState: !!error ? "invalid" : undefined,

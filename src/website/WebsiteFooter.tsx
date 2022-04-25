@@ -157,6 +157,7 @@ const WebsiteFooter = ({
         src="https://images2.prisma.io/footer-logo.png"
         alt="Prisma Logo"
         style={{ width: 90 + "px", height: 24 + "px" }}
+        referrerPolicy="unsafe-url"
       />
     </div>
     <div className="column two">

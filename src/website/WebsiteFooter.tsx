@@ -204,17 +204,15 @@ const WebsiteFooter = ({
         </a>
         <a
           className="link"
-          href={`${
-            absoluteLinks ? "https://www.prisma.io" : ""
-          }/docs/getting-started/quickstart`}
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""
+            }/docs/getting-started/quickstart`}
         >
           Get Started
         </a>
         <a
           className="link"
-          href={`${
-            absoluteLinks ? "https://www.prisma.io" : ""
-          }/docs/reference/api-reference/prisma-client-reference`}
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""
+            }/docs/reference/api-reference/prisma-client-reference`}
         >
           API Reference
         </a>
@@ -287,6 +285,12 @@ const WebsiteFooter = ({
         >
           Prisma with MongoDB
         </a>
+        <a
+          className="link"
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""}/cockroachdb`}
+        >
+          Prisma with CockroachDB
+        </a>
       </div>
     </div>
     <div className="column three">
@@ -342,9 +346,8 @@ const WebsiteFooter = ({
         </a>
         <a
           className="link"
-          href={`${
-            absoluteLinks ? "https://www.prisma.io" : ""
-          }/prisma-enterprise`}
+          href={`${absoluteLinks ? "https://www.prisma.io" : ""
+            }/prisma-enterprise`}
         >
           Prisma Enterprise
         </a>

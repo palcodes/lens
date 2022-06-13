@@ -337,7 +337,7 @@ function MenuOption<Key extends string>({
   )
 }
 
-export const Menu = {
+export const Menu: any = {
   Container: MenuContainer,
   Section,
   Option: Item,

@@ -35,13 +35,15 @@
     "format": "prettier --ignore-path .gitignore -w .",
     "format:check": "prettier --ignore-path .gitignore -c .",
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
-    "build-storybook": "yarn build && build-storybook -s public",
+    "build-storybook": "build-storybook -s public",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "feather-icons": "4.28.0"
   },
   "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@react-aria/button": "3.3.4",
     "@react-aria/combobox": "3.1.0",
     "@react-aria/dialog": "3.1.4",

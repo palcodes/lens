@@ -166,16 +166,13 @@ export const IconLink = ({
   ...rest
 }: IconLinkProps) => {
   return (
-    <a href={href}>
-      {/* passHref */}
-      <IconLinkStyles {...rest} titleOnlyOnMobile={titleOnlyOnMobile}>
-        <div className="link-icon">{icon}</div>
-        <div>
-          <LinkTitle className="link-title">{title}</LinkTitle>
-          <div className="link-subtitle">{subtitle}</div>
-        </div>
-      </IconLinkStyles>
-    </a>
+    <IconLinkStyles {...rest} titleOnlyOnMobile={titleOnlyOnMobile} href={href}>
+      <div className="link-icon">{icon}</div>
+      <div>
+        <LinkTitle className="link-title">{title}</LinkTitle>
+        <div className="link-subtitle">{subtitle}</div>
+      </div>
+    </IconLinkStyles>
   )
 }
 

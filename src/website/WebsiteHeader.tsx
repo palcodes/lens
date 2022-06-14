@@ -33,12 +33,13 @@ const Label = styled.span`
   font-size: 12px;
 `
 
-const HeaderWrapper = styled.div`
-  position: fixed;
+const HeaderWrapper = styled.div<{ lightFont?: boolean; notFixed?: boolean }>`
+  position: ${(p) => (p.notFixed ? "relative" : "fixed")};
   top: 0;
   width: 100%;
   -webkit-font-smoothing: antialiased;
-  //background-color: ${theme.colors.white};
+  background-color: ${(p) =>
+    !p.lightFont ? theme.colors.white : "transparent"};
   z-index: 9999;
 
   &.open {
@@ -57,6 +58,18 @@ const HeaderWrapper = styled.div`
       display: none;
     }
   }
+  ${(p) =>
+    p.lightFont &&
+    `
+  .item {
+    > a {
+      color: ${theme.colors.white};
+
+      > a {
+        color: ${theme.colors.white};
+      }
+    }
+  }`}
 
   .mobile-header {
     width: 100%;
@@ -140,12 +153,13 @@ const ButtonLink = styled.a`
 `
 interface HeaderProps {
   className?: string
+  lightFont?: boolean
+  notFixed?: boolean
 }
-const logoUrl = "https://website-v9.vercel.app/logo-dark.svg"
 
-const WebsiteHeader = ({ className }: HeaderProps) => {
+const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper lightFont={lightFont} notFixed={notFixed}>
       <NavBar>
         <NavBarContext.Consumer>
           {({ state: { mobileOpen } }: any) => (
@@ -156,7 +170,11 @@ const WebsiteHeader = ({ className }: HeaderProps) => {
                     <div className="mobile-header">
                       <a href="/">
                         <img
-                          src={logoUrl}
+                          src={
+                            lightFont
+                              ? '"https://website-v9.vercel.app/logo-dark.svg"'
+                              : '"https://website-v9.vercel.app/logo-white.svg"'
+                          }
                           width={90}
                           height={27}
                           alt="prisma_logo"

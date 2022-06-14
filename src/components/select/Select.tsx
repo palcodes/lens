@@ -192,7 +192,7 @@ function SelectContainer<OptionKey extends Key = string>({
   )
 }
 
-export const Select: any = {
+export const Select = {
   Container: SelectContainer,
   Section: ReactAriaSection,
   Option: ReactAriaItem as <Key extends string>(props: {

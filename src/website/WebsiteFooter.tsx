@@ -95,6 +95,17 @@ const SocialLinksContainer = styled.div`
   }
 `
 
+const Label = styled.span`
+  border-radius: 4px;
+  background-color: ${theme.colors.teal500};
+  padding: ${theme.space[4]} ${theme.space[8]};
+  color: ${theme.colors.white};
+  line-height: 1;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 12px;
+`
+
 const logoUrl = "https://website-v9.vercel.app/logo-dark.svg"
 const WebsiteFooter = ({ newsletterComponent }: any) => (
   <FooterContainer>
@@ -112,38 +123,47 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
 
         <Column>
           <Title>Products</Title>
-          <Link href="#">Client</Link>
-          <Link href="#">Migrate</Link>
-          <Link href="#">Data Browser</Link>
-          <Link href="#">Serverless Data Proxy</Link>
+          <Link href="https://www.prisma.io/client">Client</Link>
+          <Link href="https://www.prisma.io/migrate">Migrate</Link>
+          <Link href="https://www.prisma.io/data-platform">Data Browser</Link>
+          <Link href="https://www.prisma.io/data-platform">
+            Serverless Data Proxy
+          </Link>
         </Column>
 
         <Column>
           <Title>Developers</Title>
-          <Link href="#">Docs</Link>
-          <Link href="#">Prisma in your Stack</Link>
-          <Link href="/support">Support</Link>
-          <Link href="#">Community</Link>
-          <Link href="#">Data Guide</Link>
+          <Link href="https://www.prisma.io/docs">Docs</Link>
+          <Link href="https://www.prisma.io/prisma-in-stack">
+            Prisma in your Stack
+          </Link>
+          <Link href="https://www.prisma.io/support">Support</Link>
+          <Link href="https://www.prisma.io/community">Community</Link>
+          <Link href="https://www.prisma.io/dataguide">Data Guide</Link>
+          <Link href="https://www.prisma-status.com/">
+            Data Platform Status
+          </Link>
         </Column>
 
         <Column>
           <Title>Use Cases</Title>
-          <Link href="#">Customer Stories</Link>
-          <Link href="#">Enterprise</Link>
+          <Link href="https://www.prisma.io/showcase">Customer Stories</Link>
+          <Link href="https://www.prisma.io/enterprise">Enterprise</Link>
         </Column>
 
         <Column>
           <Title>Company</Title>
-          <Link href="#">About</Link>
-          <Link href="#">Blog</Link>
-          <Link href="#">Vision</Link>
-          <Link href="#">
-            {/* Careers <Label type={"secondary"}>We're Hiring</Label> */}
+          <Link href="https://www.prisma.io/about">About</Link>
+          <Link href="https://www.prisma.io/blog">Blog</Link>
+          {/* <Link href="#">Vision</Link> */}
+          <Link href="https://www.prisma.io/jobs">
+            Careers <Label>We're Hiring</Label>
           </Link>
-          <Link href="#">Press &amp; Media</Link>
-          <Link href="#">Causes</Link>
-          <Link href="#">Terms &amp; Privacy</Link>
+          {/* <Link href="">Press &amp; Media</Link> */}
+          <Link href="https://prismaio.notion.site/Prisma-Causes-0c9e1ddc0f5942edaba355692cfee69f">
+            Causes
+          </Link>
+          <Link href="http://pris.ly/privacy">Terms &amp; Privacy</Link>
         </Column>
       </Row>
 
@@ -158,19 +178,19 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
           <FooterP>&copy; {new Date().getFullYear()} Prisma Data, Inc.</FooterP>
 
           <SocialLinksContainer>
-            <a href="#">
+            <a href="https://twitter.com/prisma">
               <Icon name="twitter" />
             </a>
-            <a href="#">
+            {/* <a href="#">
               <Icon name="facebook" />
-            </a>
-            <a href="#">
+            </a> */}
+            <a href="https://www.youtube.com/prismadata">
               <Icon name="youtube" />
             </a>
-            <a href="#">
+            <a href="https://slack.prisma.io/">
               <Icon name="slack" />
             </a>
-            <a href="#">
+            <a href="https://github.com/prisma">
               <Icon name="github" />
             </a>
           </SocialLinksContainer>

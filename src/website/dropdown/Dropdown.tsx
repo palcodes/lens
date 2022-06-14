@@ -167,7 +167,9 @@ export const IconLink = ({
 }: IconLinkProps) => {
   return (
     <IconLinkStyles {...rest} titleOnlyOnMobile={titleOnlyOnMobile} href={href}>
-      <div className="link-icon">{icon}</div>
+      <div className="link-icon">
+        <img src={`/header${icon}.svg`} />
+      </div>
       <div>
         <LinkTitle className="link-title">{title}</LinkTitle>
         <div className="link-subtitle">{subtitle}</div>
@@ -188,6 +190,9 @@ const ArticleLinkStyles = styled.a`
   .article-image {
     flex-shrink: 0;
     width: 148px;
+    img {
+      border-radius: 8px;
+    }
   }
   p {
     transition: color 0.1s ease;

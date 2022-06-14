@@ -194,101 +194,115 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                           <Panel>
                             <SectionHeader>Prisma ORM</SectionHeader>
                             <IconLink
-                              href={"#"}
-                              icon={""}
+                              href={"https://www.prisma.io/client"}
+                              icon={"/icons/Icon-Client"}
                               title={"Client"}
                               subtitle={"Write Queries the way you think"}
                             />
                             <IconLink
-                              href={"#"}
-                              icon={""}
+                              href={"https://www.prisma.io/client"}
+                              icon={"/icons/Icon-Migrate"}
                               title={"Migrate"}
-                              subtitle={"Generate customisable SQL migrations"}
+                              subtitle={"Generate customizable SQL migrations"}
                             />
 
                             <SectionHeader>Prisma Data Platform</SectionHeader>
                             <IconLink
-                              href={"#"}
-                              icon={""}
+                              href={"https://www.prisma.io/data-platform"}
+                              icon={"/icons/Icon-DataBrowser"}
                               title={"Data Browser"}
                               subtitle={
                                 "Explore and manipulate data in your projects"
                               }
                             />
                             <IconLink
-                              href={"#"}
-                              icon={""}
-                              title={"Serverless Data Proxy"}
-                              subtitle={"Manage and scale your connection pool"}
+                              href={"https://www.prisma.io/data-platform"}
+                              icon={"/icons/Icon-ServerlessDataProxy"}
+                              title={"Data Proxy"}
+                              subtitle={
+                                "Manage and scale your connection pool "
+                              }
                             />
                           </Panel>
                         }
                       />
 
-                      <NavItem href="/pricing" title={"Pricing"} />
+                      <NavItem
+                        href="https://www.prisma.io/data-platform"
+                        title={"Pricing"}
+                      />
 
                       <NavItem
                         title={"Developers"}
                         dropdown={
                           <Panel width={461}>
                             <IconLink
-                              href={"#"}
+                              href={"https://www.prisma.io/docs"}
                               titleOnlyOnMobile
-                              icon={""}
-                              title={"Documentation"}
+                              icon={"/icons/Icon-Docs"}
+                              title={"Docs"}
                               subtitle={
-                                "Learn about Prisma, explore our guides, features and examples"
+                                "Refer to our technical documentation to configure Prisma, access APIs, develop your app, and deploy"
                               }
                             />
                             <Spacer height={10} />
                             <IconLink
-                              href={"#"}
+                              href={
+                                "https://www.prisma.io/docs/getting-started"
+                              }
                               titleOnlyOnMobile
-                              icon={""}
-                              title={"API Reference"}
+                              icon={"/icons/Icon-GetStarted"}
+                              title={"Get started"}
                               subtitle={
-                                "Reference documentation for the Prisma API"
+                                "Use our Get Started guides to set up Prisma for your project"
                               }
                             />
                             <Spacer height={10} />
                             <IconLink
-                              href={"#"}
+                              href={"https://github.com/prisma/prisma-examples"}
                               titleOnlyOnMobile
-                              icon={""}
+                              icon={"/icons/Icon-PrismaExplained"}
+                              title={"Prisma examples"}
+                              subtitle={
+                                "Access dozens of ready-to-run Prisma example projects"
+                              }
+                            />
+                            <Spacer height={10} />
+                            <IconLink
+                              href={"https://www.prisma.io/dataguide/"}
+                              titleOnlyOnMobile
+                              icon={"/icons/Icon-DataGuide"}
                               title={"Data Guide"}
                               subtitle={
-                                "How to use databases in your application"
+                                "Refer to expert articles on how databases work and how to integrate them into your application."
                               }
                             />
-                            <Spacer height={10} />
                             <IconLink
-                              href={"/support"}
+                              href={"https://www.prisma.io/prisma-in-stack/"}
                               titleOnlyOnMobile
-                              icon={""}
-                              title={"Support"}
+                              icon={"/icons/Icon-PrismaInYourStack"}
+                              title={"Prisma in your ecosystem"}
                               subtitle={
-                                "Browse our resources, visit our status page, or submit a ticket to our support team."
+                                "Learn about Prisma’s integration with modern technology stacks, databases, and applications"
                               }
                             />
                             <HorizontalDivider />
                             <IconLink
-                              href={"#"}
+                              href={"https://www.prisma.io/support/"}
                               titleOnlyOnMobile
-                              icon={""}
-                              title={"Community"}
+                              icon={"/icons/Icon-Support"}
+                              title={"Support"}
                               subtitle={
-                                "Engage with a vibrant group of developers"
+                                "Find resources and get help from our support team"
                               }
                             />
                             <Spacer height={15} />
                             <IconLink
-                              href={"#"}
+                              href={"https://www.prisma.io/community/"}
                               titleOnlyOnMobile
-                              icon={""}
-                              title={"Prisma in your stack"}
-                              subtitle={
-                                "How to incorporate Prisma in your application"
-                              }
+                              icon={"/icons/Icon-Community"}
+                              title={"Community"}
+                              subtitle={"Join the growing Prisma community"}
                             />
                           </Panel>
                         }
@@ -299,9 +313,9 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                         dropdown={
                           <Panel width={441}>
                             <IconLink
-                              href={"#"}
+                              href={"https://www.prisma.io/showcase"}
                               titleOnlyOnMobile
-                              icon={""}
+                              icon={"/icons/Icon-CustomerStories"}
                               title={"Customer Stories"}
                               subtitle={
                                 "Learn about applications built with Prisma"
@@ -309,9 +323,9 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
                             <Spacer height={15} />
                             <IconLink
-                              href={"#"}
+                              href={"https://www.prisma.io/prisma-enterprise"}
                               titleOnlyOnMobile
-                              icon={""}
+                              icon={"/icons/Icon-Enterprise"}
                               title={"Enterprise"}
                               subtitle={
                                 "Up-level your Applications with our Data Platform"
@@ -327,15 +341,25 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                           <Panel width={621}>
                             <div className="company-dropdown-container">
                               <div className="company-links">
-                                <Link href={"#"}>About</Link>
-                                <Link href={"#"}>Blog</Link>
-                                <Link href={"#"}>Vision</Link>
-                                <Link href={"#"}>
+                                <Link href={"https://www.prisma.io/about"}>
+                                  About
+                                </Link>
+                                <Link href={"www.prisma.io/blog"}>Blog</Link>
+                                {/* <Link href={"#"}>Vision</Link> */}
+                                <Link href={"www.prisma.io/jobs"}>
                                   Careers <Label>We&apos;re Hiring</Label>
                                 </Link>
-                                <Link href={"#"}>Events</Link>
-                                <Link href={"#"}>Press & Media</Link>
-                                <Link href={"#"}>Causes</Link>
+                                <Link href={"www.prisma.io/events"}>
+                                  Events
+                                </Link>
+                                {/* <Link href={"#"}>Press & Media</Link> */}
+                                <Link
+                                  href={
+                                    "https://prismaio.notion.site/Prisma-Causes-0c9e1ddc0f5942edaba355692cfee69f"
+                                  }
+                                >
+                                  Causes
+                                </Link>
                               </div>
 
                               <VerticalDivider />
@@ -346,32 +370,36 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 </ArticlesHeader>
 
                                 <ArticleLink
-                                  href={"#"}
+                                  href={
+                                    "https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0"
+                                  }
                                   image={
                                     <img
-                                      src="/content/series-b-announcement.png"
+                                      src="/header/blogpost1.png"
                                       alt="Landscape picture"
                                       width={148}
                                       height={83}
                                     />
                                   }
                                   title={
-                                    "Prisma Raises $40M to Build the Application Data Platform"
+                                    "Building a REST API with NestJS and Prisma"
                                   }
                                 />
 
                                 <ArticleLink
-                                  href={"#"}
+                                  href={
+                                    "https://www.prisma.io/blog/cockroach-ga-5JrD9XVWQDYL"
+                                  }
                                   image={
                                     <img
-                                      src="/content/amplication-prisma-customer-story.png"
+                                      src="/header/blogpost2.png"
                                       alt="Landscape picture"
                                       width={148}
                                       height={83}
                                     />
                                   }
                                   title={
-                                    "How Prisma helps Application revolutionize backend..."
+                                    "Prisma Support for CockroachDB Is Production Ready"
                                   }
                                 />
                               </div>
@@ -387,7 +415,13 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                         (mobileOpen ? "" : " hidden-on-mobile")
                       }
                     >
-                      <ButtonLink href={"#"}>Get Started</ButtonLink>
+                      <ButtonLink
+                        href={
+                          "https://www.prisma.io/docs/getting-started/quickstart"
+                        }
+                      >
+                        Get Started
+                      </ButtonLink>
                     </div>
                   </NavBarInner>
                 </Container>

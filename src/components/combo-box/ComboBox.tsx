@@ -93,7 +93,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
 
   const { contains } = useFilter({ sensitivity: "base" })
   const state = useComboBoxState({
-    // id,
+    id,
     autoFocus,
     children: body,
     allowsEmptyCollection: true,
@@ -121,7 +121,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
     listBoxProps,
   } = useComboBox(
     {
-      // id,
+      id,
       autoFocus,
       children: body,
       menuTrigger: "focus",
@@ -224,7 +224,7 @@ function ComboBoxContainer<OptionKey extends Key = string>({
   )
 }
 
-export const ComboBox: any = {
+export const ComboBox = {
   Container: ComboBoxContainer,
   Section: ReactAriaSection,
   Option: ReactAriaItem as <Key extends string>(props: {

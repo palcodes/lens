@@ -135,7 +135,7 @@ const PickerContainer = ({
   )
 }
 
-export const Picker: any = {
+export const Picker = {
   Container: PickerContainer,
   Section: Section,
   Item: Item,

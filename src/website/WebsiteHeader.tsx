@@ -172,8 +172,8 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                         <img
                           src={
                             lightFont
-                              ? '"https://website-v9.vercel.app/logo-dark.svg"'
-                              : '"https://website-v9.vercel.app/logo-white.svg"'
+                              ? "https://website-v9.vercel.app/logo-dark.svg"
+                              : "https://website-v9.vercel.app/logo-white.svg"
                           }
                           width={90}
                           height={27}

@@ -99,7 +99,7 @@ const IconLinkStyles = styled.a<{ titleOnlyOnMobile: boolean }>`
     height: 38px;
     display: none;
     @media only screen and (min-width: 940px) {
-      display: block;
+      display: flex;
     }
   }
   .link-title {

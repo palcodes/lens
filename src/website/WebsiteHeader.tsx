@@ -219,10 +219,8 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             <IconLink
                               href={"https://www.prisma.io/data-platform"}
                               icon={"/icons/Icon-ServerlessDataProxy"}
-                              title={"Data Proxy"}
-                              subtitle={
-                                "Manage and scale your connection pool "
-                              }
+                              title={"Serverless Data Proxy"}
+                              subtitle={"Manage and scale your connection pool"}
                             />
                           </Panel>
                         }
@@ -241,7 +239,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               href={"https://www.prisma.io/docs"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-Docs"}
-                              title={"Docs"}
+                              title={"Documentation"}
                               subtitle={
                                 "Refer to our technical documentation to configure Prisma, access APIs, develop your app, and deploy"
                               }
@@ -254,9 +252,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               titleOnlyOnMobile
                               icon={"/icons/Icon-GetStarted"}
                               title={"Get started"}
-                              subtitle={
-                                "Use our Get Started guides to set up Prisma for your project"
-                              }
+                              subtitle={"Set up Prisma for your project"}
                             />
 
                             <IconLink
@@ -275,16 +271,16 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               icon={"/icons/Icon-DataGuide"}
                               title={"Data Guide"}
                               subtitle={
-                                "Refer to expert articles on how databases work and how to integrate them into your application."
+                                "Refer to expert articles on how databases work"
                               }
                             />
                             <IconLink
                               href={"https://www.prisma.io/prisma-in-stack/"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-PrismaInYourStack"}
-                              title={"Prisma in your ecosystem"}
+                              title={"Prisma in your Ecosystem"}
                               subtitle={
-                                "Learn about Prisma’s integration with modern technology stacks, databases, and applications"
+                                "Learn about Prisma’s integration with modern technology stacks, platforms, and applications"
                               }
                             />
                             {/* <HorizontalDivider /> */}
@@ -294,7 +290,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               icon={"/icons/Icon-Support"}
                               title={"Support"}
                               subtitle={
-                                "Find resources and get help from our support team"
+                                "Find resources and get help from our support staff"
                               }
                             />
 

@@ -127,20 +127,26 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
           <Link href="https://www.prisma.io/client">Client</Link>
           <Link href="https://www.prisma.io/migrate">Migrate</Link>
           <Link href="https://www.prisma.io/data-platform">Data Browser</Link>
-          <Link href="https://www.prisma.io/data-platform">
-            Serverless Data Proxy
-          </Link>
+          <Link href="https://www.prisma.io/data-platform">Data Proxy</Link>
+          <Link href="https://www.prisma.io/pricing">Pricing</Link>
         </Column>
 
         <Column>
           <Title>Developers</Title>
           <Link href="https://www.prisma.io/docs">Docs</Link>
+          <Link href="https://www.prisma.io/docs/getting-started">
+            Get Started
+          </Link>
+          <Link href="https://github.com/prisma/prisma-examples">
+            Prisma Examples
+          </Link>
+          <Link href="https://www.prisma.io/dataguide">Data Guide</Link>
+
           <Link href="https://www.prisma.io/prisma-in-stack">
-            Prisma in your Stack
+            Prisma in your Ecosystem
           </Link>
           <Link href="https://www.prisma.io/support">Support</Link>
           <Link href="https://www.prisma.io/community">Community</Link>
-          <Link href="https://www.prisma.io/dataguide">Data Guide</Link>
           <Link href="https://www.prisma-status.com/">
             Data Platform Status
           </Link>
@@ -160,6 +166,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
           <Link href="https://www.prisma.io/jobs">
             Careers <Label>We're Hiring</Label>
           </Link>
+          <Link href="https://www.prisma.io/events">Events</Link>
           {/* <Link href="">Press &amp; Media</Link> */}
           <Link href="https://prismaio.notion.site/Prisma-Causes-0c9e1ddc0f5942edaba355692cfee69f">
             Causes
@@ -185,7 +192,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
             {/* <a href="#">
               <Icon name="facebook" />
             </a> */}
-            <a href="https://www.youtube.com/prismadata">
+            <a href="https://www.youtube.com/c/PrismaData">
               <Icon name="youtube" />
             </a>
             <a href="https://slack.prisma.io/">

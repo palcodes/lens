@@ -219,7 +219,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             <IconLink
                               href={"https://www.prisma.io/data-platform"}
                               icon={"/icons/Icon-ServerlessDataProxy"}
-                              title={"Serverless Data Proxy"}
+                              title={"Data Proxy"}
                               subtitle={"Manage and scale your connection pool"}
                             />
                           </Panel>

@@ -201,7 +201,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               subtitle={"Write Queries the way you think"}
                             />
                             <IconLink
-                              href={"https://www.prisma.io/client"}
+                              href={"https://www.prisma.io/migrate"}
                               icon={"/icons/Icon-Migrate"}
                               title={"Migrate"}
                               subtitle={"Generate customizable SQL migrations"}
@@ -227,7 +227,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                       />
 
                       <NavItem
-                        href="https://www.prisma.io/data-platform"
+                        href="https://www.prisma.io/pricing"
                         title={"Pricing"}
                       />
 
@@ -275,7 +275,9 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               }
                             />
                             <IconLink
-                              href={"https://www.prisma.io/prisma-in-stack/"}
+                              href={
+                                "https://www.prisma.io/prisma-in-your-stack/"
+                              }
                               titleOnlyOnMobile
                               icon={"/icons/Icon-PrismaInYourStack"}
                               title={"Prisma in your Ecosystem"}
@@ -341,12 +343,14 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 <Link href={"https://www.prisma.io/about"}>
                                   About
                                 </Link>
-                                <Link href={"www.prisma.io/blog"}>Blog</Link>
+                                <Link href={"https://www.prisma.io/blog"}>
+                                  Blog
+                                </Link>
                                 {/* <Link href={"#"}>Vision</Link> */}
-                                <Link href={"www.prisma.io/jobs"}>
+                                <Link href={"https://www.prisma.io/jobs"}>
                                   Careers <Label>We&apos;re Hiring</Label>
                                 </Link>
-                                <Link href={"www.prisma.io/events"}>
+                                <Link href={"https://www.prisma.io/events"}>
                                   Events
                                 </Link>
                                 {/* <Link href={"#"}>Press & Media</Link> */}

@@ -49,7 +49,7 @@ export const Link = styled.a`
   text-decoration: none;
   font-weight: 600;
   font-family: ${theme.fonts.text};
-  font-size: ${theme.fontSizes["16"]};
+  font-size: ${theme.fontSizes[14]};
   color: ${theme.colors.gray800};
   line-height: 1;
   display: flex;
@@ -93,7 +93,7 @@ const IconLinkStyles = styled.a<{ titleOnlyOnMobile: boolean }>`
   .link-icon {
     flex-shrink: 0;
     transition: background-color 0.1s ease;
-    background-color: ${theme.colors.gray200};
+    background-color: ${theme.colors.gray100};
     border-radius: 5px;
     width: 38px;
     height: 38px;
@@ -118,7 +118,7 @@ const IconLinkStyles = styled.a<{ titleOnlyOnMobile: boolean }>`
     transition: color 0.1s ease;
     font-weight: 400;
     line-height: ${18 / 14};
-    font-size: ${theme.fontSizes["14"]};
+    font-size: 12.25px;
     display: ${(p) => (p.titleOnlyOnMobile ? "none" : "initial")};
     color: ${theme.colors.gray600};
     @media only screen and (min-width: 940px) {
@@ -130,7 +130,7 @@ const IconLinkStyles = styled.a<{ titleOnlyOnMobile: boolean }>`
   &:hover {
     @media only screen and (min-width: 940px) {
       .link-icon {
-        background-color: ${theme.colors.gray300};
+        background-color: ${theme.colors.indigo100};
       }
       .link-title {
         color: ${theme.colors.indigo600};
@@ -146,7 +146,7 @@ const LinkTitle = styled.div`
   text-decoration: none;
   font-weight: 600;
   font-family: ${theme.fonts.text};
-  font-size: ${theme.fontSizes["16"]};
+  font-size: ${theme.fontSizes[14]};
   color: ${theme.colors.gray800};
   line-height: 1;
 `
@@ -207,7 +207,7 @@ const ArticleLinkStyles = styled.a`
 const ArticleTitle = styled.p`
   font-weight: 500;
   font-family: ${theme.fonts.text};
-  font-size: ${theme.fontSizes["16"]};
+  font-size: ${theme.fontSizes[14]};
   line-height: 1.3;
   color: ${theme.colors.gray600};
 `

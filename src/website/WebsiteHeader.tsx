@@ -34,6 +34,7 @@ const Label = styled.span`
 `
 
 const HeaderWrapper = styled.div<{ lightFont?: boolean; notFixed?: boolean }>`
+  font-size: 14px;
   position: ${(p) => (p.notFixed ? "relative" : "fixed")};
   top: 0;
   width: 100%;
@@ -245,7 +246,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 "Refer to our technical documentation to configure Prisma, access APIs, develop your app, and deploy"
                               }
                             />
-                            <Spacer height={10} />
+
                             <IconLink
                               href={
                                 "https://www.prisma.io/docs/getting-started"
@@ -257,7 +258,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 "Use our Get Started guides to set up Prisma for your project"
                               }
                             />
-                            <Spacer height={10} />
+
                             <IconLink
                               href={"https://github.com/prisma/prisma-examples"}
                               titleOnlyOnMobile
@@ -267,7 +268,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 "Access dozens of ready-to-run Prisma example projects"
                               }
                             />
-                            <Spacer height={10} />
+
                             <IconLink
                               href={"https://www.prisma.io/dataguide/"}
                               titleOnlyOnMobile
@@ -286,7 +287,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 "Learn about Prisma’s integration with modern technology stacks, databases, and applications"
                               }
                             />
-                            <HorizontalDivider />
+                            {/* <HorizontalDivider /> */}
                             <IconLink
                               href={"https://www.prisma.io/support/"}
                               titleOnlyOnMobile
@@ -296,7 +297,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                 "Find resources and get help from our support team"
                               }
                             />
-                            <Spacer height={15} />
+
                             <IconLink
                               href={"https://www.prisma.io/community/"}
                               titleOnlyOnMobile

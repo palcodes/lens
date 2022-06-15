@@ -271,7 +271,7 @@ const NavLink = styled.a`
   text-decoration: none;
   font-weight: 600;
   font-family: ${theme.fonts.text};
-  font-size: ${theme.fontSizes["16"]};
+  font-size: ${theme.fontSizes[14]};
   color: ${theme.colors.gray800};
   line-height: 1;
   transition: color 0.1s ease;

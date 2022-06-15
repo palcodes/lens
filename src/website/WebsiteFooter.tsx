@@ -8,6 +8,7 @@ import { Container } from "./Container"
 const FooterContainer = styled.div`
   background-color: ${theme.colors.white};
   padding: 46px 0 1px;
+  font-size: 14px;
 `
 
 const Row = styled.div`
@@ -37,7 +38,7 @@ const Column = styled.div<{ flex?: number }>`
 const Title = styled.h4`
   text-transform: uppercase;
   font-weight: 400;
-  font-size: ${theme.fontSizes[16]};
+  font-size: ${theme.fontSizes[14]};
   color: ${theme.colors.gray700};
   letter-spacing: 0.08em;
   margin-top: 0;
@@ -48,7 +49,7 @@ const Title = styled.h4`
 `
 
 const Link = styled.a`
-  font-size: ${theme.fontSizes[18]};
+  font-size: ${theme.fontSizes[14]};
   color: ${theme.colors.gray800};
   font-weight: 400;
   cursor: pointer;
@@ -73,7 +74,7 @@ const DesktopSpacer = styled.div`
 `
 
 const FooterP = styled.p`
-  font-size: ${theme.fontSizes[18]};
+  font-size: 15.75px;
   color: ${theme.colors.gray800};
   font-weight: 400;
   margin-top: 0;

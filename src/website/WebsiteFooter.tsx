@@ -49,7 +49,7 @@ const Title = styled.h4`
 `
 
 const Link = styled.a`
-  font-size: ${theme.fontSizes[14]};
+  font-size: 15.75px;
   color: ${theme.colors.gray800};
   font-weight: 400;
   cursor: pointer;

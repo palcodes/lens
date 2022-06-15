@@ -290,7 +290,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                               icon={"/icons/Icon-Support"}
                               title={"Support"}
                               subtitle={
-                                "Find resources and get help from our support staff"
+                                "Find resources and get help from our support team"
                               }
                             />
 

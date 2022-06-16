@@ -236,7 +236,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                         dropdown={
                           <Panel width={461}>
                             <IconLink
-                              href={"https://www.prisma.io/docs"}
+                              href={"https://www.prisma.io/docs/"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-Docs"}
                               title={"Documentation"}

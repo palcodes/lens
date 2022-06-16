@@ -266,7 +266,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
 
                             <IconLink
-                              href={"https://www.prisma.io/dataguide/"}
+                              href={"https://www.prisma.io/dataguide"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-DataGuide"}
                               title={"Data Guide"}
@@ -276,7 +276,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
                             <IconLink
                               href={
-                                "https://www.prisma.io/prisma-in-your-stack/"
+                                "https://www.prisma.io/prisma-in-your-stack"
                               }
                               titleOnlyOnMobile
                               icon={"/icons/Icon-PrismaInYourStack"}
@@ -287,7 +287,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
                             {/* <HorizontalDivider /> */}
                             <IconLink
-                              href={"https://www.prisma.io/support/"}
+                              href={"https://www.prisma.io/support"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-Support"}
                               title={"Support"}
@@ -297,7 +297,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
 
                             <IconLink
-                              href={"https://www.prisma.io/community/"}
+                              href={"https://www.prisma.io/community"}
                               titleOnlyOnMobile
                               icon={"/icons/Icon-Community"}
                               title={"Community"}

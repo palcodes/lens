@@ -133,7 +133,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
 
         <Column>
           <Title>Developers</Title>
-          <Link href="https://www.prisma.io/docs">Docs</Link>
+          <Link href="https://www.prisma.io/docs/">Docs</Link>
           <Link href="https://www.prisma.io/docs/getting-started">
             Get Started
           </Link>
@@ -147,9 +147,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
           </Link>
           <Link href="https://www.prisma.io/support">Support</Link>
           <Link href="https://www.prisma.io/community">Community</Link>
-          <Link href="https://www.prisma-status.com/">
-            Data Platform Status
-          </Link>
+          <Link href="https://www.prisma-status.com">Data Platform Status</Link>
         </Column>
 
         <Column>
@@ -195,7 +193,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
             <a href="https://www.youtube.com/c/PrismaData">
               <Icon name="youtube" />
             </a>
-            <a href="https://slack.prisma.io/">
+            <a href="https://slack.prisma.io">
               <Icon name="slack" />
             </a>
             <a href="https://github.com/prisma">

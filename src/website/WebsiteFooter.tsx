@@ -142,7 +142,7 @@ const WebsiteFooter = ({ newsletterComponent }: any) => (
           </Link>
           <Link href="https://www.prisma.io/dataguide">Data Guide</Link>
 
-          <Link href="https://www.prisma.io/prisma-in-your-stack">
+          <Link href="https://www.prisma.io/prisma-in-your-ecosystem">
             Prisma in your Ecosystem
           </Link>
           <Link href="https://www.prisma.io/support">Support</Link>

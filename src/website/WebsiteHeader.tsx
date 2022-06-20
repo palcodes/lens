@@ -276,7 +276,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                             />
                             <IconLink
                               href={
-                                "https://www.prisma.io/prisma-in-your-stack"
+                                "https://www.prisma.io/prisma-in-your-ecosystem"
                               }
                               titleOnlyOnMobile
                               icon={"/icons/Icon-PrismaInYourStack"}

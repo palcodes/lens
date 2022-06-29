@@ -67,7 +67,7 @@ const HeaderWrapper = styled.div<{ lightFont?: boolean; notFixed?: boolean }>`
       color: ${theme.colors.white};
 
       > a {
-        color: ${theme.colors.white};
+        color: inherit;
       }
     }
   }`}
@@ -76,9 +76,10 @@ const HeaderWrapper = styled.div<{ lightFont?: boolean; notFixed?: boolean }>`
     width: 100%;
     justify-content: space-between;
     display: flex;
+    height: 96px;
     align-items: center;
     box-sizing: border-box;
-    padding: 18px 8px 30px 24px;
+    padding: 0 32px;
     border-bottom: 1px solid ${theme.colors.gray300};
     .menu-toggle-button {
       display: inline-flex;
@@ -88,6 +89,7 @@ const HeaderWrapper = styled.div<{ lightFont?: boolean; notFixed?: boolean }>`
       border-bottom: none;
       padding: 0;
       display: initial;
+      height: auto;
       width: auto;
       .menu-toggle-button {
         display: none;
@@ -376,7 +378,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                   }
                                   image={
                                     <img
-                                      src="/header/blogpost1.png"
+                                      src="/header/blogpost1.webp"
                                       alt="Landscape picture"
                                       width={148}
                                       height={83}
@@ -393,7 +395,7 @@ const WebsiteHeader = ({ className, lightFont, notFixed }: HeaderProps) => {
                                   }
                                   image={
                                     <img
-                                      src="/header/blogpost2.png"
+                                      src="/header/blogpost2.webp"
                                       alt="Landscape picture"
                                       width={148}
                                       height={83}

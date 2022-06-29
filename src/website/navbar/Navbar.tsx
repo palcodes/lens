@@ -119,7 +119,7 @@ const NavItemsContainerWrapper = styled.div`
     @media only screen and (min-width: 940px) {
       width: auto;
     }
-
+    
     &:after {
       display: block;
       content: "";
@@ -132,11 +132,11 @@ const NavItemsContainerWrapper = styled.div`
         display: none;
       }
     }
-
+    
     &:last-child:after {
       display: none;
     }
-
+    
     & > a {
       color: ${theme.colors.gray800};
       cursor: pointer;
@@ -165,13 +165,6 @@ const NavItemsContainerWrapper = styled.div`
         }
       }
       &.has-dropdown {
-        .item-open {
-          display: none;
-        }
-        .item-closed {
-          display: initial;
-        }
-
         &:after {
           right: 22px;
         }
@@ -188,11 +181,11 @@ const NavItemsContainerWrapper = styled.div`
         }
       }
     }
-
+    
     .panel-outer {
       display: none;
     }
-    @media only screen and (min-width: 940px) {
+      @media only screen and (min-width: 940px) {
       .panel-outer {
         position: relative;
         display: none;
@@ -207,7 +200,7 @@ const NavItemsContainerWrapper = styled.div`
       .panel-spacer {
         padding-top: 28px;
       }
-
+      
       &:hover {
         .panel-outer {
           display: block;
@@ -219,11 +212,8 @@ const NavItemsContainerWrapper = styled.div`
           }
 
           &.has-dropdown {
-            .item-open {
-              display: initial;
-            }
-            .item-closed {
-              display: none;
+            .item-chevron {
+              transform: scaleY(-1);
             }
           }
         }
@@ -233,11 +223,8 @@ const NavItemsContainerWrapper = styled.div`
     @media only screen and (max-width: ${940 - 1}px) {
       &.open {
         .has-dropdown {
-          .item-open {
-            display: initial;
-          }
-          .item-closed {
-            display: none;
+          .item-chevron {
+            transform: scaleY(-1);
           }
         }
         .panel-outer {
@@ -294,6 +281,7 @@ export const NavItem = ({ href, title, dropdown }: NavItemProps) => {
     instanceRef.current.id = context.nextId()
   }, [])
 
+
   const navlink = (
     <NavLink
       onClick={() =>
@@ -306,10 +294,7 @@ export const NavItem = ({ href, title, dropdown }: NavItemProps) => {
     >
       {title}
       {dropdown && (
-        <>
-          <Icon name="chevron-down" className="item-closed" />
-          <Icon name="chevron-up" className="item-open" />
-        </>
+        <Icon name="chevron-down" className="item-chevron" />
       )}
     </NavLink>
   )
